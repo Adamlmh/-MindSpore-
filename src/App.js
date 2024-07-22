@@ -1,10 +1,10 @@
-// import Router  from "./router/index";
+import { RouterProvider } from "react-router-dom";
+import Router from "./router";
 
 function App() {
   return (
     <div className="App">
-      {/* <Router/> */}
-      <h1>My First React App</h1> {/* This is a comment */}
+      <Router />
     </div>
   );
 }
