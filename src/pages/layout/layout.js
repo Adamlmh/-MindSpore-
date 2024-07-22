@@ -66,6 +66,7 @@ const Guidance = () => {
                 <Layout
                     style={{
                         padding: '0 24px 24px', 
+                        backgroundColor:'#f2f6fd'
                     }}
                 >
                     <Content
