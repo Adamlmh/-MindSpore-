@@ -1,16 +1,25 @@
-body {
-  background: url('../../assest/images/login.jpg') no-repeat;
-  background-size: cover;
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+.Big_Div {
+  width: 100vw;
+  
+  background-size: cover; /* 背景图片尺寸适应 */
+  background-position: center; /* 背景图片位置 */
+  background-repeat: no-repeat; /* 背景图片不重复 */
   margin: 0;
   display: flex;
   justify-content: flex-end; /* 将内容放在屏幕右侧 */
   align-items: center;
   height: 100vh;
+  
 }
 
 .login-container {
     position: relative;
-  width: 400px; /* 放大表单的宽度 */
+    width: 400px; /* 放大表单的宽度 */
   height: 60vh;
   padding: 20px;
   background-color: #fff;
@@ -22,23 +31,25 @@ body {
 
 .login_title {
   text-align: center;
-  margin-bottom: 50px;
-  margin-top: 60px;
-  
+  margin-bottom: 60px;
+  margin-top: 40px;
+
 }
 
 .account_login, .noaccount_login {
+  cursor: pointer;
   display: inline-block;
-  margin-right: 70px;
+  margin-right: 60px;
   color: #505458;
   font-size: 20px;
 }
 .account_login{
-    margin-left: 50px;
+    margin-left:70px;
 }
 
 .username, .password {
   margin-bottom: 30px;
+  width: 350px;
 }
 .password{
     margin-bottom: 0px;
@@ -84,7 +95,8 @@ body {
 }
 
 .sign-in-button, .sign-up-button {
-  margin-right:50px
+  margin-right:50px;
+  
 }
 .sign-up-button{
     margin-left: 50px;
@@ -146,4 +158,12 @@ position: absolute;
     font-weight: 700;
     line-height: 40px;
     text-align: center;
+}
+
+.active{
+  color: rgb(89, 161, 227);
+  border-bottom: 2px solid rgb(89, 161, 227);
+}
+.agree_text{
+  margin-top: 20px;
 }
