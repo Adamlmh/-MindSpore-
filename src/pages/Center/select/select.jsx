@@ -9,8 +9,8 @@ const select = () => {
             >
                 <div className="selectCardTop">
                     <span>筛选</span>
-                    <span>重置</span>
-                    <span><SettingOutlined /></span>
+                    <span>   <SettingOutlined />重置</span>
+
                 </div>
                 <div className="from">
                     <h3>来源</h3>

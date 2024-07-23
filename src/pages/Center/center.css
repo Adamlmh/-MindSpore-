@@ -5,13 +5,15 @@
 .big_box{
     width: 90vw;
     background-color: rgb(242, 246, 253);
+    display: flex;
+    flex-wrap: wrap;
 }
 img{
     width: 100%;
     height: 100%;
 }
 .top_image{
-    width: 90vw;
+    width: 95vw;
     height: 10vh;
 
 }
@@ -26,8 +28,8 @@ img{
     margin-top: 2vh;
 }
 .bottom_pages{
-    display: flex;
-    justify-content: center;
+margin-left: 40vw;
+
     margin-top: 4vh;
 }
 .selectCard{
@@ -45,8 +47,9 @@ width: 14vw;
     flex-direction: column;
 }
 .right_content{
-flex: 1 1 auto;
+
     margin-top: 1vw;
+    
 }
 .right_content_grid{
     display: flex;
@@ -58,4 +61,16 @@ flex: 1 1 auto;
   margin-bottom: 2.5vw;
     width: 25vw;
     margin-right: 6vw;
+    min-height: 1vh;
+}
+.selectCardTop{
+display: flex;
+justify-content: space-between;
+height: 2vh;
+}
+.selectCardTop span:nth-of-type(1){
+
+}
+.selectCard{
+
 }
