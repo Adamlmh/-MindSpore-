@@ -27,15 +27,17 @@ display: flex;
     margin-left: 15px;
     width: 38%;
 }
-@media screen and (max-width: 948px) {
+@media screen and (max-width: 1248px) {
 
     /* 可以在此设置超小屏幕样式 */
     .top_bottom {
         width: 90%;
         height: 600px;
+        min-width: 550px;
     }
         .bottom-content {
             width: 90%;
+            min-width: 550px;
             
         }
 }

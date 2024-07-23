@@ -64,7 +64,7 @@ h3 {
     background-image: url('../../../assest/images/agree.jpg');
     background-size: cover;
 }
-@media screen and (max-width: 948px) {
+@media screen and (max-width: 1248px) {
 
     /* 可以在此设置超小屏幕样式 */
     .apply {
@@ -81,7 +81,7 @@ h3 {
         grid-column-gap: 25px;
         }
         .show_content {
-            width: 50%;
+            width: 60%;
             height: 100px;
             
             position: relative;
