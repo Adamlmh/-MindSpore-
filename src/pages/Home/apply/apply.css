@@ -41,27 +41,27 @@ h3 {
 }
 
 .all {
-    background-image: url('@/assest/images/all.jpg');
+    background-image: url('../../../assest/images/all.jpg');
     background-size: cover;
 }
 
 .wait {
-    background-image: url('@/assest/images/wait.jpg');
+    background-image: url('../../../assest/images/wait.jpg');
     background-size: cover;
 }
 
 .wait_check {
-    background-image: url('@/assest/images/wait_check.jpg');
+    background-image: url('../../../assest/images/wait_check.jpg');
     background-size: cover;
 }
 
 .disagree {
-    background-image: url('@/assest/images/disagree.jpg');
+    background-image: url('../../../assest/images/disagree.jpg');
     background-size: cover;
 }
 
 .agree {
-    background-image: url('@/assest/images/agree.jpg');
+    background-image: url('../../../assest/images/agree.jpg');
     background-size: cover;
 }
 @media screen and (max-width: 948px) {

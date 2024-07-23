@@ -6,10 +6,10 @@ import { useNavigate, Navigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/");
+    navigate("/home");
   };
   const jump_to_login = () => {
-    navigate("/login", { replace: true });
+    navigate("/main/login", { replace: true });
   };
 
   //手动修改图片
@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     <div className="Big_Div" ref={backgroundRef}>
-      <Form className="login-container" onFinish={handleSubmit}>
+      <Form className="login-container" >
         <div className="login_title">
           <div className="top_name">万千模型</div>
           <div className="left_name"></div>
@@ -42,7 +42,7 @@ const Login = () => {
               <input type="checkbox" id="agreeTerms" />
               <label className="agreeTerms">已同意<a href="#">《服务条款》</a>和<a href="#">《隐私政策》</a></label>
             </div>
-            <Button type="default" className="sign-up-button_in_register" >
+            <Button type="default" className="sign-up-button_in_register" onClick={handleSubmit} >
               注册
         </Button>
             <Button type="primary" className="sign-in-button_in_register" onClick={jump_to_login}>

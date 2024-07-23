@@ -4,6 +4,7 @@
 }
 
 .Big_Div {
+
   width: 100vw;
   background-size: cover; /* 背景图片尺寸适应 */
   background-position: center; /* 背景图片位置 */
