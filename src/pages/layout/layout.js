@@ -64,8 +64,7 @@ const Guidance = () => {
                     </Menu>
                 </Sider>
                 <Layout
-                    style={{
-                        padding: '0 24px 24px', 
+                    style={{ 
                         backgroundColor:'#f2f6fd'
                     }}
                 >

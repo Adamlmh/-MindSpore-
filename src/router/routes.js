@@ -9,11 +9,15 @@ const Register = lazy(() => import("../pages/register"))
 const NoAccount = lazy(() => import("../pages/loginnoaccount"))
 const Guidance = lazy(() => import("../pages/layout/layout"))
 const Home = lazy(() => import("../pages/Home"))
+const Workbench = lazy(() => import("../pages/workbench/workbench"))
 const routers = [
   { path: "/", element: <Guidance />,
     children:[
       {
         path: "/home", element: <Home />,
+      },
+      {
+        path: "/workbench", element: <Workbench />,
       }
     ]
    },
