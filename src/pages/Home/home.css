@@ -32,7 +32,7 @@ display: flex;
     /* 可以在此设置超小屏幕样式 */
     .top_bottom {
         width: 90%;
-        height: 600px;
+        height: 500px;
         min-width: 550px;
     }
         .bottom-content {

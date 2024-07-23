@@ -15,7 +15,7 @@ const Apply=()=>{
                 </div>
                 <div className="show_content wait">
                     <div className="show_name">
-                        <h3 className="name">待办</h3>
+                        <h3 className="name">作品</h3>
                         <h1 className="sum">12</h1>
                     </div>
                 </div>
