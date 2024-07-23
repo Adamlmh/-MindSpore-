@@ -63,7 +63,7 @@ const Login = () => {
         <Form.Item className="login-button">
           <div className="button-container">
             <div className="forget-remember">
-              <div className="remember-me">
+              <div className="remember-me checkbox-container">
                 <input type="checkbox" id="rememberMe" className="remember-choose" />
                 <label htmlFor="rememberMe" className="rememberMe_text">记住我</label>
 
@@ -77,9 +77,9 @@ const Login = () => {
                 登录
         </Button>
             </div>
-            <div className="agree-terms">
+            <div className="agree-terms checkbox-container">
               <input type="checkbox" id="agreeTerms" />
-              <label className="agreeTerms agree_text" >已同意<a href="#">《服务条款》</a>和<a href="#">《隐私政策》</a></label>
+              <label className="agreeTerms agree_text checkbox-label" >已同意<a href="#">《服务条款》</a>和<a href="#">《隐私政策》</a></label>
             </div>
           </div>
         </Form.Item>

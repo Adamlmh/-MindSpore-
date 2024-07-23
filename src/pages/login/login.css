@@ -5,7 +5,6 @@
 
 .Big_Div {
   width: 100vw;
-  
   background-size: cover; /* 背景图片尺寸适应 */
   background-position: center; /* 背景图片位置 */
   background-repeat: no-repeat; /* 背景图片不重复 */
@@ -123,9 +122,9 @@
 }
 .top_name{
     position: absolute;
-    top: -20px;
+    top: -30px;
     width: 150px;
-    height: 40px;
+    height: 60px;
     left: 125px;
     background-color: rgb(51, 139, 220);
 }
@@ -133,30 +132,30 @@
     position: absolute;
     width: 0px;
     height: 0px;
-    top: -20px;
+    top: -30px;
     left: 275px;
-     border-top: 20px solid  transparent;
-  border-bottom: 20px solid transparent ;
-  border-left: 20px solid rgb(51, 139, 220);
-  border-right: 20px solid transparent;
+     border-top: 30px solid  transparent;
+  border-bottom: 30px solid transparent ;
+  border-left: 30px solid rgb(51, 139, 220);
+  border-right: 30px solid transparent;
 }
 .right_name{
 position: absolute;
     width: 0px;
     height: 0px;
-    top: -20px;
+    top: -30px;
     right: 275px;
-     border-top: 20px solid  transparent;
-  border-bottom: 20px solid transparent ;
-  border-left: 20px solid transparent;
-  border-right: 20px solid rgb(51, 139, 220);
+     border-top: 30px solid  transparent;
+  border-bottom: 30px solid transparent ;
+  border-left: 30px solid transparent;
+  border-right: 30px solid rgb(51, 139, 220);
 }
 
 .top_name{
-    font-size: 20px;
+    font-size: 28px;
     color: white;
     font-weight: 700;
-    line-height: 40px;
+    line-height: 60px;
     text-align: center;
 }
 
@@ -164,6 +163,13 @@ position: absolute;
   color: rgb(89, 161, 227);
   border-bottom: 2px solid rgb(89, 161, 227);
 }
-.agree_text{
-  margin-top: 20px;
-}
+
+
+ .checkbox-container {
+      display: flex;
+      align-items: center; /* 垂直居中对齐 */
+      justify-content: center;
+    }
+.checkbox-label {
+      margin-left: 8px; /* 调整文本和复选框之间的间距 */
+    }
