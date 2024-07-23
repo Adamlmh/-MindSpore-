@@ -83,7 +83,7 @@ const Login = () => {
                 type="primary"
                 htmlType="submit"
                 className="sign-in-button"
-                onClick={login}
+                onClick={Login}
               >
                 登录
               </Button>
