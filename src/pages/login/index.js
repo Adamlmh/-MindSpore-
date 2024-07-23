@@ -22,9 +22,7 @@ const Login = () => {
   const login = () => {
     axiosInstance.get('/api/data')
       .then(response => {
-        console.log(response.data); // 输出模拟的随机数据
-        // 处理模拟数据
-
+        navigate("/home", { replace: true });
       })
   }
 
