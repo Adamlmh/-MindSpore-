@@ -21,7 +21,7 @@ display: none;
     width: 60%;
     height: 160px;
     margin-left: 20px;
-    background-image: url('@/assest/images/data.jpg');
+    background-image: url('../../../assest/images/data.jpg');
     background-size: 100% 100%;
 }
 @media screen and (min-width:2048px) {

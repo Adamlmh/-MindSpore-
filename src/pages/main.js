@@ -1,8 +1,12 @@
 import React from "react";
+import { Outlet } from 'react-router-dom';
 // import { Layout } from 'antd'
 
 const Main = () => {
-  return <h1>这是主界面</h1>;
+  return (
+    <div>
+      <Outlet />
+    </div>)
 };
 
 export default Main;

@@ -6,13 +6,13 @@ import { useNavigate, Navigate, } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/");
+    navigate("/home");
   };
   const jump_to_login = () => {
-    navigate("/login", { replace: true });
+    navigate("/main/login", { replace: true });
   };
   const jump_to_register = () => {
-    navigate("/register", { replace: true });
+    navigate("/main/register", { replace: true });
   };
 
 
@@ -35,10 +35,10 @@ const Login = () => {
 
   //手动修改图片
   const backgroundRef = React.useRef()
-  const backgroundImage = require('../../assest/images/login.jpg')
-  React.useEffect(() => {
-    backgroundRef.current.style.backgroundImage = `url(${backgroundImage})`
-  })
+  // const backgroundImage = require('../../assest/images/login.jpg')
+  // React.useEffect(() => {
+  //   backgroundRef.current.style.backgroundImage = `url(${backgroundImage})`
+  // })
 
   return (
     <div className="Big_Div" ref={backgroundRef}>

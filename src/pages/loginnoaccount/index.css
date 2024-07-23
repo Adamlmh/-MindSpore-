@@ -9,7 +9,6 @@
   justify-content: flex-end; /* 将内容放在屏幕右侧 */
   align-items: center;
   height: 100vh;  
-   background: url('../../assest/images/login.jpg') no-repeat;
   background-size: cover; /* 背景图片尺寸适应 */
   background-position: center; /* 背景图片位置 */
   background-repeat: no-repeat; /* 背景图片不重复 */

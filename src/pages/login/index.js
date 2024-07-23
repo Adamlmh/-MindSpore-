@@ -10,12 +10,12 @@ const Login = () => {
 
   //跳转到免密登录
   const jump_to_noaccount_login = () => {
-    navigate("/noaccount", { replace: true });
+    navigate("/main/noaccount", { replace: true });
   };
 
   //跳转到注册页面
   const jump_to_register = () => {
-    navigate("/register", { replace: true });
+    navigate("/main/register", { replace: true });
   };
   // 登录请求
   const login = async () => {
@@ -24,10 +24,10 @@ const Login = () => {
 
   //手动修改图片
   const backgroundRef = React.useRef();
-  const backgroundImage = require("../../assest/images/login.jpg");
-  React.useEffect(() => {
-    backgroundRef.current.style.backgroundImage = `url(${backgroundImage})`;
-  });
+  // const backgroundImage = require("../../assest/images/login.jpg");
+  // React.useEffect(() => {
+  //   backgroundRef.current.style.backgroundImage = `url(${backgroundImage})`;
+  // });
 
   return (
     <div className="Big_Div" ref={backgroundRef}>
@@ -83,7 +83,7 @@ const Login = () => {
                 type="primary"
                 htmlType="submit"
                 className="sign-in-button"
-                // onClick={login}
+                onClick={login}
               >
                 登录
               </Button>

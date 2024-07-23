@@ -1,0 +1,22 @@
+.workbench{
+    display: flex;
+    /* background-color: #fff; */
+    width: 100%;
+    height: 100%;
+}
+/* 最左边新建项目模块盒子 */
+.work_project{
+    background-color: #F9F9F9;
+    height: 100%;
+    width: 250px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+/* 中间模型组件盒子 */
+.work_model{
+    background-color: #FFF;
+        height: 100%;
+        width: 200px;
+        box-sizing: border-box;
+        padding: 10px;
+}

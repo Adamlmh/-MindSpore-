@@ -2,8 +2,8 @@ import React from 'react';
 
 
 import "./layout.css"
-import { LogoutOutlined, HomeOutlined, CodepenOutlined,DatabaseOutlined,ExclamationCircleOutlined,UserOutlined } from '@ant-design/icons';
-import {  Input,Layout, Menu, theme } from 'antd';
+import { LogoutOutlined, HomeOutlined, CodepenOutlined, DatabaseOutlined, ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { Input, Layout, Menu, theme } from 'antd';
 import MenuItem from 'antd/es/menu/MenuItem';
 import { Outlet } from 'react-router-dom';
 const { Header, Content, Sider } = Layout;
@@ -16,8 +16,8 @@ const Guidance = () => {
     return (
         <Layout>
             <Header
-               className='head' 
-               
+                className='head'
+
             >
                 <div className='demo_logo'>
                     <div className='logo'></div>
@@ -25,7 +25,7 @@ const Guidance = () => {
                 </div>
                 <div className='right_head'>
                     <div className='search'>
-                        <Input className='search_input' placeholder='搜索'/>
+                        <Input className='search_input' placeholder='搜索' />
 
                     </div>
                     <div className='person'>
@@ -37,16 +37,16 @@ const Guidance = () => {
                         <div className='icon'></div>
                     </div>
                 </div>
-                
+
             </Header>
             <Layout >
                 <Sider
-                   className='sider'
-                   theme='light'
-                   width={160}
+                    className='sider'
+                    theme='light'
+                    width={160}
                 >
                     <Menu className='menu'
-                    selectedKeys={'1'}>
+                        selectedKeys={'1'}>
                         <div className='all_menu'>
                             <div className='top_menu'>
                                 <MenuItem key='1' icon={<HomeOutlined />} className='menu_item'>首页</MenuItem>
@@ -60,17 +60,16 @@ const Guidance = () => {
                                 <MenuItem key='7' icon={<LogoutOutlined />} className='menu_item'>退出登录</MenuItem>
                             </div>
                         </div>
-                        
+
                     </Menu>
                 </Sider>
                 <Layout
                     style={{
-                        padding: '0 24px 24px', 
-                        backgroundColor:'#f2f6fd'
+                        backgroundColor: '#f2f6fd'
                     }}
                 >
                     <Content
-                       className='content'
+                        className='content'
                     >
                         <Outlet></Outlet>
                     </Content>

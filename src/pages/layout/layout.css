@@ -82,6 +82,7 @@ position: relative;
 .sider{
     height: 800px;
     min-height: 100vh;  
+    z-index: 10;
 }
 .menu{
    position: fixed;
