@@ -1,48 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './center.css'
 import { Card } from 'antd'
-import { SettingOutlined } from '@ant-design/icons';
-
-
+import { Pagination } from 'antd';
+import RightCard from "./rightCard/rightCard"
+import Select from "./select/select"
+import RightTop from "./rightTop/rightTop"
 
 
 const ResourceCenter = () => {
-    console.log(`555`)
     const topimage = require('../../assest/images/topimage.jpg')
+    const [current, setCurrent] = useState(3);
 
+
+    const onChange = (page) => {
+        console.log(page);
+        setCurrent(page);
+    };
     return (
-        <div className="">
+        <div className="big_box">
             <div className="top_image">
                 <img src={topimage}></img>
             </div>
-            <div className="select">
-                <Card className="selectCard"
-                >
-                    <div className="selectCardTop">
-                        <span>筛选</span>
-                        <span>重置</span>
-                        <span><SettingOutlined /></span>
+            <div className="centerPageBottom">
+                <div className="select">
+                    <Select />
+                </div>
+                <div className="right">
+                    <div className="right_top">
+                        <RightTop />
                     </div>
-                    <p>Card content</p>
-                    <p>Card content</p>
-                </Card>
+                    <div className="right_content">
+                        <RightCard />
+                    </div>
+                </div>
             </div>
-            <div className="right_top">
-                <Card className="right_top_card"
-                >
-                    <div className="all_count">总数</div>
-                    <div className="all_count_num">123456</div>
-                    <input type="text" className="input_text" />
-                    <button className="input_find">搜索</button>
-                    <button className="input_submit">上传</button>
-                </Card>
+            <div className="bottom_pages">
+                <Pagination current={current} onChange={onChange} total={500} defaultPageSize={6} showSizeChanger={false} showQuickJumper />
             </div>
-            <div className="right_content">
-                {/* <Card className="right_content_card"
-                >
-                </Card> */}
-            </div>
-
         </div>
     )
 }
