@@ -2,9 +2,8 @@ import React from "react";
 import { Form, Input, Button, message } from "antd";
 import "./login.css";
 import { useNavigate, Navigate, NavLink } from "react-router-dom";
-import "../../api/mock";
-import axiosInstance from "../../api/axios";
-import axios from "axios";
+import "../../mock/mock";
+// import { loginApi } from "../../api/index";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,13 +17,10 @@ const Login = () => {
   const jump_to_register = () => {
     navigate("/register", { replace: true });
   };
-  //登录
-  const login = () => {
-    axiosInstance.get("/api/data").then((response) => {
-      console.log(response.data); // 输出模拟的随机数据
-      // 处理模拟数据
-    });
-  };
+  //登录请求
+  // const login = async() => {
+  //   const response = await loginApi();
+  // };
 
   //手动修改图片
   const backgroundRef = React.useRef();

@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { Children, lazy } from "react";
 
 // import Main from "../pages/main";
 // import Login from "../pages/login";
@@ -7,8 +7,16 @@ const Main = lazy(() => import("../pages/main"));
 const Login = lazy(() => import("../pages/login"));
 const Register = lazy(() => import("../pages/register"))
 const NoAccount = lazy(() => import("../pages/loginnoaccount"))
+const Guidance = lazy(() => import("../pages/layout/layout"))
+const Home = lazy(() => import("../pages/Home"))
 const routers = [
-  { path: "/", element: <Main /> },
+  { path: "/", element: <Guidance />,
+    children:[
+      {
+        path: "/home", element: <Home />,
+      }
+    ]
+   },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/noaccount", element: <NoAccount /> }
