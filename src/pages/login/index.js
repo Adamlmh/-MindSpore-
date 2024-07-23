@@ -83,11 +83,7 @@ const Login = () => {
                 type="primary"
                 htmlType="submit"
                 className="sign-in-button"
-<<<<<<< Updated upstream
-                // onClick={login}
-=======
                 onClick={login}
->>>>>>> Stashed changes
               >
                 登录
               </Button>

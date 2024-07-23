@@ -64,14 +64,8 @@ const Guidance = () => {
                     </Menu>
                 </Sider>
                 <Layout
-<<<<<<< Updated upstream
-                    style={{ 
-                        backgroundColor:'#f2f6fd'
-=======
                     style={{
-
                         backgroundColor: '#f2f6fd'
->>>>>>> Stashed changes
                     }}
                 >
                     <Content

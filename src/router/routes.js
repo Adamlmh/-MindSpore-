@@ -9,30 +9,18 @@ const Register = lazy(() => import("../pages/register"))
 const NoAccount = lazy(() => import("../pages/loginnoaccount"))
 const Guidance = lazy(() => import("../pages/layout/layout"))
 const Home = lazy(() => import("../pages/Home"))
-<<<<<<< Updated upstream
 const Workbench = lazy(() => import("../pages/workbench/workbench"))
-const routers = [
-  { path: "/", element: <Guidance />,
-    children:[
-      {
-        path: "/home", element: <Home />,
-      },
-      {
-        path: "/workbench", element: <Workbench />,
-      }
-=======
 const Center = lazy(() => import("../pages/Center"))
-
-
 const routers = [
   {
     path: "/", element: <Guidance />,
     children: [
 
       { path: "/home", element: <Home /> },
-      { path: "/center", element: <Center /> }
-
->>>>>>> Stashed changes
+      { path: "/center", element: <Center /> },
+      {
+        path: "/workbench", element: <Workbench />,
+      }
     ]
   },
   {
@@ -43,6 +31,5 @@ const routers = [
       { path: "/main/noaccount", element: <NoAccount /> }
     ]
   }
-
 ];
 export default routers;

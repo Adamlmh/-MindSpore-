@@ -14,10 +14,8 @@ const Login = () => {
 
   //手动修改图片
   const backgroundRef = React.useRef()
-  const backgroundImage = require('../../assest/images/3.jpg')
-  React.useEffect(() => {
-    backgroundRef.current.style.backgroundImage = `url(${backgroundImage})`
-  })
+
+
 
 
   return (
