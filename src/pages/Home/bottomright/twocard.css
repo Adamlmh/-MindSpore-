@@ -20,7 +20,7 @@ display: none;
 .image{
     width: 60%;
     height: 160px;
-    min-width: 160px;
+    /* min-width: 160px; */
     margin-left: 20px;
     background-image: url('../../../assest/images/data.jpg');
     background-size: 100% 100%;
