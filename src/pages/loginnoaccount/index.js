@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, Button, message } from "antd";
 import "./index.css";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,6 +15,24 @@ const Login = () => {
     navigate("/register", { replace: true });
   };
 
+
+  //发生验证码倒计时
+  const [seconds, setSeconds] = useState(60);
+  const [disabled, setDisabled] = useState(false);
+
+  const startCountdown = () => {
+    setDisabled(true);
+    let interval = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds - 1);
+    }, 1000);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      setSeconds(60);
+      setDisabled(false);
+    }, 60000);
+  };
+
   //手动修改图片
   const backgroundRef = React.useRef()
   const backgroundImage = require('../../assest/images/login.jpg')
@@ -26,7 +44,7 @@ const Login = () => {
     <div className="Big_Div" ref={backgroundRef}>
       <Form className="login-container" onFinish={handleSubmit}>
         <div className="login_title">
-          <div className="top_name">万千模型</div>
+          <div className="top_name">万千魔型</div>
           <div className="left_name"></div>
           <div className="right_name"></div>
           <span className="account_login" onClick={jump_to_login}>账号登录</span>
@@ -42,7 +60,7 @@ const Login = () => {
           <div className="input-container">
             <label htmlFor="password">验证码</label>
             <Input.Password id="password" name="password" placeholder="请输入验证码" className="phone_password" />
-            <button className="send_password">发送验证码</button>
+            <button className={disabled ? "disabled_send_password" : "send_password"} onClick={startCountdown} disabled={disabled}>   {disabled ? `重新发送(${seconds}s)` : '发送验证码'}</button>
           </div>
         </Form.Item>
         <Form.Item className="login-button">

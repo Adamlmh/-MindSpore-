@@ -169,9 +169,21 @@ position: absolute;
    width: 120px;
    margin-left: 30px;
    border: none;
+   cursor: pointer;
 }
 
 .active{
   color: rgb(89, 161, 227);
   border-bottom: 2px solid rgb(89, 161, 227);
+}
+
+.disabled_send_password{
+ background-color:rgb(72, 75, 78) ;
+  color: white;
+  border-radius: 4px;
+   height: 30px;
+   width: 120px;
+   margin-left: 30px;
+   border: none;
+  cursor: pointer;
 }

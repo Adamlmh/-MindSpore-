@@ -2,18 +2,33 @@ import React from "react";
 import { Form, Input, Button, message } from "antd";
 import "./login.css";
 import { useNavigate, Navigate, NavLink } from "react-router-dom";
+import "../../api/mock"
+import axiosInstance from '../../api/axios'
+import axios from 'axios'
 
 const Login = () => {
   const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/");
-  };
+
+  //跳转到免密登录
   const jump_to_noaccount_login = () => {
     navigate("/noaccount", { replace: true });
   };
+
+  //跳转到注册页面
   const jump_to_register = () => {
     navigate("/register", { replace: true });
   };
+  //登录
+  const login = () => {
+    axiosInstance.get('/api/data')
+      .then(response => {
+        console.log(response.data); // 输出模拟的随机数据
+        // 处理模拟数据
+      })
+  }
+
+
+
 
   //手动修改图片
   const backgroundRef = React.useRef()
@@ -24,9 +39,9 @@ const Login = () => {
 
   return (
     <div className="Big_Div" ref={backgroundRef}>
-      <Form className="login-container" onFinish={handleSubmit}>
+      <Form className="login-container" >
         <div className="login_title">
-          <div className="top_name">万千模型</div>
+          <div className="top_name">万千魔型</div>
           <div className="left_name"></div>
           <div className="right_name"></div>
           <span className="account_login active">账号登录</span>
@@ -57,13 +72,13 @@ const Login = () => {
               <Button type="default" className="sign-up-button" onClick={jump_to_register}  >
                 注册
         </Button>
-              <Button type="primary" htmlType="submit" className="sign-in-button">
+              <Button type="primary" htmlType="submit" className="sign-in-button" onClick={login} >
                 登录
         </Button>
             </div>
             <div className="agree-terms">
               <input type="checkbox" id="agreeTerms" />
-              <label className="agreeTerms" className="agree_text">已同意<a href="#">《服务条款》</a>和<a href="#">《隐私政策》</a></label>
+              <label className="agreeTerms agree_text" >已同意<a href="#">《服务条款》</a>和<a href="#">《隐私政策》</a></label>
             </div>
           </div>
         </Form.Item>
