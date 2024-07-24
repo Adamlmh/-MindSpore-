@@ -46,7 +46,7 @@ scrollbar-width: none;
         overflow: auto;
 scrollbar-width: none;
 }
-.right{
+.rightCenter{
     display: flex;
     margin-left: 50px;
     width: 75vw;
