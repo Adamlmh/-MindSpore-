@@ -3,7 +3,7 @@ import React from 'react';
 
 import "./layout.css"
 import { LogoutOutlined, HomeOutlined, CodepenOutlined, DatabaseOutlined, ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
-import { Input, Layout, Menu, theme } from 'antd';
+import { Input, Layout, Menu, theme ,Button} from 'antd';
 import MenuItem from 'antd/es/menu/MenuItem';
 import { Outlet } from 'react-router-dom';
 const { Header, Content, Sider } = Layout;
@@ -25,8 +25,8 @@ const Guidance = () => {
                 </div>
                 <div className='right_head'>
                     <div className='search'>
-                        <Input className='search_input' placeholder='搜索' />
-
+                        <Input className='search_input' type='text' placeholder='搜索' />
+                        <Button className='search_btn' type='text'><i className="iconfont icon-sousuo"></i></Button>
                     </div>
                     <div className='person'>
                         <div className='person_head'></div>
@@ -65,6 +65,7 @@ const Guidance = () => {
                 </Sider>
                 <Layout
                     style={{
+                        // minWidth:'600px',
                         backgroundColor: '#f2f6fd'
                     }}
                 >

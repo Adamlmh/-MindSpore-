@@ -1,7 +1,10 @@
 
 .home{
     padding: 30px;
-    width: 85vw;
+    box-sizing: border-box;
+    width: calc(100vw - 180px);
+    /* max-width: calc(100% - 160px); */
+    
 display: flex;
 flex-direction: column;
 }
@@ -24,18 +27,20 @@ display: flex;
 
 }
 .right{
-    margin-left: 15px;
+    margin-left:2%;
     width: 38%;
 }
-@media screen and (max-width: 948px) {
+@media screen and (max-width: 1248px) {
 
     /* 可以在此设置超小屏幕样式 */
     .top_bottom {
         width: 90%;
-        height: 600px;
+        height: 500px;
+        /* min-width: 550px; */
     }
         .bottom-content {
             width: 90%;
+            /* min-width: 550px; */
             
         }
 }

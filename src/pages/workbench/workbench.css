@@ -7,16 +7,23 @@
 /* 最左边新建项目模块盒子 */
 .work_project{
     background-color: #F9F9F9;
-    height: 100%;
+    height: calc(100vh - 60px);
     width: 250px;
     box-sizing: border-box;
     padding: 10px;
+    position: fixed;
 }
 /* 中间模型组件盒子 */
 .work_model{
     background-color: #FFF;
-        height: 100%;
+        height: calc(100vh - 60px);
         width: 200px;
         box-sizing: border-box;
         padding: 10px;
+        margin-left: 250px;
+        position: fixed;
+}
+/* 右边工作台盒子 */
+.work_bench{
+    margin-left: 450px;
 }
