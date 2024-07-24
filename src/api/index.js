@@ -48,13 +48,37 @@ export function allModelsApi() {
   })
 }
 
-export  function sendVerificationCode(email) {
+export function sendVerificationCode(email) {
   const data = {
     email: email
   };
-  console.log(data);
   return service({
     url: "/account/register/sendVerificationCode",
+    method: "post",
+    data
+  })
+}
+
+export function accountController(email, password, verificationCode) {
+  const data = {
+    email,
+    password,
+    verificationCode
+  };
+  return service({
+    url: "/account/register",
+    method: "post",
+    data
+  })
+}
+
+export function accountLogin(email, password) {
+  const data = {
+    email,
+    password,
+  };
+  return service({
+    url: "/account/login",
     method: "post",
     data
   })

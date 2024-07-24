@@ -1,7 +1,7 @@
 import { Form, Input, Button } from "antd";
-import { useState,useRef } from "react";
-import { sendVerificationCode } from "../../api"
-function Register({alert,setAlert}) {
+import { useState, useRef } from "react";
+import { sendVerificationCode, accountController } from "../../api"
+function Register({ alert, setAlert }) {
   //发生验证码倒计时
   const [seconds, setSeconds] = useState(60);
   const [disabled, setDisabled] = useState(false);
@@ -45,7 +45,7 @@ function Register({alert,setAlert}) {
       setSeconds(60);
       setDisabled(false);
     }, 60000);
-   
+
     try {
       console.log(email);
       const response = await sendVerificationCode(email);
@@ -53,10 +53,10 @@ function Register({alert,setAlert}) {
       // 根据 `data` 处理返回逻辑  
     } catch (error) {
       console.error('Error sending verification code:', error);
-    } 
+    }
   };
   // 点击注册按钮
-  const registerClick = () => {
+  const registerClick = async () => {
     const email = emailRef.current.input.value;
     const firstPassword = firstPasswordRef.current.input.value;
     const secondPassword = secondPasswordRef.current.input.value;
@@ -81,14 +81,19 @@ function Register({alert,setAlert}) {
       setStatus(setSecondPasswordStatus, 'error');
       setAlertTimeout(setAlert, { message: 'Passwords do not match.', type: 'error' });
       return;
-    } 
+    }
     if (!yzm) {
       setStatus(setYzmStatus, 'warning');
       setAlertTimeout(setAlert, { message: 'Please enter the captcha.', type: 'error' });
       return;
     }
-  
-  };
+    try {
+      const response = await accountController(email, firstPassword, yzm);
+      console.log(response)
+    } catch (error) {
+      console.error('Error fetching models:', error);
+    }
+  }
   return (
     <div>
       <Form.Item
@@ -97,7 +102,7 @@ function Register({alert,setAlert}) {
         style={{ width: "300px", margin: "10px auto" }}
       >
         <div className="input-container">
-          <Input id="username" name="username" ref={emailRef} placeholder="请输入邮箱" status={emailStatus}/>
+          <Input id="username" name="username" ref={emailRef} placeholder="请输入邮箱" status={emailStatus} />
         </div>
       </Form.Item>
       <Form.Item

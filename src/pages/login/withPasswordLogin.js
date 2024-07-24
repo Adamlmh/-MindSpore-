@@ -1,6 +1,25 @@
 import { Form, Input, Button } from "antd";
+import { useRef } from "react"
+import { accountLogin } from "../../api/index"
 
 function WithPasswordLogin() {
+
+  const passwordRef = useRef()
+  const usernameRef = useRef()
+
+
+  const login_In = async () => {
+    const password = passwordRef.current.input.value
+    const email = usernameRef.current.input.value
+
+    try {
+      const response = await accountLogin(email, password);
+      console.log(response)
+    } catch (error) {
+      console.error('Error fetching models:', error);
+    }
+  }
+
   return (
     <div>
       <Form.Item
@@ -10,7 +29,7 @@ function WithPasswordLogin() {
       >
         <div className="input-container">
           <label htmlFor="username">邮箱</label>
-          <Input id="username" name="username" placeholder="请输入邮箱" />
+          <Input id="username" name="username" placeholder="请输入邮箱" ref={usernameRef} />
         </div>
       </Form.Item>
       <Form.Item
@@ -24,6 +43,7 @@ function WithPasswordLogin() {
             id="password"
             name="password"
             placeholder="请输入密码"
+            ref={passwordRef}
           />
         </div>
       </Form.Item>
@@ -46,7 +66,7 @@ function WithPasswordLogin() {
               type="primary"
               htmlType="submit"
               className="sign-in-button"
-              // onClick={login}
+              onClick={login_In}
             >
               登录
             </Button>

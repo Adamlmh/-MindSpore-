@@ -1,7 +1,9 @@
 import { Flex, Form } from "antd";
 import WithPasswordLogin from "./withPasswordLogin";
 import Register from "./Register";
-function RightSide({ isLogin, setIsLogin,alert,setAlert }) {
+function RightSide({ isLogin, setIsLogin, alert, setAlert }) {
+
+
   return (
     <div className="rightSide">
       <Form className="login-container">
