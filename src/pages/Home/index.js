@@ -3,7 +3,11 @@ import Notice from "./notice/notice"
 import Apply from "./apply/apply"
 import TwoBottomCard from "./bottomright/twocard"
 import { Card } from "antd";
+
 const Home = () => {
+
+
+
     return (
         <div className="home">
 
