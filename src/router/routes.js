@@ -10,6 +10,7 @@ const NoAccount = lazy(() => import("../pages/loginnoaccount"))
 const Guidance = lazy(() => import("../pages/layout/layout"))
 const Home = lazy(() => import("../pages/Home"))
 const Workbench = lazy(() => import("../pages/workbench/workbench"))
+const Person = lazy(() => import("../pages/person/person"))
 const Center = lazy(() => import("../pages/Center"))
 const routers = [
   {
@@ -20,7 +21,10 @@ const routers = [
       { path: "/center", element: <Center /> },
       {
         path: "/workbench", element: <Workbench />,
-      }
+      },
+      {
+        path: "/person", element: <Person />,
+      },
     ]
   },
   {

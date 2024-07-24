@@ -1,0 +1,26 @@
+.person_message{
+    padding: 30px;
+    width: calc(100vw - 160px);
+    display: flex;
+    flex-direction: column;
+}
+/* 上方模块 */
+.person_top{
+    width: 100%;
+    height: 25vh;
+    min-height: 250px;
+display: flex;
+justify-content: space-between;
+}
+.person_topleft{
+    width: 50%;
+}
+.person_topright{
+   
+    width: 47%;
+    
+}
+.person_bottom{
+    width: 100%;
+    margin-top: 50px;
+}
