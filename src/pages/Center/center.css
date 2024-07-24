@@ -17,7 +17,7 @@ img{
 }
 .top_image{
     width: 95vw;
-   height: 100px;
+   height: 11vh;
 
 }
 
@@ -28,7 +28,7 @@ img{
     display: flex;
     width: 90vw;
     margin-top: 31px;
-    height: 688px;
+    height: 72vh;
 }
 
 
@@ -39,17 +39,17 @@ margin-top: 25px;
     margin-left: 49px;
 }
 .select,.selectCard{
-    height: 688px;
-    width: 252px;
+    height: 72vh;
+    width: 15.5vw;
 }
 .right{
     display: flex;
     margin-left: 50px;
-    width: 753px;
+    width: 75vw;
 flex-direction: column;
 }
 .right_top_card,.right_content_grid{
-    width: 1070px;
+    width: 65vw;
 }
 .right_content{
     margin-top: 0px;
@@ -60,12 +60,12 @@ flex-direction: column;
     justify-content: space-between;
 }
 .right_content_card{
-    width: 500px;
+    width: 30vw;
     margin-top: 20px;
-    height: 182px;
+    height: 19vh;
 }
 .bottom_pages{
-    margin-left: 600px;
+    margin-left: 37vw;
 }
 
 .selectCard{
