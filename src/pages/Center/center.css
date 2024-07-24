@@ -37,22 +37,33 @@ margin-top: 25px;
 }
 .select{
     margin-left: 49px;
+    overflow: auto;
+scrollbar-width: none;
 }
 .select,.selectCard{
     height: 72vh;
     width: 15.5vw;
+        overflow: auto;
+scrollbar-width: none;
 }
 .right{
     display: flex;
     margin-left: 50px;
     width: 75vw;
-flex-direction: column;
+    flex-direction: column;
+        overflow: auto;
+scrollbar-width: none;
 }
 .right_top_card,.right_content_grid{
     width: 65vw;
+     overflow: auto;
+   
+scrollbar-width: none;
 }
 .right_content{
-    margin-top: 0px;
+    margin-top: 0.5vh;
+        overflow: auto;
+scrollbar-width: none;
 }
 .right_content_grid{
     display: flex;
@@ -63,6 +74,8 @@ flex-direction: column;
     width: 30vw;
     margin-top: 20px;
     height: 19vh;
+    overflow: auto;
+scrollbar-width: none;
 }
 .bottom_pages{
     margin-left: 37vw;
@@ -72,7 +85,7 @@ flex-direction: column;
     display: flex;
 }
 .selectCardTop{
-    width: 175px;
+    width: 10vw;
     display: flex;
     justify-content: space-between;
     height: 30px;
@@ -208,3 +221,11 @@ flex-direction: column;
      font-size: 45px;
      margin-top: -10px;
  }
+ .jumo_modal Input{
+     margin-top: 20px;
+ }
+.title_topic{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
