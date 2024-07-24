@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './center.css'
 import { Card } from 'antd'
-import { Pagination } from 'antd';
+import { Pagination, Button, Modal } from 'antd';
 import RightCard from "./rightCard/rightCard"
 import Select from "./select/select"
 import RightTop from "./rightTop/rightTop"
@@ -16,6 +16,11 @@ const ResourceCenter = () => {
         console.log(page);
         setCurrent(page);
     };
+
+
+
+
+
     return (
         <div className="big_box">
             <div className="top_image">
@@ -39,6 +44,7 @@ const ResourceCenter = () => {
             <div className="bottom_pages">
                 <Pagination current={current} onChange={onChange} total={500} defaultPageSize={6} showSizeChanger={false} showQuickJumper />
             </div>
+
         </div>
     )
 }
