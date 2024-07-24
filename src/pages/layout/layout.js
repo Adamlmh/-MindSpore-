@@ -3,7 +3,7 @@ import React from 'react';
 
 import "./layout.css"
 import { LogoutOutlined, HomeOutlined, CodepenOutlined, DatabaseOutlined, ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
-import { Input, Layout, Menu, theme ,Button} from 'antd';
+import { Input, Layout, Menu, theme, Button } from 'antd';
 import MenuItem from 'antd/es/menu/MenuItem';
 import { Outlet } from 'react-router-dom';
 const { Header, Content, Sider } = Layout;
@@ -69,11 +69,14 @@ const Guidance = () => {
                         backgroundColor: '#f2f6fd'
                     }}
                 >
-                    <Content
-                        className='content'
-                    >
-                        <Outlet></Outlet>
-                    </Content>
+                    <div style={{ minWidth: "500px !important" }}>
+                        <Content
+                            className='content'
+                        >
+                            <Outlet></Outlet>
+                        </Content>
+                    </div>
+
                 </Layout>
             </Layout>
         </Layout>

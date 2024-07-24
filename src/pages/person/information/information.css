@@ -1,0 +1,61 @@
+.information{
+    background-color: #fff;
+    width: 100%;
+    height: 25vh;
+    min-height: 250px;
+    min-width: 300px;
+    display: flex;
+    border-radius: 18px;
+    position: relative;
+}
+/* 头像部分 */
+.personal_header{
+    width: 20%;
+    height: 100%;
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.head_image{
+    width: 88px;
+        height: 88px;
+        border-radius: 88px;
+        background-color: #D9D9D9;
+        background-image: url("../../../assest/images/wait.jpg");
+        background-size: 100% 100%;
+}
+.shangchuan{
+    width: 88px;
+    height: 88px;
+    border-radius: 88px;
+    opacity: 0;
+}
+/* 详细信息展示部分 */
+.all_message{
+    height: 100%;
+    width: 60%;
+    min-width: 150px;
+/* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mylist_message{
+    width: 100%;
+}
+.text_key{
+    white-space: nowrap;
+}
+.text_information{
+    white-space: nowrap;
+    overflow: hidden;
+        text-overflow: ellipsis;
+}
+/* 修改按钮 */
+.mymessage_btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

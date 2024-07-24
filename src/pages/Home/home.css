@@ -1,12 +1,11 @@
-
-.home{
+.home {
     padding: 30px;
     box-sizing: border-box;
     width: calc(100vw - 180px);
     /* max-width: calc(100% - 160px); */
-    
-display: flex;
-flex-direction: column;
+
+    display: flex;
+    flex-direction: column;
 }
 
 /* 申请模块 */
@@ -17,19 +16,22 @@ flex-direction: column;
 
 
 /* 底部卡片 */
-.bottom-content{
+.bottom-content {
     width: 100%;
     margin-top: 20px;
-display: flex;
+    display: flex;
 }
-.left{
+
+.left {
     width: 60%;
 
 }
-.right{
-    margin-left:2%;
+
+.right {
+    margin-left: 2%;
     width: 38%;
 }
+
 @media screen and (max-width: 1248px) {
 
     /* 可以在此设置超小屏幕样式 */
@@ -37,13 +39,17 @@ display: flex;
         width: 90%;
         height: 500px;
         /* min-width: 550px; */
+      
     }
-        .bottom-content {
-            width: 90%;
-            /* min-width: 550px; */
-            
-        }
+
+    .bottom-content {
+        width: 90%;
+        min-width: 550px;
+
+
+    }
 }
+
 @media screen and (min-width:2048px) {
     .top_bottom {
         width: 100%;
@@ -52,5 +58,5 @@ display: flex;
         display: flex;
         flex-direction: column;
     }
-    
+
 }
