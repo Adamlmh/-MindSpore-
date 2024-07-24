@@ -22,6 +22,7 @@ const ResourceCenter = () => {
                 <img src={topimage}></img>
             </div>
             <div className="centerPageBottom">
+
                 <div className="select">
                     <Select />
                 </div>
@@ -33,6 +34,7 @@ const ResourceCenter = () => {
                         <RightCard />
                     </div>
                 </div>
+
             </div>
             <div className="bottom_pages">
                 <Pagination current={current} onChange={onChange} total={500} defaultPageSize={6} showSizeChanger={false} showQuickJumper />

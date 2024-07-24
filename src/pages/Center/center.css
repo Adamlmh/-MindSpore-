@@ -14,63 +14,53 @@ img{
 }
 .top_image{
     width: 95vw;
-    height: 10vh;
+   height: 100px;
 
 }
 
+.big_box{
+    display: flex;
+}
 .centerPageBottom{
     display: flex;
     width: 90vw;
-    min-width: 80vw;
-    padding-left: 5%;
-    height: 68vh;
-    justify-content: space-between;
-    margin-top: 2vh;
+    margin-top: 31px;
+    height: 688px;
 }
-.bottom_pages{
-margin-left: 40vw;
 
-    margin-top: 4vh;
+
+.bottom_pages{
+margin-top: 25px;
 }
-.selectCard{
-    flex: 1 1 auto;
-height: 68vh;
-width: 14vw;
+.select{
+    margin-left: 49px;
 }
-.right_top_card{
-    width: 56vw;
+.select,.selectCard{
+    height: 688px;
+    width: 212px;
 }
 .right{
-    flex: 1 1 auto;
-    padding-left: 7vw;
     display: flex;
-    flex-direction: column;
+    margin-left: 50px;
+    width: 753px;
+flex-direction: column;
+}
+.right_top_card,.right_content_grid{
+    width: 1070px;
 }
 .right_content{
-
-    margin-top: 1vw;
-    
+    margin-top: 30px;
 }
 .right_content_grid{
     display: flex;
-        flex-wrap: wrap;
-
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .right_content_card{
-  height: 15vh;
-  margin-bottom: 2.5vw;
-    width: 25vw;
-    margin-right: 6vw;
-    min-height: 1vh;
+    width: 500px;
+    margin-top: 30px;
+    height: 150px;
 }
-.selectCardTop{
-display: flex;
-justify-content: space-between;
-height: 2vh;
-}
-.selectCardTop span:nth-of-type(1){
-
-}
-.selectCard{
-
+.bottom_pages{
+    margin-left: 600px;
 }
