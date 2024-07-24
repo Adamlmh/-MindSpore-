@@ -6,7 +6,6 @@ const rightCard = () => {
 
     //暂用先用这个渲染
     const dataShow = () => {
-        console.log(`555`)
         let data = [];
         for (let i = 0; i < 6; i++) {
             data.push(<Card className="right_content_card">
@@ -46,7 +45,6 @@ const rightCard = () => {
                 </div>
             </Card>)
         }
-        console.log(data)
         return data
     }
 

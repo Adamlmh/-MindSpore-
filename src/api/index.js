@@ -33,3 +33,28 @@ export function registerApi() {
     data,
   });
 }
+
+export function modelRankApi() {
+  return service({
+    url: "/model/modelRank",
+    method: "get"
+  })
+}
+
+export function allModelsApi() {
+  return service({
+    url: "/model/allModel",
+    method: "get"
+  })
+}
+
+export function sendVerificationCode() {
+  const data = {
+    email: "2132772270@qq.com",
+  };
+  return service({
+    url: "/account/register/sendVerificationCode",
+    method: "post",
+    data
+  })
+}
