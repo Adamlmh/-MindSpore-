@@ -1,0 +1,25 @@
+.messageList{
+    background-color: #fff;
+    padding-left: 15px;
+   
+}
+/* 我的消息顶部 */
+.messageList_head{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+/* 消息提醒 */
+.message_cue{
+    font-size: 12px;
+    color: #409eff;
+
+}
+.mymessage_topright{
+    display: flex;
+}
+.sign_agree{
+    font-size: 12px;
+        color: #409eff;
+        border: 0px;
+}

@@ -1,0 +1,29 @@
+.mytab{
+    width: 100%;
+    border-radius: 18px;
+padding: 0px;
+}
+.mytab .ant-tabs-card {
+    margin-bottom: 0;
+    /* 去掉底部外边距 */
+}
+
+.mytab .ant-tabs-content {
+    background-color: #FFF;
+    margin-top: -16px;
+    /* 去掉顶部外边距，可以根据需要调整此值 */
+    width: 100%;
+    height: 45vh;
+    overflow: auto;
+    border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+   
+    /* min-height: 300px; */
+}
+.mytab .ant-tabs-content::-webkit-scrollbar{
+    display: none;
+}
+.mytab .ant-tabs-bar {
+    margin-bottom: 0;
+    /* 去掉标签底部外边距 */
+}

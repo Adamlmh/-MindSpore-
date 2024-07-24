@@ -33,3 +33,29 @@ export function registerApi() {
     data,
   });
 }
+
+export function modelRankApi() {
+  return service({
+    url: "/model/modelRank",
+    method: "get"
+  })
+}
+
+export function allModelsApi() {
+  return service({
+    url: "/model/allModel",
+    method: "get"
+  })
+}
+
+export  function sendVerificationCode(email) {
+  const data = {
+    email: email
+  };
+  console.log(data);
+  return service({
+    url: "/account/register/sendVerificationCode",
+    method: "post",
+    data
+  })
+}
