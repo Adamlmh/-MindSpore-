@@ -28,6 +28,6 @@ const routers = [
 
 
   { path: "/login", element: <Login /> },
-  { path: "/center", element: <Center /> },
+
 ];
 export default routers;
