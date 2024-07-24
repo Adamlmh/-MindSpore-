@@ -16,8 +16,9 @@ const ResourceCenter = () => {
         console.log(page);
         setCurrent(page);
     };
-    const [models, setModels] = useState([]);
 
+
+    const [models, setModels] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -28,7 +29,6 @@ const ResourceCenter = () => {
                 console.error('Error fetching models:', error);
             }
         };
-
         fetchData();
     }, []);
 
@@ -44,7 +44,7 @@ const ResourceCenter = () => {
                 <div className="select">
                     <Select />
                 </div>
-                <div className="right">
+                <div className="rightCenter">
                     <div className="right_top">
                         <RightTop />
                     </div>
