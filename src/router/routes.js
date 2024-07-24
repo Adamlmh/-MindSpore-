@@ -10,15 +10,23 @@ const routers = [
   {
     path: "/",
     element: <Guidance />,
+    children: [
+      {
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/workbench",
+        element: <Workbench />,
+      },
+      {
+        path: "/center",
+        element: <Center />
+      }
+    ]
   },
-  {
-    path: "/home",
-    element: <Home />,
-  },
-  {
-    path: "/workbench",
-    element: <Workbench />,
-  },
+
+
   { path: "/login", element: <Login /> },
   { path: "/center", element: <Center /> },
 ];
