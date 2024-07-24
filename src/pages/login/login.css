@@ -20,7 +20,7 @@
 .login-container {
     position: relative;
     width: 420px; /* 放大表单的宽度 */
-  height: auto;
+height: 520px;
   padding: 60px;
   background-color: #fff;
   border-radius: 12px;
@@ -112,7 +112,7 @@
     color: rgb(168, 168, 168);
 }
 .agree-terms{
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
    
 }
@@ -199,3 +199,26 @@ position: absolute;
   background-color: #9AC1E6;
 
 }
+.disabled_send_password {
+  background-color: rgb(72, 75, 78);
+  color: white;
+  border-radius: 4px;
+  height: 30px;
+  width: 120px;
+  margin-left: 30px;
+  border: none;
+  cursor: pointer;
+}
+.send_password {
+  background-color: rgb(89, 160, 225);
+  color: white;
+  border-radius: 4px;
+  height: 30px;
+  width: 120px;
+  margin-left: 30px;
+  border: none;
+  cursor: pointer;
+}
+        ::placeholder {
+          font-weight: bold;
+        }

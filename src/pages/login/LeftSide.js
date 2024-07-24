@@ -1,8 +1,9 @@
 import loginImage from "../../assest/images/login.png";
-function LeftSide() {
+import registerImage from "../../assest/images/register.png";
+function LeftSide({ isLogin }) {
   return (
     <div className="leftSide">
-      <img src={loginImage} alt="" />
+      <img src={isLogin ? loginImage : registerImage} alt="" />
     </div>
   );
 }

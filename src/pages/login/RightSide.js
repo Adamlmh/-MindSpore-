@@ -1,7 +1,7 @@
-import { Form } from "antd";
-import { NavLink } from "react-router-dom";
+import { Flex, Form } from "antd";
 import WithPasswordLogin from "./withPasswordLogin";
-function RightSide() {
+import Register from "./Register";
+function RightSide({ isLogin, setIsLogin }) {
   return (
     <div className="rightSide">
       <Form className="login-container">
@@ -9,24 +9,25 @@ function RightSide() {
           <div className="top_name">万千魔型</div>
           <div className="left_name"></div>
           <div className="right_name"></div>
-          <NavLink
-            to={"/main/login"}
-            className={({ isActive }) => (isActive ? "" : "")}
-          >
-            {({ isActive }) => (
-              <span
-                className={isActive ? "account_login active" : "account_login"}
-              >
-                账号登录
-              </span>
-            )}
-          </NavLink>
+          <div style={{ display: "flex", flexWrap: "nowrap" }}>
+            <span
+              className={isLogin ? "account_login active" : "account_login"}
+              onClick={() => setIsLogin(true)}
+              style={{ whiteSpace: "nowrap" }}
+            >
+              账号登录
+            </span>
 
-          <NavLink to={"/main/noaccount"}>
-            <span className="noaccount_login">免密登录</span>
-          </NavLink>
+            <span
+              className={isLogin ? "account_login " : "account_login active"}
+              onClick={() => setIsLogin(false)}
+              style={{ whiteSpace: "nowrap" }}
+            >
+              账号注册
+            </span>
+          </div>
         </div>
-        <WithPasswordLogin />
+        {isLogin ? <WithPasswordLogin /> : <Register />}
       </Form>
     </div>
   );

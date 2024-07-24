@@ -1,13 +1,11 @@
-import { Children, lazy } from "react";
+import { lazy } from "react";
 // 动态加载组件
-const Main = lazy(() => import("../pages/main"));
 const Login = lazy(() => import("../pages/login"));
-const Register = lazy(() => import("../pages/register"));
-const NoAccount = lazy(() => import("../pages/loginnoaccount"));
 const Guidance = lazy(() => import("../pages/layout/layout"));
 const Home = lazy(() => import("../pages/Home"));
 const Workbench = lazy(() => import("../pages/workbench/workbench"));
 const Center = lazy(() => import("../pages/Center"));
+
 const routers = [
   {
     path: "/",
@@ -21,15 +19,7 @@ const routers = [
     path: "/workbench",
     element: <Workbench />,
   },
+  { path: "/login", element: <Login /> },
   { path: "/center", element: <Center /> },
-  {
-    path: "/main",
-    element: <Main />,
-    children: [
-      { path: "/main/login", element: <Login /> },
-      { path: "/main/register", element: <Register /> },
-      { path: "/main/noaccount", element: <NoAccount /> },
-    ],
-  },
 ];
 export default routers;
