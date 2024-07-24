@@ -1,7 +1,7 @@
 import { lazy } from "react";
 // 动态加载组件
 const Login = lazy(() => import("../pages/login"));
-const Person = lazy(() => import("../pages/person/person"))
+const Person = lazy(() => import("../pages/person/person"));
 const Guidance = lazy(() => import("../pages/layout/layout"));
 const Home = lazy(() => import("../pages/Home"));
 const Workbench = lazy(() => import("../pages/workbench/workbench"));
@@ -21,15 +21,14 @@ const routers = [
       },
       {
         path: "/center",
-        element: <Center />
+        element: <Center />,
       },
       {
-        path: "/person", element: <Person />,
+        path: "/person",
+        element: <Person />,
       },
-
-    ]
+    ],
   },
   { path: "/login", element: <Login /> },
-
 ];
 export default routers;

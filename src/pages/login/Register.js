@@ -144,7 +144,7 @@ function Register({ alert, setAlert }) {
           className="input-container"
           style={{ display: "flex", flexWrap: "nowrap" }}
         >
-          <Input.Password
+          <Input
             id="captcha"
             name="captcha"
             placeholder="请输入验证码"
