@@ -1,6 +1,6 @@
 import { Form, Input, Button } from "antd";
-import { useState } from "react";
-function Register() {
+import { useState,useRef } from "react";
+function Register({alert,setAlert}) {
   //发生验证码倒计时
   const [seconds, setSeconds] = useState(60);
   const [disabled, setDisabled] = useState(false);
@@ -17,6 +17,62 @@ function Register() {
       setDisabled(false);
     }, 60000);
   };
+  // 点击注册按钮
+  const emailRef=useRef(null);
+  const firstPasswordRef=useRef(null);
+  const secondPasswordRef=useRef(null);
+  const yzmRef=useRef(null);
+  const [emailStatus, setEmailStatus] = useState('');
+  const [firstPasswordStatus, setFirstPasswordStatus] = useState('');
+  const [secondPasswordStatus, setSecondPasswordStatus] = useState('');
+  const [yzmStatus, setYzmStatus] = useState('');
+
+  const setStatus = (setter, status, duration = 3000) => {
+    setter(status);
+    setTimeout(() => {
+      setter('');
+    }, duration);
+  };
+const setAlertTimeout=(setter,alert,duration=3000)=>{
+  setter(alert);
+  setTimeout(() => {
+    setter({ message: '', type: '' });
+  }, duration);
+}
+  const registerClick = () => {
+    const email = emailRef.current.input.value;
+    const firstPassword = firstPasswordRef.current.input.value;
+    const secondPassword = secondPasswordRef.current.input.value;
+    const yzm = yzmRef.current.input.value;
+
+    if (!email) {
+      setStatus(setEmailStatus, 'warning');
+      setAlertTimeout(setAlert, { message: 'Please enter your email.', type: 'error' });
+      return;
+    }
+    if (!firstPassword) {
+      setStatus(setFirstPasswordStatus, 'warning');
+      setAlertTimeout(setAlert, { message: 'Please enter your password.', type: 'error' });
+      return;
+    }
+    if (!secondPassword) {
+      setStatus(setSecondPasswordStatus, 'warning');
+      setAlertTimeout(setAlert, { message: 'Please confirm your password.', type: 'error' });
+      return;
+    }
+    if (firstPassword !== secondPassword) {
+      setStatus(setSecondPasswordStatus, 'error');
+      setAlertTimeout(setAlert, { message: 'Passwords do not match.', type: 'error' });
+      return;
+    }
+    if (!yzm) {
+      setStatus(setYzmStatus, 'warning');
+      setAlertTimeout(setAlert, { message: 'Please enter the captcha.', type: 'error' });
+      return;
+    }
+
+  
+  };
   return (
     <div>
       <Form.Item
@@ -25,7 +81,7 @@ function Register() {
         style={{ width: "300px", margin: "10px auto" }}
       >
         <div className="input-container">
-          <Input id="username" name="username" placeholder="请输入邮箱" />
+          <Input id="username" name="username" ref={emailRef} placeholder="请输入邮箱" status={emailStatus}/>
         </div>
       </Form.Item>
       <Form.Item
@@ -38,6 +94,8 @@ function Register() {
             id="first_password"
             name="first_password"
             placeholder="请输入密码"
+            ref={firstPasswordRef}
+            status={firstPasswordStatus}
           />
         </div>
       </Form.Item>
@@ -51,6 +109,8 @@ function Register() {
             id="second_password"
             name="second_password"
             placeholder="确认密码"
+            ref={secondPasswordRef}
+            status={secondPasswordStatus}
           />
         </div>
       </Form.Item>
@@ -68,6 +128,8 @@ function Register() {
             name="captcha"
             placeholder="请输入验证码"
             className="phone_password"
+            ref={yzmRef}
+            status={yzmStatus}
           />
           <button
             className={disabled ? "disabled_send_password" : "send_password"}
@@ -94,7 +156,7 @@ function Register() {
             </div>
           </div>
           <div className="button-click">
-            <Button type="primary" htmlType="submit" className="sign-in-button">
+            <Button type="primary" htmlType="submit" onClick={registerClick} className="sign-in-button">
               注册
             </Button>
           </div>

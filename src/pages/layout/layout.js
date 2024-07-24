@@ -10,6 +10,7 @@ const { Header, Content, Sider } = Layout;
 
 
 const Guidance = () => {
+  
     // const {
     //     token: { groupTitleColor },
     // } = theme.useToken();
@@ -46,7 +47,8 @@ const Guidance = () => {
                     width={160}
                 >
                     <Menu className='menu'
-                        selectedKeys={'1'}>
+                        selectedKeys={['1']}
+                        >
                         <div className='all_menu'>
                             <div className='top_menu'>
                                 <MenuItem key='1' icon={<HomeOutlined />} className='menu_item'>首页</MenuItem>
