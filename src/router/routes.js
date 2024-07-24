@@ -29,8 +29,7 @@ const routers = [
 
     ]
   },
-
-
   { path: "/login", element: <Login /> },
+
 ];
 export default routers;
