@@ -18,39 +18,35 @@
 
 .login-container {
     position: relative;
-    width: 400px; /* 放大表单的宽度 */
-  height: 60vh;
-  padding: 20px;
-  padding-left: 20px;
+    width: 420px; /* 放大表单的宽度 */
+height: 520px;
+  padding: 60px;
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 25px #cac6c6;
   box-sizing: border-box;
   margin-right: 10vw;
 }
 
 .login_title {
   text-align: center;
-  margin-bottom: 60px;
-  margin-top: 40px;
+  margin-bottom: 40px;
+
 
 }
 
 .account_login, .noaccount_login {
   cursor: pointer;
   display: inline-block;
-  margin-right: 60px;
   color: #505458;
   font-size: 20px;
 }
 .account_login{
-    margin-left:70px;
+    margin-left:15px;
+    margin-right: 78px;
 }
 
 .username, .password {
-  margin-bottom: 30px;
-  width: 320px;
-  margin-left: 5px;
+  width: 350px;
 }
 .password{
     margin-bottom: 0px;
@@ -102,21 +98,21 @@
 }
 .sign-up-button{
     margin-left: 50px;
-    width: 100px;
+    width: 300px;
     height: 35px;
     font-size: 18px;
     background-color: rgb(89, 160, 225);
     color: rgb(249, 249, 249);
 }
 .sign-in-button{
-      width: 100px;
+      width: 300px;
     height: 35px;
       font-size: 18px;
      background-color: rgb(219, 219, 219);
     color: rgb(168, 168, 168);
 }
 .agree-terms{
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
    
 }
@@ -128,7 +124,7 @@
     top: -30px;
     width: 150px;
     height: 60px;
-    left: 125px;
+    left: 135px;
     background-color: rgb(51, 139, 220);
 }
 .left_name{
@@ -136,7 +132,7 @@
     width: 0px;
     height: 0px;
     top: -30px;
-    left: 275px;
+    left: 285px;
      border-top: 30px solid  transparent;
   border-bottom: 30px solid transparent ;
   border-left: 30px solid rgb(51, 139, 220);
@@ -147,7 +143,7 @@ position: absolute;
     width: 0px;
     height: 0px;
     top: -30px;
-    right: 275px;
+    right: 285px;
      border-top: 30px solid  transparent;
   border-bottom: 30px solid transparent ;
   border-left: 30px solid transparent;
@@ -176,3 +172,53 @@ position: absolute;
 .checkbox-label {
       margin-left: 8px; /* 调整文本和复选框之间的间距 */
     }
+.leftSide img {
+  max-width: 720px;
+  height: auto;
+  width: 100%;
+    background-color: #9AC1E6;
+}
+
+/* 左半部分 */
+.leftSide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100vh;
+  font-size: 14px;
+  background-color: #9AC1E6;
+
+}
+.disabled_send_password {
+  background-color: rgb(72, 75, 78);
+  color: white;
+  border-radius: 4px;
+  height: 30px;
+  width: 120px;
+  margin-left: 30px;
+  border: none;
+  cursor: pointer;
+}
+.send_password {
+  background-color: rgb(89, 160, 225);
+  color: white;
+  border-radius: 4px;
+  height: 30px;
+  width: 120px;
+  margin-left: 30px;
+  border: none;
+  cursor: pointer;
+}
+        ::placeholder {
+          font-weight: bold;
+        }
