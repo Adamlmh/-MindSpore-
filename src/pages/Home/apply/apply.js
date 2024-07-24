@@ -4,7 +4,7 @@ const Apply=()=>{
     return (
 <div className="apply">
 
-            <h3>我的申请</h3>
+            {/* <h3>我的申请</h3> */}
 
             <div className="show">
                 <div className="show_content all">

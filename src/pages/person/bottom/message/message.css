@@ -1,25 +1,50 @@
-.messageList{
-    background-color: #fff;
-    padding-left: 15px;
-   
-}
-/* 我的消息顶部 */
-.messageList_head{
-    display: flex;
+.messagelist{
     width: 100%;
-    justify-content: space-between;
+        height: 45vh;
+    border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        overflow:auto;
+        display: flex;
+        flex-wrap: wrap;
+        /* background-color: red; */
 }
-/* 消息提醒 */
-.message_cue{
-    font-size: 12px;
-    color: #409eff;
-
+.messagelist::-webkit-scrollbar{
+    display: none;
 }
-.mymessage_topright{
+.messagecard{
+    width: 330px;
+    height: 180px;
+    margin-left: 1%;
+    margin-top: 1%;
+    background: linear-gradient(to bottom, #E8EEFF, #C3DBF2);
     display: flex;
+    flex-direction: column;
+    position: relative;
 }
-.sign_agree{
-    font-size: 12px;
-        color: #409eff;
-        border: 0px;
+.model_name_msg{
+    margin-top: -10px;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.msg_position{
+    margin-top: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.msg_apply_disagree{
+position: absolute;
+right: 100px;
+bottom: 10px;
+background-color: #f56c6c;
+color: #fff;
+}
+.msg_apply_agree {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: #59a0e1;
+        color: #fff;
 }

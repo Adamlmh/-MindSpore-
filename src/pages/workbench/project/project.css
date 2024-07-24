@@ -20,6 +20,18 @@
     margin-top: 10px;
     background-color: #F9F9F9;
 }
+.model_label{
+    display: flex;
+}
+.project_name{
+    width: 75px;
+
+    display: inline-block;
+    /* background-color: #fff; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .project_icon{
    float: right;
 
