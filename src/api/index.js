@@ -48,10 +48,11 @@ export function allModelsApi() {
   })
 }
 
-export function sendVerificationCode() {
+export  function sendVerificationCode(email) {
   const data = {
-    email: "2132772270@qq.com",
+    email: email
   };
+  console.log(data);
   return service({
     url: "/account/register/sendVerificationCode",
     method: "post",

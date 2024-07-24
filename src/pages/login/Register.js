@@ -1,11 +1,40 @@
 import { Form, Input, Button } from "antd";
 import { useState,useRef } from "react";
+import { sendVerificationCode } from "../../api"
 function Register({alert,setAlert}) {
   //发生验证码倒计时
   const [seconds, setSeconds] = useState(60);
   const [disabled, setDisabled] = useState(false);
-
-  const startCountdown = () => {
+  const emailRef = useRef(null);
+  const firstPasswordRef = useRef(null);
+  const secondPasswordRef = useRef(null);
+  const yzmRef = useRef(null);
+  const [emailStatus, setEmailStatus] = useState('');
+  const [firstPasswordStatus, setFirstPasswordStatus] = useState('');
+  const [secondPasswordStatus, setSecondPasswordStatus] = useState('');
+  const [yzmStatus, setYzmStatus] = useState('');
+  // input表单状态
+  const setStatus = (setter, status, duration = 3000) => {
+    setter(status);
+    setTimeout(() => {
+      setter('');
+    }, duration);
+  };
+  // alert弹出框
+  const setAlertTimeout = (setter, alert, duration = 3000) => {
+    setter(alert);
+    setTimeout(() => {
+      setter({ message: '', type: '' });
+    }, duration);
+  }
+  const startCountdown = async () => {
+    const email = emailRef.current.input.value;
+    console.log(email);
+    if (!email) {
+      setStatus(setEmailStatus, 'warning');
+      setAlertTimeout(setAlert, { message: 'Please enter your email.', type: 'error' });
+      return;
+    }
     setDisabled(true);
     let interval = setInterval(() => {
       setSeconds((prevSeconds) => prevSeconds - 1);
@@ -16,29 +45,17 @@ function Register({alert,setAlert}) {
       setSeconds(60);
       setDisabled(false);
     }, 60000);
+   
+    try {
+      console.log(email);
+      const response = await sendVerificationCode(email);
+      console.log(response);
+      // 根据 `data` 处理返回逻辑  
+    } catch (error) {
+      console.error('Error sending verification code:', error);
+    } 
   };
   // 点击注册按钮
-  const emailRef=useRef(null);
-  const firstPasswordRef=useRef(null);
-  const secondPasswordRef=useRef(null);
-  const yzmRef=useRef(null);
-  const [emailStatus, setEmailStatus] = useState('');
-  const [firstPasswordStatus, setFirstPasswordStatus] = useState('');
-  const [secondPasswordStatus, setSecondPasswordStatus] = useState('');
-  const [yzmStatus, setYzmStatus] = useState('');
-
-  const setStatus = (setter, status, duration = 3000) => {
-    setter(status);
-    setTimeout(() => {
-      setter('');
-    }, duration);
-  };
-const setAlertTimeout=(setter,alert,duration=3000)=>{
-  setter(alert);
-  setTimeout(() => {
-    setter({ message: '', type: '' });
-  }, duration);
-}
   const registerClick = () => {
     const email = emailRef.current.input.value;
     const firstPassword = firstPasswordRef.current.input.value;
@@ -64,13 +81,12 @@ const setAlertTimeout=(setter,alert,duration=3000)=>{
       setStatus(setSecondPasswordStatus, 'error');
       setAlertTimeout(setAlert, { message: 'Passwords do not match.', type: 'error' });
       return;
-    }
+    } 
     if (!yzm) {
       setStatus(setYzmStatus, 'warning');
       setAlertTimeout(setAlert, { message: 'Please enter the captcha.', type: 'error' });
       return;
     }
-
   
   };
   return (
