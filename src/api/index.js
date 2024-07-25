@@ -83,9 +83,17 @@ export function accountLogin(email, password) {
     data
   })
 }
+// 首页排行版
 export function fetchRankApi() {
   return service({
     url: "/model/modelRank",
+    method: "get"
+  })
+}
+// 首页各申请数
+export function fetchAllApplicationApi() {
+  return service({
+    url: "/application/myApplicationCount",
     method: "get"
   })
 }

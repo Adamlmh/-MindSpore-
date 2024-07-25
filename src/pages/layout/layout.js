@@ -18,12 +18,12 @@ const Guidance = () => {
     const navigate = useNavigate();
 
     const handleMenuClick = (key) => {
-        console.log('Clicked key:', key);
+        // console.log('Clicked key:', key);
         // 可以根据 key 值执行相应的操作，比如导航到不同的页面等
         navigate(key)
     };
     const getkey = (msg) => {
-        console.log(msg.key)
+        // console.log(msg.key)
     }
 
 
