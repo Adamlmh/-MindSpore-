@@ -45,7 +45,6 @@ const Guidance = () => {
         fetchData();
 
     }, []);
-    console.log(userInformation)
 
     return (
         <Layout>

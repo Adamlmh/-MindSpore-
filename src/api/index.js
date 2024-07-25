@@ -119,7 +119,7 @@ export function modelAllModelsApi(userId, page, name) {
     method: "get",
   });
 }
-//个人主页下个人信息
+//顶部个人信息
 export function accounthomePageInfo(userId) {
   const params = {
     userId: userId,
@@ -143,7 +143,7 @@ export function fetchMyMessage(userId, page) {
   });
 }
 // 个人中心 我的模型
-export function fetchMyModel(userId,page) {
+export function fetchMyModel(userId, page) {
   const params = {
     userId,
     page
@@ -163,6 +163,17 @@ export function fetchMyApply(userId, page) {
   };
   return service({
     url: "http://47.120.64.48:8080/application/myApplication",
+    method: "get",
+    params,
+  });
+}
+//个人中心的个人信息
+export function accountpersonalCenterInfo(userId) {
+  const params = {
+    userId: userId,
+  };
+  return service({
+    url: "http://47.120.64.48:8080/account/personalCenterInfo",
     method: "get",
     params,
   });
