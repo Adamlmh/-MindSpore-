@@ -186,7 +186,7 @@ scrollbar-width: none;
     flex-wrap: wrap !important;
 }
 
-.right_content_card_div ul li{
+.right_content_card_div ul p{
     padding:2px ;
     padding-left: 10px ;
    padding-right: 10px ;
@@ -198,8 +198,10 @@ scrollbar-width: none;
 
 
 
- .information{
+ .information_in_rightCard{
      margin-top: 5px;
+     display: flex;
+     flex-direction: column;
  }
 .button_div{
     display: flex;
