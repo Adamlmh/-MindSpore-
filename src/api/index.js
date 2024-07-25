@@ -88,3 +88,41 @@ export function accountLogin(email, password) {
 export function getModelsApi() {
   return service({ url: "/mission/queryUserCanUseModel", method: "get" });
 }
+
+// 首页排行版
+export function fetchRankApi() {
+  return service({
+    url: "/model/modelRank",
+    method: "get",
+  });
+}
+// 首页各申请数
+export function fetchAllApplicationApi() {
+  return service({
+    url: "/application/myApplicationCount",
+    method: "get",
+  });
+}
+//获取资源中心
+export function modelAllModelsApi(userId, page, name) {
+  const data = {
+    userId,
+    page,
+    name,
+  };
+  return service({
+    url: "http://47.120.64.48:8080/model/allModels",
+    method: "get",
+  });
+}
+//个人主页下个人信息
+export function accounthomePageInfo(userId) {
+  const params = {
+    userId: userId,
+  };
+  return service({
+    url: "http://47.120.64.48:8080/account/homePageInfo",
+    method: "get",
+    params,
+  });
+}

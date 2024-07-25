@@ -1,6 +1,7 @@
 import "./information.css"
 import {List ,Input, Button} from 'antd';
 import {EditOutlined  } from '@ant-design/icons';
+import { useState } from "react";
 const data = [
     {
         key:'用户名：',
@@ -20,7 +21,20 @@ const data = [
     },
     
 ];
-const Information = () => (
+
+const Information = () => {
+    const [status, setStatus] = useState('修改')
+    const [disabled, setDisabled] = useState(true)
+    const btnClick=()=>{
+        setDisabled(!disabled)
+        if(status==='修改'){
+            setStatus('完成')
+        }
+        if(status==='完成'){
+            setStatus('修改')
+        }
+    }
+    return(
  
         <div className=" information">
             {/* 头像 */}
@@ -38,14 +52,17 @@ const Information = () => (
                 renderItem={(item) => (
                     <List.Item style={{ border: 'none', whiteSpace:'nowrap'}}>
                        <p className="text_key">{item.key}</p>
-                       <p className="text_information">{item.text}</p>
+                       {/* <p className="text_information">{item.text}</p> */}
+                        <Input className="text_information"
+                        disabled={disabled}
+                        value={item.text} />
                     </List.Item>
                 )}
             />
             </div>
             {/* 修改按钮 */}
-        <Button type="primary" icon={<EditOutlined />} className="mymessage_btn">修改</Button>
+        <Button type="primary" icon={<EditOutlined />} className="mymessage_btn" onClick={btnClick}>{status}</Button>
         </div>
      
-);
+)};
 export default Information;

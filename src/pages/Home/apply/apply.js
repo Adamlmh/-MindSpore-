@@ -1,6 +1,19 @@
+import React, { useEffect } from 'react';
 import "./apply.css"
 import { Card } from "antd";
+import { fetchAllApplicationApi } from "../../../api"
 const Apply=()=>{
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetchAllApplicationApi();
+                console.log(response)
+            } catch (error) {
+                console.error('Error fetching models:', error);
+            }
+        };
+        fetchData();
+    }, []);
     return (
 <div className="apply">
 

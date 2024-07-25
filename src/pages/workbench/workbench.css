@@ -8,7 +8,7 @@
 /* 最左边新建项目模块盒子 */
 .work_project{
     background-color: #F9F9F9;
-    height: calc(100vh - 60px);
+    height: 100vh;
     min-width: 210px;
     box-sizing: border-box;
     padding: 10px;

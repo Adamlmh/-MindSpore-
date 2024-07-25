@@ -54,6 +54,13 @@
     white-space: nowrap;
     overflow: hidden;
         text-overflow: ellipsis;
+        /* border: 0px; */
+}
+ .mylist_message .ant-input-disabled{
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 0px;
+    cursor: pointer !important;
 }
 /* 修改按钮 */
 .mymessage_btn{

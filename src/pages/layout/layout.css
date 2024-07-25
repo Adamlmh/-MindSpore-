@@ -77,6 +77,8 @@ border: 0px;
     height: 36px;
     border-radius: 36px;
     background-color: #D9D9D9;
+    background-image: url('../../assest/images/wait.jpg');
+    background-size: 100% 100%;
 }
 .person_name{
     margin-left: 10px;

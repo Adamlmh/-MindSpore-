@@ -3,7 +3,7 @@ import { Card,Button } from 'antd';
 const MessageCard = ({modelname,time,name,type,status,num}) => {
     return(
 
-    <Card className="messagecard">
+        <Card className="messagecard" hoverable>
         <div className="model_name_msg">模型名称{modelname}</div>
         <div className="model_time_msg msg_position">2024-07-15{time}</div>
         <div className="model_apply_msg msg_position">申请人 xxx{name}</div>

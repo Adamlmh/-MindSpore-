@@ -38,7 +38,7 @@
     .top_bottom {
         width: 90%;
         height: 500px;
-        /* min-width: 550px; */
+        min-width: 550px;
       
     }
 
@@ -50,7 +50,7 @@
     }
 }
 
-@media screen and (min-width:2048px) {
+@media screen and (min-width:1800px) {
     .top_bottom {
         width: 100%;
         height: 25vh;

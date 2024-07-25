@@ -5,7 +5,7 @@ import { Pagination, Button, Modal } from 'antd';
 import RightCard from "./rightCard/rightCard"
 import Select from "./select/select"
 import RightTop from "./rightTop/rightTop"
-import { allModelsApi, sendVerificationCode } from "../../api/index"
+import { modelAllModelsApi } from "../../api/index"
 
 
 const ResourceCenter = () => {
@@ -22,8 +22,8 @@ const ResourceCenter = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await sendVerificationCode();
-                setModels(response.data); // 假设后端返回的数据在 response.data 中
+                const response = await modelAllModelsApi();
+                // setModels(response.data); // 假设后端返回的数据在 response.data 中
                 console.log(response)
             } catch (error) {
                 console.error('Error fetching models:', error);
