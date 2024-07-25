@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, Input } from "antd";
-const Setweight = ({ Name }) => {
+import { Button, Modal } from "antd";
+const ModalComponent = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState("Content of the modal");
@@ -22,7 +22,7 @@ const Setweight = ({ Name }) => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        {Name}
+        Open Modal with async logic
       </Button>
       <Modal
         title="Title"
@@ -31,20 +31,9 @@ const Setweight = ({ Name }) => {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "Please input your username!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+        <p>{modalText}</p>
       </Modal>
     </>
   );
 };
-export default Setweight;
+export default ModalComponent;

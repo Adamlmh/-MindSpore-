@@ -3,23 +3,22 @@ import { ReactSortable } from "react-sortablejs";
 import { Card, Col, Row, Button, message } from "antd";
 import UploadMessage from "./upload";
 import Setweight from "./Setweight";
+
+const ItemCard = ({ item }) => (
+  <Card key={item.id} hoverable size="small" style={{ marginBottom: "12px" }}>
+    <Setweight Name={item.modelName} />
+  </Card>
+);
+
 const DynamicDragList = () => {
+  //发请求拿数据
+
   const initialList = [
     { id: 1, modelName: "Item 1", url: "https://www.baidu.com", isAPI: "0" },
     { id: 2, modelName: "Item 2", url: "https://www.baidu.com", isAPI: "0" },
     { id: 3, modelName: "Item 3", url: "https://www.baidu.com", isAPI: "0" },
     { id: 4, modelName: "Item 4", url: "https://www.baidu.com", isAPI: "0" },
     { id: 5, modelName: "Item 5", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 6, modelName: "Item 6", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 7, modelName: "Item 7", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 8, modelName: "Item 8", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 9, modelName: "Item 9", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 10, modelName: "Item 10", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 11, modelName: "Item 11", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 12, modelName: "Item 12", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 13, modelName: "Item 13", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 14, modelName: "Item 14", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 15, modelName: "Item 15", url: "https://www.baidu.com", isAPI: "0" },
   ];
 
   const [lists, setLists] = useState([{ id: 1, items: initialList }]);
@@ -62,12 +61,39 @@ const DynamicDragList = () => {
   const [firstList, ...remainingLists] = lists;
 
   const handleListChange = (newList, index) => {
-    // 处理拖拽后列表的更新
     const updatedLists = [...lists];
+
+    // 检查新列表中的重复项
+    const hasDuplicates = newList.some(
+      (item, idx) => newList.findIndex((i) => i.id === item.id) !== idx
+    );
+
+    if (hasDuplicates) {
+      message.error("列表中不能有重复的 item");
+      return;
+    }
+
     updatedLists[index].items = newList;
     setLists(updatedLists);
   };
+
+  const handleClone = (item, index) => {
+    const targetList = lists[index + 1].items;
+    const isDuplicate = targetList.some(
+      (existingItem) => existingItem.id === item.id
+    );
+
+    if (isDuplicate) {
+      message.error("该 item 已存在于目标层级中，不能重复添加");
+      return null;
+    }
+
+    return { ...item, id: new Date().getTime() };
+  };
+
+  //结果
   console.log(JSON.stringify({ modelList }, null, 2));
+
   return (
     <div style={{ display: "flex", marginTop: "5px" }}>
       <div style={{ flex: "0 0 20%", padding: "0 10px", minWidth: "15vw" }}>
@@ -76,12 +102,12 @@ const DynamicDragList = () => {
           <Card
             title={`模型库`}
             bordered={false}
-            style={{ height: "100vh", overflowY: "auto" }}
+            style={{ height: "100vh", overflowY: "auto", minWidth: "250px" }}
           >
             <Button
               onClick={addNewList}
               type="primary"
-              style={{ marginBottom: 20, marginRight: "5px" }}
+              style={{ marginBottom: 20, marginRight: "15px" }}
             >
               增加层级
             </Button>
@@ -90,21 +116,17 @@ const DynamicDragList = () => {
               list={firstList.items}
               setList={(newList) => handleListChange(newList, 0)}
               onEnd={handleDrop}
-              group="list"
-              className={`list${firstList.id}`}
-              style={{
-                height: "100%",
+              group={{
+                name: "shared",
+                pull: "clone",
+                put: false,
               }}
+              clone={(item) => ({ ...item, id: new Date().getTime() })}
+              className={`list${firstList.id}`}
+              style={{ height: "100%" }}
             >
               {firstList.items.map((item) => (
-                <Card
-                  key={item.id}
-                  hoverable
-                  size="small"
-                  style={{ marginBottom: "12px" }}
-                >
-                  {item.modelName}
-                </Card>
+                <ItemCard key={item.id} item={item} />
               ))}
             </ReactSortable>
           </Card>
@@ -124,19 +146,16 @@ const DynamicDragList = () => {
                   list={list.items}
                   setList={(newList) => handleListChange(newList, index + 1)}
                   onEnd={handleDrop}
-                  group="list"
+                  group={{
+                    name: "shared",
+                    put: ["shared"],
+                  }}
+                  clone={(item) => handleClone(item, index)}
                   className={`list${list.id}`}
                   style={{ height: "100%" }}
                 >
                   {list.items.map((item) => (
-                    <Card
-                      key={item.id}
-                      hoverable
-                      size="small"
-                      style={{ marginBottom: "12px" }}
-                    >
-                      <Setweight Name={item.modelName}></Setweight>
-                    </Card>
+                    <ItemCard key={item.id} item={item} />
                   ))}
                 </ReactSortable>
               </Card>
