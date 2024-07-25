@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Form, Input } from "antd";
 const Setweight = ({ Name }) => {
-  console.log(Name);
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState("Content of the modal");
