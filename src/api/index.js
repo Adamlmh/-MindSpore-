@@ -37,39 +37,39 @@ export function registerApi() {
 export function modelRankApi() {
   return service({
     url: "/model/modelRank",
-    method: "get"
-  })
+    method: "get",
+  });
 }
 
 export function allModelsApi() {
   return service({
     url: "/model/allModel",
-    method: "get"
-  })
+    method: "get",
+  });
 }
 
 export function sendVerificationCode(email) {
   const data = {
-    email: email
+    email: email,
   };
   return service({
     url: "/account/register/sendVerificationCode",
     method: "post",
-    data
-  })
+    data,
+  });
 }
 
 export function accountController(email, password, verificationCode) {
   const data = {
     email,
     password,
-    verificationCode
+    verificationCode,
   };
   return service({
     url: "/account/register",
     method: "post",
-    data
-  })
+    data,
+  });
 }
 
 export function accountLogin(email, password) {
@@ -80,15 +80,21 @@ export function accountLogin(email, password) {
   return service({
     url: "/account/login",
     method: "post",
-    data
-  })
+    data,
+  });
 }
+
+//工作台拿到模型列表API
+export function getModelsApi() {
+  return service({ url: "/mission/queryUserCanUseModel", method: "get" });
+}
+
 // 首页排行版
 export function fetchRankApi() {
   return service({
     url: "/model/modelRank",
-    method: "get"
-  })
+    method: "get",
+  });
 }
 // 首页各申请数
 export function fetchAllApplicationApi(userId) {
@@ -97,18 +103,7 @@ const data={
 }
   return service({
     url: "/application/myApplicationCount",
-    method: "get",
-   params:data
-  })
-}
-// 首页最近任务展示
-export function fetchRecentTaskApi(userId) {
-  const data = {
-    userId
-  }
-  return service({
-    url: "http://47.120.64.48:8080askjfdsdhf",
-    method: "get",
+    method: "get", 
     params: data
   })
 }
@@ -117,21 +112,21 @@ export function modelAllModelsApi(userId, page, name) {
   const data = {
     userId,
     page,
-    name
-  }
+    name,
+  };
   return service({
     url: "http://47.120.64.48:8080/model/allModels",
-    method: 'get'
-  })
+    method: "get",
+  });
 }
 //个人主页下个人信息
 export function accounthomePageInfo(userId) {
   const params = {
-    userId: userId
-  }
+    userId: userId,
+  };
   return service({
     url: "http://47.120.64.48:8080/account/homePageInfo",
-    method: 'get',
-    params
-  })
+    method: "get",
+    params,
+  });
 }

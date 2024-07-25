@@ -27,6 +27,7 @@ const routers = [
         path: "/person",
         element: <Person />,
       },
+      { path: "", element: <Home /> },
     ],
   },
   { path: "/login", element: <Login /> },
