@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, List} from 'antd';
 import "./notice.css"
+import { fetchRankApi } from "../../../api"
 const Notice = () => {
     let data = [
         '发布物理模型dam__GB_MAPsdfgsdfjsklfjsklfjsjskdlfjgsiokdjgisjfgijsdfklgj',
@@ -10,11 +11,23 @@ const Notice = () => {
         '发布物理模型dam__GB_MAP',
         '发布物理模型dam__GB_MAP',
     ];
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetchRankApi();
+                console.log(response)
+            } catch (error) {
+                console.error('Error fetching models:', error);
+            }
+        };
+        fetchData();
+    }, []);
     return(
         <Card
             title="排行榜"
             extra={<a href="#">更多</a>}
             className='notice'
+            hoverable
         >
             <List
                 size="large"

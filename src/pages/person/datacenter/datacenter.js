@@ -7,6 +7,7 @@ const Datacenter=()=>{
                 className="datacenter"
                 size="small"
                 title="数据中心"
+            hoverable
                 extra={<a href="#">更多</a>}
                 
             >

@@ -83,3 +83,9 @@ export function accountLogin(email, password) {
     data
   })
 }
+export function fetchRankApi() {
+  return service({
+    url: "/model/modelRank",
+    method: "get"
+  })
+}

@@ -12,6 +12,7 @@ const TwoBottomCard= () => (
         <Card
             title="最近工程"
             className='top_card'
+            hoverable
         >
             <List
                 size="small"
@@ -21,6 +22,7 @@ const TwoBottomCard= () => (
             />
         </Card>
         <Card
+            hoverable
             size="small"
             title="数据反馈"
             extra={<a href="#">更多</a>}

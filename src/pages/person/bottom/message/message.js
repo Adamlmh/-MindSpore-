@@ -9,6 +9,9 @@ const MessageList = ({ type }) => (
                 <MessageCard type={type} status={'1'} num={'70'} />
                 <MessageCard type={type} status={'0'} num={'30'} />
                 <MessageCard type={type} status={'0'} num={'110'} />
+                <MessageCard type={type} status={'0'} num={'110'} />
+                <MessageCard type={type} status={'0'} num={'110'} />
+                <MessageCard type={type} status={'0'} num={'110'} />
         </div>
 
 
