@@ -178,3 +178,25 @@ export function accountpersonalCenterInfo(userId) {
     params,
   });
 }
+// 个人中心 同意
+export function agreeApply(applicationId) {
+  const data = {
+    applicationId
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/passApplication",
+    method: "post",
+    data,
+  });
+}
+// 个人中心 拒绝
+export function disagreeApply(applicationId) {
+  const data = {
+    applicationId
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/rejectApplication",
+    method: "post",
+    data,
+  });
+}

@@ -56,6 +56,17 @@ color: #fff;
     background-color: #59a0e1;
         color: #fff;
 }
+.my_choice{
+    position: absolute;
+        right: 10px;
+        bottom: 10px;
+        color: #fff;
+        width: 60px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 5px;
+}
 /* 我的作品下方被调用次数盒子 */
 .model_use_time{
     position: absolute;
@@ -82,10 +93,10 @@ color: #fff;
         line-height: 32px;
         border-radius: 5px;
 }
-.isagree{
+.isagree,.choise_agree{
     background-color: #59a0e1;
 }
-.isdisagree{
+.isdisagree,.choise_disagree{
     background-color: #f56c6c;
 }
 .msg_page{

@@ -43,16 +43,29 @@ const MessageList = ({ type }) => {
                                 }
                         };
                         fetchData(); 
-                }      
+                } 
+                if (type === '3') {
+                        const fetchData = async () => {
+                                try {
+                                        const response = await fetchMyApply(userId, page);
+                                        setMyApply(response.data)
+                                        console.log(response.data);
+                                        setTotal(response.data.total)
+                                        // console.log(response.data);
+                                } catch (error) {
+                                        console.error('Error fetching models:', error);
+                                }
+                        };
+                        fetchData();
+                }    
         }, [page]);
-        // console.log(total);
         return (
 
         <div className="messagebox">
                 <div className="messagelist">
                         {type==='2'&&myModel.data.map((item)=>{return(
                                 <MessageCard type={type}
-                                        num={item.useTimes}
+                                        num={item.usedTimes}
                                         time={item.createTime}
                                         modelName={item.modelName}
                                         name={userId} />
@@ -62,20 +75,32 @@ const MessageList = ({ type }) => {
                                                 <MessageCard type={type}
                                                         time={item.applyTime}
                                                         modelName={item.modelName}
-                                                        name={item.applicantName} />
+                                                        name={item.applicantName}
+                                                        status={item.status}
+                                                        applicationId={item.applicationId} />
                                         )
                                 })}
-                        <MessageCard type={type} agree={'1'} num={'10'} />
+                                {type === '3' && myApply.data.map((item) => {
+                                        return (
+                                                <MessageCard type={type}
+                                                        time={item.applyTime}
+                                                        modelName={item.modelName}
+                                                        name={item.respondentName}
+                                                        status={item.status}
+                                                        applicationId={item.applicationId} />
+                                        )
+                                })}
+                        {/* <MessageCard type={type} agree={'1'} num={'10'} />
                                 <MessageCard type={type} agree={'1'} num={'90'} />
                                 <MessageCard type={type} agree={'1'} num={'70'} />
                                 <MessageCard type={type} agree={'0'} num={'30'} />
                         <MessageCard type={type} agree={'0'} num={'110'} />
                                 <MessageCard type={type} agree={'0'} num={'110'} />
                                 <MessageCard type={type} agree={'0'} num={'110'} />
-                                <MessageCard type={type} agree={'0'} num={'110'} />
+                                <MessageCard type={type} agree={'0'} num={'110'} /> */}
                 </div>
                 <div className="msg_page">
-                        <Pagination showQuickJumper defaultCurrent={2} total={total} align="center" onChange={onChange} />
+                                <Pagination showQuickJumper defaultCurrent={2} total={total} pageSize={6} align="center" onChange={onChange} />
                 </div>
                 
         </div>
