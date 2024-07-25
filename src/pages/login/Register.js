@@ -1,18 +1,22 @@
 import { Form, Input, Button } from "antd";
 import { useState, useRef } from "react";
 import { sendVerificationCode, accountController } from "../../api"
+import { useNavigate } from 'react-router-dom'
 function Register({ alert, setAlert }) {
   //发生验证码倒计时
+  const navigate = useNavigate()
   const [seconds, setSeconds] = useState(60);
   const [disabled, setDisabled] = useState(false);
   const emailRef = useRef(null);
   const firstPasswordRef = useRef(null);
   const secondPasswordRef = useRef(null);
+  const agreeRef = useRef()
   const yzmRef = useRef(null);
   const [emailStatus, setEmailStatus] = useState('');
   const [firstPasswordStatus, setFirstPasswordStatus] = useState('');
   const [secondPasswordStatus, setSecondPasswordStatus] = useState('');
   const [yzmStatus, setYzmStatus] = useState('');
+  let sendYzm = 0
   // input表单状态
   const setStatus = (setter, status, duration = 3000) => {
     setter(status);
@@ -21,11 +25,21 @@ function Register({ alert, setAlert }) {
     }, duration);
   };
   // alert弹出框
-  const setAlertTimeout = (setter, alert, duration = 3000) => {
-    setter(alert);
-    setTimeout(() => {
-      setter({ message: '', type: '' });
-    }, duration);
+  const setAlertTimeout = (setter, alert, duration = 3000, type = 0) => {
+    if (type == 0) {
+      setter(alert)
+      setTimeout(() => {
+        setter({ message: '', type: "" })
+      }, duration)
+    }
+    else {
+      setter(alert)
+      setTimeout(() => {
+        setter({ message: '', type: "" })
+        navigate('/home')
+      }, duration)
+
+    }
   }
   const startCountdown = async () => {
     const email = emailRef.current.input.value;
@@ -61,39 +75,55 @@ function Register({ alert, setAlert }) {
     const firstPassword = firstPasswordRef.current.input.value;
     const secondPassword = secondPasswordRef.current.input.value;
     const yzm = yzmRef.current.input.value;
+    const agree = agreeRef.current.checked
 
     if (!email) {
       setStatus(setEmailStatus, 'warning');
-      setAlertTimeout(setAlert, { message: 'Please enter your email.', type: 'error' });
+      setAlertTimeout(setAlert, { message: '请输入邮箱', type: 'error' });
       return;
     }
     if (!firstPassword) {
       setStatus(setFirstPasswordStatus, 'warning');
-      setAlertTimeout(setAlert, { message: 'Please enter your password.', type: 'error' });
+      setAlertTimeout(setAlert, { message: '请输入密码', type: 'error' });
       return;
     }
     if (!secondPassword) {
       setStatus(setSecondPasswordStatus, 'warning');
-      setAlertTimeout(setAlert, { message: 'Please confirm your password.', type: 'error' });
+      setAlertTimeout(setAlert, { message: '请确认密码', type: 'error' });
       return;
     }
     if (firstPassword !== secondPassword) {
       setStatus(setSecondPasswordStatus, 'error');
-      setAlertTimeout(setAlert, { message: 'Passwords do not match.', type: 'error' });
+      setAlertTimeout(setAlert, { message: '密码不匹配', type: 'error' });
       return;
     }
     if (!yzm) {
       setStatus(setYzmStatus, 'warning');
-      setAlertTimeout(setAlert, { message: 'Please enter the captcha.', type: 'error' });
+      setAlertTimeout(setAlert, { message: '验证码不正确', type: 'error' });
+      return;
+    }
+    if (!agree) {
+      setAlertTimeout(setAlert, { message: '请同意相关条款政策', type: 'error' });
+      return;
+    }
+    if (!sendYzm) {
+      setAlertTimeout(setAlert, { message: '还未发送验证码', type: 'error' });
       return;
     }
     try {
       const response = await accountController(email, firstPassword, yzm);
-      console.log(response)
+      if (response.code == 1) {
+        setAlertTimeout(setAlert, { message: '注册成功，将跳转到登录页面', type: 'success' }, 1000, 1);
+      }
+      else {
+        setAlertTimeout(setAlert, { message: response.msg, type: 'error' });
+      }
     } catch (error) {
       console.error('Error fetching models:', error);
     }
   }
+
+
   return (
     <div>
       <Form.Item
@@ -182,7 +212,7 @@ function Register({ alert, setAlert }) {
             </Button>
           </div>
           <div className="agree-terms checkbox-container">
-            <input type="checkbox" id="agreeTerms" />
+            <input type="checkbox" id="agreeTerms" ref={agreeRef} />
             <label className="agreeTerms agree_text checkbox-label">
               已同意<a href="#">《服务条款》</a>和<a href="#">《隐私政策》</a>
             </label>
