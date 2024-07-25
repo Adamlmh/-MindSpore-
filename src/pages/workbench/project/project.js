@@ -4,7 +4,7 @@ import { PlusOutlined,DatabaseOutlined } from "@ant-design/icons"
 const items=[
 {
     key: '1',
-        label: <label>新建项目1 <span className="project_icon"><Button className="iconbtn" type="text"  shape="circle" size="small"><i className="iconfont bianji icon-bianji"></i> </Button>
+        label: <label className="model_label"><div className="project_name">新建项目1</div><span className="project_icon"><Button className="iconbtn" type="text"  shape="circle" size="small"><i className="iconfont bianji icon-bianji"></i> </Button>
             <Button className="iconbtn" shape="circle" type="text"  size="small"><i className="iconfont bianji icon-shanchu"></i> </Button></span> </label>,
         icon: <DatabaseOutlined />,
   },

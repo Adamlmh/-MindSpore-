@@ -29,7 +29,7 @@ function RightSide({ isLogin, setIsLogin, alert, setAlert }) {
             </span>
           </div>
         </div>
-        {isLogin ? <WithPasswordLogin /> : <Register alert={alert} setAlert={setAlert} />}
+        {isLogin ? <WithPasswordLogin alert={alert} setAlert={setAlert} /> : <Register alert={alert} setAlert={setAlert} />}
       </Form>
     </div>
   );

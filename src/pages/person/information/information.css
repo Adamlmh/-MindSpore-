@@ -24,12 +24,14 @@
         background-color: #D9D9D9;
         background-image: url("../../../assest/images/wait.jpg");
         background-size: 100% 100%;
+        
 }
 .shangchuan{
     width: 88px;
     height: 88px;
     border-radius: 88px;
     opacity: 0;
+    cursor: pointer;
 }
 /* 详细信息展示部分 */
 .all_message{

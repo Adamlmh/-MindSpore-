@@ -1,20 +1,46 @@
 import { Form, Input, Button } from "antd";
 import { useRef } from "react"
 import { accountLogin } from "../../api/index"
+import { Await, useNavigate } from "react-router-dom"
 
-function WithPasswordLogin() {
+function WithPasswordLogin({ alert, setAlert }) {
 
+  const navigate = useNavigate()
   const passwordRef = useRef()
   const usernameRef = useRef()
 
+
+  const setAlertTimeout = (setter, alert, duration = 3000) => {
+    setter(alert)
+    setTimeout(() => {
+      setter({ message: '', type: "" })
+    }, duration)
+  }
 
   const login_In = async () => {
     const password = passwordRef.current.input.value
     const email = usernameRef.current.input.value
 
+    if (!email) {
+      setAlertTimeout(setAlert, { message: 'Please enter your email.', type: 'error' });
+      return;
+    }
+    if (!password) {
+      setAlertTimeout(setAlert, { message: 'Please enter your password.', type: 'error' });
+      return;
+    }
+
     try {
       const response = await accountLogin(email, password);
       console.log(response)
+      if (response.code == 1) {
+        await setAlertTimeout(setAlert, { message: '登录成功', type: 'success' });
+        localStorage.setItem('token', response.data.token)
+        navigate('/home')
+      }
+      else {
+        setAlertTimeout(setAlert, { message: response.msg, type: 'error' });
+      }
     } catch (error) {
       console.error('Error fetching models:', error);
     }
