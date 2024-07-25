@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Card } from 'antd'
 import { Pagination, Button, Modal, Input, message, Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
+import { allModelsApi, modelAllModelsApi } from "../../../api/index"
 const { Dragger } = Upload;
 
-const RightTop = () => {
+const RightTop = ({ onData }) => {
 
     //弹窗
+    const searchRef = useRef()
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
@@ -80,6 +82,16 @@ const RightTop = () => {
         setFileList([]);
     };
 
+    //搜索
+    const sendDataToParent = () => {
+        const newData = {
+            userId: localStorage.getItem('userId'),
+            page: 1,
+            name: searchRef.current.value
+        }
+        onData(newData); // 调用父组件传递的回调函数，传递数据
+    };
+
 
     return (
         <div>
@@ -92,8 +104,8 @@ const RightTop = () => {
                     </div>
 
                     <div className="right_top_card_right">
-                        <input type="text" className="input_text" />
-                        <Button className="input_find">搜索</Button>
+                        <input type="text" className="input_text" ref={searchRef} placeholder="请输入" />
+                        <Button className="input_find" onClick={sendDataToParent} >搜索</Button>
                         <Button className="input_submit" onClick={showModal} >上传</Button>
                     </div>
                 </div>

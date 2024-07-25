@@ -9,7 +9,6 @@ const RightCard = ({ data }) => {
             let content = data.data
             let modelsData = [];
             for (let i = 0; i < content.length; i++) {
-                console.log(content[i])
                 modelsData.push(
                     <Card key={i} className="right_content_card">
                         <div className="right_content_card_div">

@@ -117,11 +117,12 @@ scrollbar-width: none;
 }
 .select_div{
     cursor: pointer;
-    padding:2px;
+    padding:6px;
     border-radius: 10px;
     background-color: rgb(239, 245, 255);
     margin-right: 7px;
     margin-top: 5px;
+    font-size: 12px;
 }
 
 .right_top_card_left{
