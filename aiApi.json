@@ -1,0 +1,57 @@
+{
+"content":"xxxx",
+"image":"url",
+  "modelList": [
+    {
+      "layer": 1,
+      "parallel": 1,
+      "models": [
+        {
+          "modelName": "Item 2",
+          "modelUrl": "https://www.baidu.com",
+          "isAPI": 0,
+          "weight":1
+        },
+        {
+          "modelName": "Item 1",
+          "modelUrl": "https://www.baidu.com",
+          "isAPI": 0,
+          "weight":1
+        }
+      ]
+    },
+    {
+      "layer": 2,
+      "parallel": 1,
+      "models": [
+        {
+          "modelName": "Item 3",
+          "modelUrl": "https://www.baidu.com",
+          "isAPI": 0,
+           "weight":1
+        },
+        {
+          "modelName": "Item 4",
+          "url": "https://www.baidu.com",
+          "isAPI": 0,
+          "weight":1
+        }
+      ]
+    },
+    {
+      "layer": 3,
+      "parallel": 0,
+      "models": [
+        {
+          "modelName": "Item 5",
+          "modelUrl": "https://www.baidu.com",
+          "isAPI": 0,
+           "weight":1
+        }
+      ]
+    }
+  ],
+  "answer":"xxxx",
+  "userId":"xxx",
+  "missonName":"xxx"
+}

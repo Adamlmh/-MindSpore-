@@ -86,7 +86,12 @@ export function accountLogin(email, password) {
 
 //工作台拿到模型列表API
 export function getModelsApi() {
-  return service({ url: "/mission/queryUserCanUseModel", method: "get" });
+  return service({
+    url: `/mission/queryUserCanUseModel?userId=${localStorage.getItem(
+      "userId"
+    )}`,
+    method: "get",
+  });
 }
 
 // 首页排行版

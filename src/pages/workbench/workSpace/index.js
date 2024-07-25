@@ -3,25 +3,58 @@ import { ReactSortable } from "react-sortablejs";
 import { Card, Col, Row, Button, message } from "antd";
 import UploadMessage from "./upload";
 import Setweight from "./Setweight";
+import { getModelsApi } from "../../../api";
 
-const ItemCard = ({ item }) => (
+const ItemCard = ({ item, lists, setLists, index }) => (
   <Card key={item.id} hoverable size="small" style={{ marginBottom: "12px" }}>
-    <Setweight Name={item.modelName} />
+    <Setweight
+      Name={item.modelName}
+      weight={item.weight}
+      modelId={item.modelId}
+      lists={lists}
+      setLists={setLists}
+      index={index}
+    />
   </Card>
 );
 
 const DynamicDragList = () => {
-  //发请求拿数据
+  //发请求拿模型数据
+  const [modalList, setModalList] = useState([]);
+  useEffect(() => {
+    const fetchModalListResponse = async () => {
+      const ModalListResponse = await getModelsApi();
+      setModalList(ModalListResponse.data);
+    };
+    fetchModalListResponse();
+  }, []);
 
-  const initialList = [
-    { id: 1, modelName: "Item 1", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 2, modelName: "Item 2", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 3, modelName: "Item 3", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 4, modelName: "Item 4", url: "https://www.baidu.com", isAPI: "0" },
-    { id: 5, modelName: "Item 5", url: "https://www.baidu.com", isAPI: "0" },
-  ];
-
-  const [lists, setLists] = useState([{ id: 1, items: initialList }]);
+  // [
+  // { id: 1, modelName: "Item 1", url: "https://www.baidu.com", isAPI: "0" },
+  // { id: 2, modelName: "Item 2", url: "https://www.baidu.com", isAPI: "0" },
+  // { id: 3, modelName: "Item 3", url: "https://www.baidu.com", isAPI: "0" },
+  // { id: 4, modelName: "Item 4", url: "https://www.baidu.com", isAPI: "0" },
+  // { id: 5, modelName: "Item 5", url: "https://www.baidu.com", isAPI: "0" },
+  // {
+  //   modelId: 2,
+  //   modelName: "model2",
+  //   modelUrl: "www.baidu.com",
+  //   isAPI: 1,
+  //   weight: 1,
+  // },
+  // {
+  //   modelId: 1,
+  //   modelName: "model2",
+  //   modelUrl: "www.baidu.com",
+  //   isAPI: 1,
+  //   weight: 1,
+  // },
+  // ];
+  const [lists, setLists] = useState([]);
+  // 当 modalList 更新时更新 lists
+  useEffect(() => {
+    setLists([{ id: 1, items: modalList }]);
+  }, [modalList]);
 
   const handleDrop = (event) => {
     console.log("Drag ended:", event);
@@ -33,12 +66,13 @@ const DynamicDragList = () => {
       .filter((_, index) => index > 0) // Skip the first list
       .filter((list) => list.items.length > 0) // Filter out empty lists
       .map((list, index) => ({
-        ListIndex: index + 1,
+        layer: index + 1,
         parallel: list.items.length > 1 ? 1 : 0,
         models: list.items.map((item) => ({
           modelName: item.modelName,
-          url: item.url,
+          modelUrl: item.modelUrl,
           isAPI: item.isAPI,
+          weight: item.weight,
         })),
       }));
     setModelList(newModelList);
@@ -59,19 +93,18 @@ const DynamicDragList = () => {
 
   // 将第一个列表单独提取
   const [firstList, ...remainingLists] = lists;
-
   const handleListChange = (newList, index) => {
     const updatedLists = [...lists];
 
-    // 检查新列表中的重复项
-    const hasDuplicates = newList.some(
-      (item, idx) => newList.findIndex((i) => i.id === item.id) !== idx
-    );
+    // // 检查新列表中的重复项
+    // const hasDuplicates = newList.some(
+    //   (item, idx) => newList.findIndex((i) => i.id === item.id) !== idx
+    // );
 
-    if (hasDuplicates) {
-      message.error("列表中不能有重复的 item");
-      return;
-    }
+    // if (hasDuplicates) {
+    //   message.error("列表中不能有重复的 item");
+    //   return;
+    // }
 
     updatedLists[index].items = newList;
     setLists(updatedLists);
@@ -83,17 +116,16 @@ const DynamicDragList = () => {
       (existingItem) => existingItem.id === item.id
     );
 
-    if (isDuplicate) {
-      message.error("该 item 已存在于目标层级中，不能重复添加");
-      return null;
-    }
+    // if (isDuplicate) {
+    //   message.error("该 item 已存在于目标层级中，不能重复添加");
+    //   return null;
+    // }
 
     return { ...item, id: new Date().getTime() };
   };
 
   //结果
-  console.log(JSON.stringify({ modelList }, null, 2));
-
+  const dataresult = JSON.stringify({ modelList }, null, 2);
   return (
     <div style={{ display: "flex", marginTop: "5px" }}>
       <div style={{ flex: "0 0 20%", padding: "0 10px", minWidth: "15vw" }}>
@@ -102,16 +134,19 @@ const DynamicDragList = () => {
           <Card
             title={`模型库`}
             bordered={false}
-            style={{ height: "100vh", overflowY: "auto", minWidth: "250px" }}
+            style={{ height: "100vh", overflowY: "auto", minWidth: "220px" }}
           >
-            <Button
-              onClick={addNewList}
-              type="primary"
-              style={{ marginBottom: 20, marginRight: "15px" }}
-            >
-              增加层级
-            </Button>
-            <UploadMessage />
+            <div style={{ display: "flex" }}>
+              <Button
+                onClick={addNewList}
+                type="primary"
+                style={{ marginBottom: 20, marginRight: "10px", flex: "1" }}
+              >
+                增加层级
+              </Button>
+              <UploadMessage style={{ flex: "1" }} dataresult={dataresult} />
+            </div>
+
             <ReactSortable
               list={firstList.items}
               setList={(newList) => handleListChange(newList, 0)}
@@ -126,7 +161,13 @@ const DynamicDragList = () => {
               style={{ height: "100%" }}
             >
               {firstList.items.map((item) => (
-                <ItemCard key={item.id} item={item} />
+                <ItemCard
+                  key={item.id}
+                  item={item}
+                  lists={lists}
+                  setLists={setLists}
+                  index={0}
+                />
               ))}
             </ReactSortable>
           </Card>
@@ -155,7 +196,13 @@ const DynamicDragList = () => {
                   style={{ height: "100%" }}
                 >
                   {list.items.map((item) => (
-                    <ItemCard key={item.id} item={item} />
+                    <ItemCard
+                      key={item.id}
+                      item={item}
+                      lists={lists}
+                      setLists={setLists}
+                      index={index + 1}
+                    />
                   ))}
                 </ReactSortable>
               </Card>
