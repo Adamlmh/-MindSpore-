@@ -11,6 +11,8 @@ const ItemCard = ({ item }) => (
 );
 
 const DynamicDragList = () => {
+  //发请求拿数据
+
   const initialList = [
     { id: 1, modelName: "Item 1", url: "https://www.baidu.com", isAPI: "0" },
     { id: 2, modelName: "Item 2", url: "https://www.baidu.com", isAPI: "0" },
@@ -89,6 +91,7 @@ const DynamicDragList = () => {
     return { ...item, id: new Date().getTime() };
   };
 
+  //结果
   console.log(JSON.stringify({ modelList }, null, 2));
 
   return (
@@ -99,12 +102,12 @@ const DynamicDragList = () => {
           <Card
             title={`模型库`}
             bordered={false}
-            style={{ height: "100vh", overflowY: "auto" }}
+            style={{ height: "100vh", overflowY: "auto", minWidth: "250px" }}
           >
             <Button
               onClick={addNewList}
               type="primary"
-              style={{ marginBottom: 20, marginRight: "5px" }}
+              style={{ marginBottom: 20, marginRight: "15px" }}
             >
               增加层级
             </Button>

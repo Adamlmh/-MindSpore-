@@ -37,39 +37,39 @@ export function registerApi() {
 export function modelRankApi() {
   return service({
     url: "/model/modelRank",
-    method: "get"
-  })
+    method: "get",
+  });
 }
 
 export function allModelsApi() {
   return service({
     url: "/model/allModel",
-    method: "get"
-  })
+    method: "get",
+  });
 }
 
 export function sendVerificationCode(email) {
   const data = {
-    email: email
+    email: email,
   };
   return service({
     url: "/account/register/sendVerificationCode",
     method: "post",
-    data
-  })
+    data,
+  });
 }
 
 export function accountController(email, password, verificationCode) {
   const data = {
     email,
     password,
-    verificationCode
+    verificationCode,
   };
   return service({
     url: "/account/register",
     method: "post",
-    data
-  })
+    data,
+  });
 }
 
 export function accountLogin(email, password) {
@@ -80,6 +80,11 @@ export function accountLogin(email, password) {
   return service({
     url: "/account/login",
     method: "post",
-    data
-  })
+    data,
+  });
+}
+
+//工作台拿到模型列表API
+export function getModelsApi() {
+  return service({ url: "/mission/queryUserCanUseModel", method: "get" });
 }
