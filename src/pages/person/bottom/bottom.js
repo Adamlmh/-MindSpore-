@@ -1,16 +1,14 @@
 import "./bottom.css"
 import MessageList from"./message/message"
 import { Tabs } from 'antd';
-let sign=1
-const onChange = (key) => {
-    sign=key
+const onChange = (key) => { 
     console.log(key);
 };
 const items = [
     {
         key: '1',
         label: '我的消息',
-        children: <MessageList key={sign}></MessageList>,
+        children: <MessageList type={'1'}></MessageList>,
     },
     {
         key: '2',

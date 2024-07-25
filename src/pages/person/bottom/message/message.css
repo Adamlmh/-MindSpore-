@@ -34,6 +34,7 @@
     overflow: hidden;
     white-space: nowrap;
 }
+/* 我的消息下方按钮 */
 .msg_apply_disagree{
 position: absolute;
 right: 100px;
@@ -47,4 +48,36 @@ color: #fff;
     bottom: 10px;
     background-color: #59a0e1;
         color: #fff;
+}
+/* 我的作品下方被调用次数盒子 */
+.model_use_time{
+    position: absolute;
+    right: 10px;
+        bottom: 10px;
+        width: 180px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 5px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+}
+/* 我的申请下方显示通过或拒绝的盒子 */
+.my_apply_condition{
+    position: absolute;
+    right: 10px;
+        bottom: 10px;
+        color: #fff;
+        width: 60px;
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        border-radius: 5px;
+}
+.isagree{
+    background-color: #59a0e1;
+}
+.isdisagree{
+    background-color: #f56c6c;
 }
