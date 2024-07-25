@@ -1,16 +1,23 @@
-.messagelist{
-    width: 100%;
-        height: 45vh;
-    border-bottom-left-radius: 18px;
-        border-bottom-right-radius: 18px;
-        overflow:auto;
+.messagebox{
+width: 100%;
+    height: 45vh;
+    padding: 10px;
+        border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+}
+.messagevbox::-webkit-scrollbar {
+    display: none;
+}
+.messagelist{ 
         display: flex;
         flex-wrap: wrap;
         /* background-color: red; */
 }
-.messagelist::-webkit-scrollbar{
-    display: none;
-}
+
 .messagecard{
     width: 330px;
     height: 180px;
@@ -80,4 +87,7 @@ color: #fff;
 }
 .isdisagree{
     background-color: #f56c6c;
+}
+.msg_page{
+    margin-top: 15px;
 }
