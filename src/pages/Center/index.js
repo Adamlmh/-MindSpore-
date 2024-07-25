@@ -18,19 +18,19 @@ const ResourceCenter = () => {
     };
 
 
-    const [models, setModels] = useState([]);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await sendVerificationCode();
-                setModels(response.data); // 假设后端返回的数据在 response.data 中
-                console.log(response)
-            } catch (error) {
-                console.error('Error fetching models:', error);
-            }
-        };
-        fetchData();
-    }, []);
+    // const [models, setModels] = useState([]);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await sendVerificationCode();
+    //             setModels(response.data); // 假设后端返回的数据在 response.data 中
+    //             console.log(response)
+    //         } catch (error) {
+    //             console.error('Error fetching models:', error);
+    //         }
+    //     };
+    //     fetchData();
+    // }, []);
 
 
 
