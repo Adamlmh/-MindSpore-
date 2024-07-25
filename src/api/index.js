@@ -98,25 +98,26 @@ export function fetchRankApi() {
 }
 // 首页各申请数
 export function fetchAllApplicationApi(userId) {
-const data={
-  userId
-}
+  const data = {
+    userId
+  }
   return service({
     url: "/application/myApplicationCount",
-    method: "get", 
+    method: "get",
     params: data
   })
 }
 //获取资源中心
-export function modelAllModelsApi(userId, page, name) {
-  const data = {
+export function modelAllModelsApi(userId, page = 1, name = '') {
+  const params = {
     userId,
     page,
-    name,
+    name
   };
   return service({
     url: "http://47.120.64.48:8080/model/allModels",
     method: "get",
+    params
   });
 }
 //顶部个人信息

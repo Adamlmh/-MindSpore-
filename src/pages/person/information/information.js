@@ -27,7 +27,7 @@ const Information = () => {
     const [status, setStatus] = useState('修改');
     const [disabled, setDisabled] = useState(true);
     const [userinformation, setUserinformation] = useState(data);
-
+    const [image, setimage] = useState('')
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -37,12 +37,16 @@ const Information = () => {
                 newUserInfo[1].text = response.data.email;
                 newUserInfo[3].text = response.data.description || '暂无个性签名';
                 setUserinformation(newUserInfo);
+                setimage(response.data.image)
+
             } catch (error) {
                 console.error('Error fetching models:', error);
             }
         };
         fetchData();
     }, []);
+
+
 
     const btnClick = () => {
         setDisabled(!disabled);
@@ -65,7 +69,7 @@ const Information = () => {
             {/* 头像 */}
             <div className="personal_header">
                 <div className="head_image">
-                    <Input type="file" className="shangchuan" />
+                    <img src={image}></img>
                 </div>
             </div>
             {/* 信息展示 */}
