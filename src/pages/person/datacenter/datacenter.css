@@ -1,7 +1,31 @@
 .datacenter{
     width: 100%;
-    width: 100%;
         height: 25vh;
         min-height: 250px;
         min-width: 300px;
+        /* display: flex; */
+}
+.datacenterBox{
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+}
+.datapic_left{
+background-image: url('../../../assest/images/datacenterleft.jpg');
+background-size: 100% 100%;
+width: 45%;
+    height: 20vh;
+    min-height: 200px;
+    min-width: 150px;
+}
+.datapic_right {
+    background-image: url('../../../assest/images/dataright.png');
+    background-size: 100% 100%;
+    background-position: center;
+    width: 45%;
+    height: 20vh;
+    min-height: 200px;
+    min-width: 150px;
 }

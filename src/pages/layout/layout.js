@@ -17,6 +17,7 @@ const Guidance = () => {
     // } = theme.useToken();
 
     const navigate = useNavigate();
+    const divImageRef = useRef()
 
     const handleMenuClick = (key) => {
         // console.log('Clicked key:', key);
@@ -29,21 +30,21 @@ const Guidance = () => {
 
 
     }
-    const [userInformation, setUserInformation] = useState([]);
+
+    //获取用户信息
+    const [userInformation, setUserInformation] = useState({});
     useEffect(() => {
         const fetchData = async () => {
             try {
-                console.log(localStorage.getItem('userId'))
                 const response = await accounthomePageInfo(localStorage.getItem('userId'));
-                // setModels(response.data); // 假设后端返回的数据在 response.data 中
-                console.log(response)
+                setUserInformation(response.data); // 假设后端返回的数据在 response.data 中
             } catch (error) {
                 console.error('Error fetching models:', error);
             }
         };
         fetchData();
-    }, []);
 
+    }, []);
 
     return (
         <Layout>
@@ -61,8 +62,8 @@ const Guidance = () => {
                         <Button className='search_btn' type='text'><i className="iconfont icon-sousuo"></i></Button>
                     </div>
                     <div className='person'>
-                        <div className='person_head'></div>
-                        <div className='person_name'>name</div>
+                        <div className='person_head'  ><img src={userInformation.image}></img> </div>
+                        <div className='person_name'>{userInformation.username}</div>
                     </div>
                     <div className='more'>
                         <div className='icon'></div>
@@ -89,7 +90,7 @@ const Guidance = () => {
                             <div className='bottom_menu'>
                                 <MenuItem key='5' icon={<ExclamationCircleOutlined />} className='menu_item' onClick={() => handleMenuClick('1')}>帮助</MenuItem>
                                 <div key='6' className='menu_item more_about'><a href='#'>更多</a>    |    <a href='#'>关于</a></div>
-                                <MenuItem key='7' icon={<LogoutOutlined />} className='menu_item' onClick={() => handleMenuClick('1')}>退出登录</MenuItem>
+                                <MenuItem key='7' icon={<LogoutOutlined />} className='menu_item' onClick={() => handleMenuClick('/login')}>退出登录</MenuItem>
                             </div>
                         </div>
 

@@ -102,25 +102,30 @@ export function fetchRankApi() {
   });
 }
 // 首页各申请数
-export function fetchAllApplicationApi() {
+export function fetchAllApplicationApi(userId) {
+  const data = {
+    userId
+  }
   return service({
     url: "/application/myApplicationCount",
     method: "get",
-  });
+    params: data
+  })
 }
 //获取资源中心
-export function modelAllModelsApi(userId, page, name) {
-  const data = {
+export function modelAllModelsApi(userId, page = 1, name = '') {
+  const params = {
     userId,
     page,
-    name,
+    name
   };
   return service({
     url: "http://47.120.64.48:8080/model/allModels",
     method: "get",
+    params
   });
 }
-//个人主页下个人信息
+//顶部个人信息
 export function accounthomePageInfo(userId) {
   const params = {
     userId: userId,
@@ -129,5 +134,75 @@ export function accounthomePageInfo(userId) {
     url: "http://47.120.64.48:8080/account/homePageInfo",
     method: "get",
     params,
+  });
+}
+// 个人中心 我的消息
+export function fetchMyMessage(userId, page) {
+  const params = {
+    userId,
+    page
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/receivedApplication",
+    method: "get",
+    params,
+  });
+}
+// 个人中心 我的模型
+export function fetchMyModel(userId, page) {
+  const params = {
+    userId,
+    page
+  };
+  return service({
+    url: "http://47.120.64.48:8080/model/myModel",
+    method: "get",
+    params,
+  });
+}
+// 个人中心 我的申请
+
+export function fetchMyApply(userId, page) {
+  const params = {
+    userId,
+    page
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/myApplication",
+    method: "get",
+    params,
+  });
+}
+//个人中心的个人信息
+export function accountpersonalCenterInfo(userId) {
+  const params = {
+    userId: userId,
+  };
+  return service({
+    url: "http://47.120.64.48:8080/account/personalCenterInfo",
+    method: "get",
+    params,
+  });
+}
+// 个人中心 同意
+export function agreeApply(applicationId) {
+  const data = {
+    applicationId
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/passApplication",
+    method: "post",
+    data,
+  });
+}
+// 个人中心 拒绝
+export function disagreeApply(applicationId) {
+  const data = {
+    applicationId
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/rejectApplication",
+    method: "post",
+    data,
   });
 }

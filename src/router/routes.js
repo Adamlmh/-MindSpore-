@@ -6,6 +6,7 @@ const Guidance = lazy(() => import("../pages/layout/layout"));
 const Home = lazy(() => import("../pages/Home"));
 const Workbench = lazy(() => import("../pages/workbench/workbench"));
 const Center = lazy(() => import("../pages/Center"));
+const NotFound = lazy(() => import("../components/NotFound/NotFound"));
 const routers = [
   {
     path: "/",
@@ -31,5 +32,9 @@ const routers = [
     ],
   },
   { path: "/login", element: <Login /> },
+  {
+    path: '*',
+    element: <NotFound />
+  }
 ];
 export default routers;

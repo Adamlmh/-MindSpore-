@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, List} from 'antd';
 import "./notice.css"
 import { fetchRankApi } from "../../../api"
 const Notice = () => {
-    let data = [
-        '发布物理模型dam__GB_MAPsdfgsdfjsklfjsklfjsjskdlfjgsiokdjgisjfgijsdfklgj',
-        '发布物理模型dam__GB_MAP',
-        '发布物理模型dam__GB_MAP',
-        '发布物理模型dam__GB_MAP',
-        '发布物理模型dam__GB_MAP',
-        '发布物理模型dam__GB_MAP',
-    ];
+   const [data,setData]=useState([])
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetchRankApi();
-                console.log(response)
+               
+                setData(response.data)
             } catch (error) {
                 console.error('Error fetching models:', error);
             }
@@ -35,10 +29,10 @@ const Notice = () => {
                 dataSource={data}
                 renderItem={(item) => <List.Item>
                     <div className="list-item-container">
-                        <p className="modelname">{item}</p>
+                        <p className="modelname">{item.modelName}</p>
                         <div className="right-container">
-                            <p className="modelsign">【官方】</p>
-                            <p className="modeltime">2021</p>
+                            <p className="modelsign">{item.characterType===1?'【官方】':'【用户】'}</p>
+                            <p className="modeltime">{item.createTime}</p>
                         </div>
                     </div>
                 </List.Item>}

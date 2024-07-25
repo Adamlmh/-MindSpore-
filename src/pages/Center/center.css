@@ -173,28 +173,35 @@ scrollbar-width: none;
     color: white;
     margin-top: 5px;
 }
+
+
 .right_content_card_div h2{
     font-size: 18px;
     font-weight: 400;
     margin-top: -23px;
 }
+
 .right_content_card_div ul{
-    display: flex;
-    flex-wrap: wrap;
+    display: flex !important;
+    flex-wrap: wrap !important;
 }
 
-.right_content_card_div ul li{
-    padding:2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-    background-color: rgb(239, 245, 255);
-    font-size: 12px;
-    margin-right: 10px;
+.right_content_card_div ul p{
+    padding:2px ;
+    padding-left: 10px ;
+   padding-right: 10px ;
+    border-radius: 10px ;
+    background-color: rgb(239, 245, 255) ;
+    font-size: 12px ;
+    margin-right: 10px ;
 }
 
- .information{
+
+
+ .information_in_rightCard{
      margin-top: 5px;
+     display: flex;
+     flex-direction: column;
  }
 .button_div{
     display: flex;

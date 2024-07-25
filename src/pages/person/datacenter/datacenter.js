@@ -8,9 +8,11 @@ const Datacenter=()=>{
                 size="small"
                 title="数据中心"
             hoverable
-                extra={<a href="#">更多</a>}
-                
             >
+                <div className="datacenterBox">
+                <div className="datapic_left"></div>
+                <div className="datapic_right"></div>
+                </div>
                 
             </Card>
         
