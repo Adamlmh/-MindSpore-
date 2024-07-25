@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 import "./layout.css"
@@ -6,11 +6,12 @@ import { LogoutOutlined, HomeOutlined, CodepenOutlined, DatabaseOutlined, Exclam
 import { Input, Layout, Menu, theme, Button } from 'antd';
 import MenuItem from 'antd/es/menu/MenuItem';
 import { Outlet } from 'react-router-dom';
+import { accounthomePageInfo } from "../../api/index"
 const { Header, Content, Sider } = Layout;
 
 
 const Guidance = () => {
-  
+
     // const {
     //     token: { groupTitleColor },
     // } = theme.useToken();
@@ -24,8 +25,24 @@ const Guidance = () => {
     };
     const getkey = (msg) => {
         // console.log(msg.key)
-    }
 
+
+
+    }
+    const [userInformation, setUserInformation] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                console.log(localStorage.getItem('userId'))
+                const response = await accounthomePageInfo(localStorage.getItem('userId'));
+                // setModels(response.data); // 假设后端返回的数据在 response.data 中
+                console.log(response)
+            } catch (error) {
+                console.error('Error fetching models:', error);
+            }
+        };
+        fetchData();
+    }, []);
 
 
     return (

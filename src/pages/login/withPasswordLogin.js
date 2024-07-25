@@ -52,8 +52,7 @@ function WithPasswordLogin({ alert, setAlert }) {
       if (response.code == 1) {
         setAlertTimeout(setAlert, { message: '登录成功', type: 'success' }, 1000, 1);
         localStorage.setItem('token', response.data.token)
-        localStorage.setItem('userId', response.data.useId)
-
+        localStorage.setItem('userId', response.data.userId)
       }
       else {
         setAlertTimeout(setAlert, { message: response.msg, type: 'error' });
