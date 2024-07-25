@@ -90,7 +90,7 @@ const Guidance = () => {
                             <div className='bottom_menu'>
                                 <MenuItem key='5' icon={<ExclamationCircleOutlined />} className='menu_item' onClick={() => handleMenuClick('1')}>帮助</MenuItem>
                                 <div key='6' className='menu_item more_about'><a href='#'>更多</a>    |    <a href='#'>关于</a></div>
-                                <MenuItem key='7' icon={<LogoutOutlined />} className='menu_item' onClick={() => handleMenuClick('1')}>退出登录</MenuItem>
+                                <MenuItem key='7' icon={<LogoutOutlined />} className='menu_item' onClick={() => handleMenuClick('/login')}>退出登录</MenuItem>
                             </div>
                         </div>
 
