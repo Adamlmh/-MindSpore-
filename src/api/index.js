@@ -91,10 +91,25 @@ export function fetchRankApi() {
   })
 }
 // 首页各申请数
-export function fetchAllApplicationApi() {
+export function fetchAllApplicationApi(userId) {
+const data={
+  userId
+}
   return service({
     url: "/application/myApplicationCount",
-    method: "get"
+    method: "get",
+   params:data
+  })
+}
+// 首页最近任务展示
+export function fetchRecentTaskApi(userId) {
+  const data = {
+    userId
+  }
+  return service({
+    url: "http://47.120.64.48:8080askjfdsdhf",
+    method: "get",
+    params: data
   })
 }
 //获取资源中心
