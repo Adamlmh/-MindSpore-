@@ -16,7 +16,7 @@ function Register({ alert, setAlert }) {
   const [firstPasswordStatus, setFirstPasswordStatus] = useState('');
   const [secondPasswordStatus, setSecondPasswordStatus] = useState('');
   const [yzmStatus, setYzmStatus] = useState('');
-  let sendYzm = 0
+  let [sendyzem, setsendyzem] = useState(0)
   // input表单状态
   const setStatus = (setter, status, duration = 3000) => {
     setter(status);
@@ -42,6 +42,7 @@ function Register({ alert, setAlert }) {
     }
   }
   const startCountdown = async () => {
+    setsendyzem(1)
     const email = emailRef.current.input.value;
     console.log(email);
     if (!email) {
@@ -97,6 +98,10 @@ function Register({ alert, setAlert }) {
       setAlertTimeout(setAlert, { message: '密码不匹配', type: 'error' });
       return;
     }
+    if (!sendyzem) {
+      setAlertTimeout(setAlert, { message: '还未发送验证码', type: 'error' });
+      return;
+    }
     if (!yzm) {
       setStatus(setYzmStatus, 'warning');
       setAlertTimeout(setAlert, { message: '验证码不正确', type: 'error' });
@@ -104,10 +109,6 @@ function Register({ alert, setAlert }) {
     }
     if (!agree) {
       setAlertTimeout(setAlert, { message: '请同意相关条款政策', type: 'error' });
-      return;
-    }
-    if (!sendYzm) {
-      setAlertTimeout(setAlert, { message: '还未发送验证码', type: 'error' });
       return;
     }
     try {
