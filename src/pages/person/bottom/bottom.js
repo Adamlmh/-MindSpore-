@@ -2,7 +2,7 @@ import "./bottom.css"
 import MessageList from"./message/message"
 import { Tabs } from 'antd';
 const onChange = (key) => { 
-    console.log(key);
+    // console.log(key);
 };
 const items = [
     {

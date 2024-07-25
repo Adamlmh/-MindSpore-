@@ -130,3 +130,40 @@ export function accounthomePageInfo(userId) {
     params,
   });
 }
+// 个人中心 我的消息
+export function fetchMyMessage(userId, page) {
+  const params = {
+    userId,
+    page
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/receivedApplication",
+    method: "get",
+    params,
+  });
+}
+// 个人中心 我的模型
+export function fetchMyModel(userId,page) {
+  const params = {
+    userId,
+    page
+  };
+  return service({
+    url: "http://47.120.64.48:8080/model/myModel",
+    method: "get",
+    params,
+  });
+}
+// 个人中心 我的申请
+
+export function fetchMyApply(userId, page) {
+  const params = {
+    userId,
+    page
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/myApplication",
+    method: "get",
+    params,
+  });
+}

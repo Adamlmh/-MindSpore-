@@ -9,7 +9,7 @@ width: 100%;
             flex-direction: column;
             justify-content: space-between;
 }
-.messagevbox::-webkit-scrollbar {
+.messagebox::-webkit-scrollbar {
     display: none;
 }
 .messagelist{ 
