@@ -89,7 +89,7 @@ const Project = () => {
             marginTop: 16,
           }}
         >
-          <h3 style={{ cursor: "pointer" }}>{missionName}</h3>
+          <h4 style={{ cursor: "pointer" }}>{missionName}</h4>
         </Card>
       ))}
     </div>

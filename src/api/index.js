@@ -112,6 +112,18 @@ export function fetchAllApplicationApi(userId) {
     params: data,
   });
 }
+// 首页最近工程
+export function fetchRecentTaskApi(userId) {
+  const data = {
+    userId,
+  };
+  return service({
+    url: "http://47.120.64.48:8080/mission/homePageRecentMission",
+    method: "get",
+    params: data,
+  });
+}
+
 //获取资源中心
 export function modelAllModelsApi(userId, page = 1, name = "") {
   const params = {
@@ -202,6 +214,18 @@ export function disagreeApply(applicationId) {
   };
   return service({
     url: "http://47.120.64.48:8080/application/rejectApplication",
+    method: "post",
+    data,
+  });
+}
+//申请模块
+export function applyModel(modelId, userId) {
+  const data = {
+    modelId: 8,
+    userId: 2,
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/applyModel",
     method: "post",
     data,
   });

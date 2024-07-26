@@ -29,7 +29,7 @@ const Notice = () => {
                 dataSource={data}
                 renderItem={(item) => <List.Item>
                     <div className="list-item-container">
-                        <p className="modelname">{item.modelName}</p>
+                        <h4 className="modelname">{item.modelName}</h4>
                         <div className="right-container">
                             <p className="modelsign">{item.characterType===1?'【官方】':'【用户】'}</p>
                             <p className="modeltime">{item.createTime}</p>
