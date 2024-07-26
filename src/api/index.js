@@ -112,6 +112,17 @@ export function fetchAllApplicationApi(userId) {
     params: data
   })
 }
+// 首页最近工程
+export function fetchRecentTaskApi(userId) {
+  const data = {
+    userId
+  }
+  return service({
+    url: "http://47.120.64.48:8080/mission/homePageRecentMission",
+    method: "get",
+    params: data
+  })
+}
 //获取资源中心
 export function modelAllModelsApi(userId, page = 1, name = '') {
   const params = {

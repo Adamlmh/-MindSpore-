@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { fetchRecentTaskApi } from '@/api';
 import { Card, List } from 'antd';
 import "./twocard.css"
 // const data = [
@@ -12,19 +13,19 @@ import "./twocard.css"
 const TwoBottomCard= () => {
     const [data, setData] = useState({})
     const userId = localStorage.getItem("userId")
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
 
-    //             const response = await fetchRecentTaskApi(userId);
-    //             setData(response.data)
-    //             console.log(data);
-    //         } catch (error) {
-    //             console.error('Error fetching models:', error);
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
+                const response = await fetchRecentTaskApi(userId);
+                setData(response.data)
+                console.log(data);
+            } catch (error) {
+                console.error('Error fetching models:', error);
+            }
+        };
+        fetchData();
+    }, []);
     return(
     <div className='cont'>
         <Card
