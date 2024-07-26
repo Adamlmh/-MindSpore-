@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './center.css';
-import { Pagination } from 'antd';
+import { Pagination, Alert } from 'antd';
 import RightCard from "./rightCard/rightCard";
 import Select from "./select/select";
 import RightTop from "./rightTop/rightTop";
@@ -15,6 +15,7 @@ const ResourceCenter = () => {
     const [models, setModels] = useState([]);
     const [information, setInformation] = useState({ userId: localStorage.getItem('userId'), page: 1, name: '' });
     const dispatch = useDispatch();
+
 
     useEffect(() => {
 
@@ -63,6 +64,7 @@ const ResourceCenter = () => {
 
     return (
         <div className="big_box">
+
             <div className="top_image">
                 <img src={topimage} alt="topimage" />
             </div>
