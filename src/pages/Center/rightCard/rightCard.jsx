@@ -21,9 +21,9 @@ const RightCard = ({ data }) => {
                                 <ul className=".right_content_card_divul">
                                     {/* li 元素应该放在 Card 的外层 */}
                                     <p className=".right_content_card_divulli">图像分类</p>
-                                    <p lassName=".right_content_card_divulli">图像分类</p>
-                                    <p lassName=".right_content_card_divulli">图像分类</p>
-                                    <p lassName=".right_content_card_divulli">图像分类</p>
+                                    <p lassName=".right_content_card_divulli">目标检测</p>
+                                    <p lassName=".right_content_card_divulli">语义分割</p>
+                                    <p lassName=".right_content_card_divulli">关键检测</p>
                                 </ul>
                             </div>
                             <div className="information_in_rightCard">
