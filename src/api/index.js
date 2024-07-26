@@ -104,25 +104,25 @@ export function fetchRankApi() {
 // 首页各申请数
 export function fetchAllApplicationApi(userId) {
   const data = {
-    userId
-  }
+    userId,
+  };
   return service({
     url: "/application/myApplicationCount",
     method: "get",
-    params: data
-  })
+    params: data,
+  });
 }
 //获取资源中心
-export function modelAllModelsApi(userId, page = 1, name = '') {
+export function modelAllModelsApi(userId, page = 1, name = "") {
   const params = {
     userId,
     page,
-    name
+    name,
   };
   return service({
     url: "http://47.120.64.48:8080/model/allModels",
     method: "get",
-    params
+    params,
   });
 }
 //顶部个人信息
@@ -140,7 +140,7 @@ export function accounthomePageInfo(userId) {
 export function fetchMyMessage(userId, page) {
   const params = {
     userId,
-    page
+    page,
   };
   return service({
     url: "http://47.120.64.48:8080/application/receivedApplication",
@@ -152,7 +152,7 @@ export function fetchMyMessage(userId, page) {
 export function fetchMyModel(userId, page) {
   const params = {
     userId,
-    page
+    page,
   };
   return service({
     url: "http://47.120.64.48:8080/model/myModel",
@@ -165,7 +165,7 @@ export function fetchMyModel(userId, page) {
 export function fetchMyApply(userId, page) {
   const params = {
     userId,
-    page
+    page,
   };
   return service({
     url: "http://47.120.64.48:8080/application/myApplication",
@@ -187,7 +187,7 @@ export function accountpersonalCenterInfo(userId) {
 // 个人中心 同意
 export function agreeApply(applicationId) {
   const data = {
-    applicationId
+    applicationId,
   };
   return service({
     url: "http://47.120.64.48:8080/application/passApplication",
@@ -198,11 +198,18 @@ export function agreeApply(applicationId) {
 // 个人中心 拒绝
 export function disagreeApply(applicationId) {
   const data = {
-    applicationId
+    applicationId,
   };
   return service({
     url: "http://47.120.64.48:8080/application/rejectApplication",
     method: "post",
     data,
+  });
+}
+//工作台任务历史
+export function fetchTaskHistory() {
+  return service({
+    url: `/mission/workspaceMission?userId=${localStorage.getItem("userId")}`,
+    method: "get",
   });
 }

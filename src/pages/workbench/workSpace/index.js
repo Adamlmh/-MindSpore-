@@ -29,27 +29,6 @@ const DynamicDragList = () => {
     fetchModalListResponse();
   }, []);
 
-  // [
-  // { id: 1, modelName: "Item 1", url: "https://www.baidu.com", isAPI: "0" },
-  // { id: 2, modelName: "Item 2", url: "https://www.baidu.com", isAPI: "0" },
-  // { id: 3, modelName: "Item 3", url: "https://www.baidu.com", isAPI: "0" },
-  // { id: 4, modelName: "Item 4", url: "https://www.baidu.com", isAPI: "0" },
-  // { id: 5, modelName: "Item 5", url: "https://www.baidu.com", isAPI: "0" },
-  // {
-  //   modelId: 2,
-  //   modelName: "model2",
-  //   modelUrl: "www.baidu.com",
-  //   isAPI: 1,
-  //   weight: 1,
-  // },
-  // {
-  //   modelId: 1,
-  //   modelName: "model2",
-  //   modelUrl: "www.baidu.com",
-  //   isAPI: 1,
-  //   weight: 1,
-  // },
-  // ];
   const [lists, setLists] = useState([]);
   // 当 modalList 更新时更新 lists
   useEffect(() => {
@@ -96,36 +75,13 @@ const DynamicDragList = () => {
   const handleListChange = (newList, index) => {
     const updatedLists = [...lists];
 
-    // // 检查新列表中的重复项
-    // const hasDuplicates = newList.some(
-    //   (item, idx) => newList.findIndex((i) => i.id === item.id) !== idx
-    // );
-
-    // if (hasDuplicates) {
-    //   message.error("列表中不能有重复的 item");
-    //   return;
-    // }
-
     updatedLists[index].items = newList;
     setLists(updatedLists);
   };
 
-  const handleClone = (item, index) => {
-    const targetList = lists[index + 1].items;
-    const isDuplicate = targetList.some(
-      (existingItem) => existingItem.id === item.id
-    );
-
-    // if (isDuplicate) {
-    //   message.error("该 item 已存在于目标层级中，不能重复添加");
-    //   return null;
-    // }
-
-    return { ...item, id: new Date().getTime() };
-  };
-
   //结果
   const dataresult = JSON.stringify({ modelList }, null, 2);
+  console.log(dataresult);
   return (
     <div style={{ display: "flex", marginTop: "5px" }}>
       <div style={{ flex: "0 0 20%", padding: "0 10px", minWidth: "15vw" }}>
@@ -154,7 +110,6 @@ const DynamicDragList = () => {
               group={{
                 name: "shared",
                 pull: "clone",
-                put: false,
               }}
               clone={(item) => ({ ...item, id: new Date().getTime() })}
               className={`list${firstList.id}`}
@@ -191,7 +146,7 @@ const DynamicDragList = () => {
                     name: "shared",
                     put: ["shared"],
                   }}
-                  clone={(item) => handleClone(item, index)}
+                  // clone={(item) => handleClone(item, index)}
                   className={`list${list.id}`}
                   style={{ height: "100%" }}
                 >

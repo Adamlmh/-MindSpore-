@@ -12,12 +12,12 @@ import {
   message,
 } from "antd";
 import axios from "axios";
-
+import Loading from "./loading";
 const UploadMessage = ({ dataresult }) => {
   const [open, setOpen] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [form] = Form.useForm();
-
+  const [showLoading, setShowLoading] = useState(false);
   const showDrawer = () => {
     setOpen(true);
   };
@@ -92,6 +92,11 @@ const UploadMessage = ({ dataresult }) => {
         content: description,
         modelList: dataresult,
       };
+      setShowLoading(true);
+      setTimeout(() => {
+        onClose();
+        setShowLoading(false);
+      }, 3000);
       await axios.post("http://139.159.156.117:8080", data, {
         headers: {
           "Content-Type": "application/json",
@@ -99,13 +104,14 @@ const UploadMessage = ({ dataresult }) => {
       });
 
       message.success("Upload successful");
-      onClose();
     } catch (error) {
       message.error("Upload failed");
       console.error("Error:", error);
     }
   };
-
+  if (showLoading) {
+    return <Loading />;
+  }
   return (
     <div key={1}>
       <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>
