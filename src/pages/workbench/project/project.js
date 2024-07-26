@@ -1,61 +1,55 @@
 import "./project.css";
-import { Button, Menu, Modal } from "antd";
+import { Button, Card, Modal, Input } from "antd";
 import { PlusOutlined, DatabaseOutlined } from "@ant-design/icons";
 import GetResult from "./GetResult";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchTaskHistory } from "../../../api";
 const items = [
   {
     key: "1",
-    label: (
-      <label className="model_label">
-        <div className="project_name">新建项目1</div>
-        <span className="project_icon">
-          <Button className="iconbtn" type="text" shape="circle" size="small">
-            <i className="iconfont bianji icon-bianji"></i>{" "}
-          </Button>
-          <Button className="iconbtn" shape="circle" type="text" size="small">
-            <i className="iconfont bianji icon-shanchu"></i>{" "}
-          </Button>
-        </span>{" "}
-      </label>
-    ),
+    label: <label className="model_label">新建项目1</label>,
     icon: <DatabaseOutlined />,
   },
   {
     key: "2",
-    label: (
-      <label>
-        新建项目2{" "}
-        <span className="project_icon">
-          <Button className="iconbtn" type="text" shape="circle" size="small">
-            <i className="iconfont bianji icon-bianji"></i>{" "}
-          </Button>
-          <Button className="iconbtn" shape="circle" type="text" size="small">
-            <i className="iconfont bianji icon-shanchu"></i>{" "}
-          </Button>
-        </span>{" "}
-      </label>
-    ),
+    label: <label>新建项目2</label>,
     icon: <DatabaseOutlined />,
   },
 ];
 const Project = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
+  const [inputValue, setInputValue] = useState("");
+  const [items, setItems] = useState([]);
+  const [newitems, setNewItems] = useState([]);
+  useEffect(() => {
+    const fetchTaskHistoryAPI = async () => {
+      const response = await fetchTaskHistory();
+      console.log(response.data);
+      setItems(response.data);
+    };
+    fetchTaskHistoryAPI();
+  }, []);
+  useEffect(() => {
+    const newitems = items.map(({ missionName }, index) => ({
+      missionName,
+      index,
+    }));
+    setNewItems(newitems);
+  }, [items]);
+  const onChange = (e) => setInputValue(e.target.value);
   const showModal = () => {
     setOpen(true);
   };
   const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
     setConfirmLoading(true);
+
     setTimeout(() => {
       setOpen(false);
       setConfirmLoading(false);
     }, 2000);
   };
   const handleCancel = () => {
-    console.log("Clicked cancel button");
     setOpen(false);
   };
   return (
@@ -69,25 +63,35 @@ const Project = () => {
           onClick={showModal}
         >
           新建项目
-          <Modal
-            title="Title"
-            open={open}
-            onOk={handleOk}
-            confirmLoading={confirmLoading}
-            onCancel={handleCancel}
-          >
-            <p>{modalText}</p>
-          </Modal>
         </Button>
+        <Modal
+          title="项目名"
+          open={open}
+          onOk={handleOk}
+          confirmLoading={confirmLoading}
+          onCancel={handleCancel}
+          okText={"提交"}
+          cancelText={"取消"}
+        >
+          <Input
+            placeholder="请输入项目名"
+            value={inputValue}
+            onChange={onChange}
+          ></Input>
+        </Modal>
         <GetResult style={{ flexGrow: 1 }} />
       </div>
 
-      <Menu
-        mode="inline"
-        defaultSelectedKeys={["1"]}
-        className="workbench_menu"
-        items={items}
-      />
+      {newitems.map(({ missionName }) => (
+        <Card
+          style={{
+            width: 210,
+            marginTop: 16,
+          }}
+        >
+          <h4 style={{ cursor: "pointer" }}>{missionName}</h4>
+        </Card>
+      ))}
     </div>
   );
 };
