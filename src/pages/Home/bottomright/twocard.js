@@ -38,7 +38,7 @@ const TwoBottomCard= () => {
                     bordered
                     dataSource={data}
                     renderItem={(item) => <List.Item><div className="list-item-container">
-                        <p className="modelname">{item.missonName}</p>
+                        <h4 className="modelname">{item.missionName}</h4>
                         <div className="right-container">
                             <p className="modeltime">{item.createTime}</p>
                         </div>

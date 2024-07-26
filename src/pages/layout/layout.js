@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import "./layout.css"
 import { LogoutOutlined, HomeOutlined, CodepenOutlined, DatabaseOutlined, ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
-import { Input, Layout, Menu, theme, Button } from 'antd';
+import { Input, Layout, Menu, Button } from 'antd';
 import MenuItem from 'antd/es/menu/MenuItem';
 import { Outlet } from 'react-router-dom';
 import { accounthomePageInfo } from "../../api/index"
@@ -12,24 +12,14 @@ const { Header, Content, Sider } = Layout;
 
 const Guidance = () => {
 
-    // const {
-    //     token: { groupTitleColor },
-    // } = theme.useToken();
-
     const navigate = useNavigate();
     const divImageRef = useRef()
-
+    const path=window.location.pathname
+    const [selectedKey, setSelectedKey] = useState(path);
     const handleMenuClick = (key) => {
-        // console.log('Clicked key:', key);
-        // 可以根据 key 值执行相应的操作，比如导航到不同的页面等
+        setSelectedKey(key)
         navigate(key)
     };
-    const getkey = (msg) => {
-        // console.log(msg.key)
-
-
-
-    }
 
     //获取用户信息
     const [userInformation, setUserInformation] = useState({});
@@ -79,18 +69,25 @@ const Guidance = () => {
                     width={160}
                 >
                     <Menu className='menu'
-                        selectedKeys={'1'} onClick={getkey}>
+                        mode='inline'
+                        
+                        >
                         <div className='all_menu'>
                             <div className='top_menu' >
-                                <MenuItem key='1' icon={<HomeOutlined />} className='menu_item' onClick={() => handleMenuClick('/home')}  >首页</MenuItem>
-                                <MenuItem key='2' icon={<DatabaseOutlined />} className='menu_item' onClick={() => handleMenuClick('/center')}>资源中心</MenuItem>
-                                <MenuItem key='3' icon={<CodepenOutlined />} className='menu_item' onClick={() => handleMenuClick('/workbench')}>工作台</MenuItem>
-                                <MenuItem key='4' icon={<UserOutlined />} className='menu_item' onClick={() => handleMenuClick('/person')}>个人信息</MenuItem>
+                                <Menu
+                                    defaultSelectedKeys={[selectedKey]}>
+                                    <MenuItem key='/home' icon={<HomeOutlined />} className='menu_item' onClick={() => handleMenuClick('/home')}  >首页</MenuItem>
+                                <MenuItem key='/center' icon={<DatabaseOutlined />} className='menu_item' onClick={() => handleMenuClick('/center')}>资源中心</MenuItem>
+                                <MenuItem key='/workbench' icon={<CodepenOutlined />} className='menu_item' onClick={() => handleMenuClick('/workbench')}>工作台</MenuItem>
+                                <MenuItem key='/person' icon={<UserOutlined />} className='menu_item' onClick={() => handleMenuClick('/person')}>个人信息</MenuItem>
+                                </Menu>
                             </div>
                             <div className='bottom_menu'>
-                                <MenuItem key='5' icon={<ExclamationCircleOutlined />} className='menu_item' onClick={() => handleMenuClick('1')}>帮助</MenuItem>
+                                <Menu>
+                                <MenuItem key='5' icon={<ExclamationCircleOutlined />} className='menu_item' >帮助</MenuItem>
                                 <div key='6' className='menu_item more_about'><a href='#'>更多</a>    |    <a href='#'>关于</a></div>
                                 <MenuItem key='7' icon={<LogoutOutlined />} className='menu_item' onClick={() => handleMenuClick('/login')}>退出登录</MenuItem>
+                                </Menu>
                             </div>
                         </div>
 
