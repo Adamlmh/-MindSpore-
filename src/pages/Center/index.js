@@ -17,6 +17,7 @@ const ResourceCenter = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+
         const fetchData = async () => {
             try {
                 const response = await modelAllModelsApi(information.userId, information.page, information.name);
@@ -71,7 +72,7 @@ const ResourceCenter = () => {
                 </div>
                 <div className="rightCenter">
                     <div className="right_top">
-                        <RightTop onData={handleChildData} />
+                        <RightTop onData={handleChildData} maxNum={maxNum} />
                     </div>
                     <div className="right_content">
                         <RightCard data={models} />

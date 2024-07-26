@@ -1,5 +1,5 @@
 import { Form, Input, Button } from "antd";
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { accountLogin } from "../../api/index"
 import { Await, useNavigate } from "react-router-dom"
 
@@ -9,6 +9,7 @@ function WithPasswordLogin({ alert, setAlert }) {
   const passwordRef = useRef()
   const usernameRef = useRef()
   const agreeRef = useRef()
+  const rembermeRef = useRef()
 
 
   const setAlertTimeout = (setter, alert, duration = 3000, type = 0) => {
@@ -28,6 +29,18 @@ function WithPasswordLogin({ alert, setAlert }) {
     }
   }
 
+  useEffect(() => {
+
+    if (localStorage.getItem('password')) {
+      passwordRef.current.input.value = localStorage.getItem('password')
+    }
+    if (localStorage.getItem('email')) {
+      usernameRef.current.input.value = localStorage.getItem('email')
+    }
+    rembermeRef.current.checked = true
+  }, [])
+
+
   const login_In = async () => {
     const password = passwordRef.current.input.value
     const email = usernameRef.current.input.value
@@ -44,8 +57,6 @@ function WithPasswordLogin({ alert, setAlert }) {
       setAlertTimeout(setAlert, { message: '请同意相关条款政策', type: 'error' });
       return;
     }
-
-
     try {
       const response = await accountLogin(email, password);
       console.log(response)
@@ -54,6 +65,10 @@ function WithPasswordLogin({ alert, setAlert }) {
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('userId', response.data.userId)
         localStorage.setItem('email', email)
+        if (rembermeRef.current.checked) {
+          localStorage.setItem('password', password)
+          localStorage.setItem('email', email)
+        }
       }
       else {
         setAlertTimeout(setAlert, { message: response.msg, type: 'error' });
@@ -98,8 +113,9 @@ function WithPasswordLogin({ alert, setAlert }) {
                 type="checkbox"
                 id="rememberMe"
                 className="remember-choose"
+                ref={rembermeRef}
               />
-              <label htmlFor="rememberMe" className="rememberMe_text">
+              <label htmlFor="rememberMe" className="rememberMe_text" >
                 记住我
               </label>
             </div>

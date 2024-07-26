@@ -5,7 +5,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import { allModelsApi, modelAllModelsApi } from "../../../api/index"
 const { Dragger } = Upload;
 
-const RightTop = ({ onData }) => {
+const RightTop = ({ onData, maxNum }) => {
 
     //弹窗
     const searchRef = useRef()
@@ -100,13 +100,13 @@ const RightTop = ({ onData }) => {
                 <div className="bigdiv">
                     <div className="right_top_card_left">
                         <div>总数</div>
-                        <div>123456</div>
+                        <div>{maxNum}</div>
                     </div>
 
                     <div className="right_top_card_right">
                         <input type="text" className="input_text" ref={searchRef} placeholder="请输入" />
                         <Button className="input_find" onClick={sendDataToParent} >搜索</Button>
-                        <Button className="input_submit" onClick={showModal} >上传</Button>
+                        {/* <Button className="input_submit" onClick={showModal} >上传</Button> */}
                     </div>
                 </div>
 
