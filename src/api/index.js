@@ -217,4 +217,16 @@ export function disagreeApply(applicationId) {
     data,
   });
 }
+//申请模块
+export function applyModel(modelId, userId) {
+  const data = {
+    modelId: 8,
+    userId: 2
+  };
+  return service({
+    url: "http://47.120.64.48:8080/application/applyModel",
+    method: "post",
+    data,
+  });
+}
 
