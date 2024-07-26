@@ -7,7 +7,6 @@ import { Card } from "antd";
 const Home = () => {
 
 
-
     return (
         <div className="home">
 

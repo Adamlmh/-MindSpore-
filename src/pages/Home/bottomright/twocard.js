@@ -11,7 +11,7 @@ import "./twocard.css"
 // ];
 
 const TwoBottomCard= () => {
-    const [data, setData] = useState({})
+    const [data, setData] = useState([])
     const userId = localStorage.getItem("userId")
     useEffect(() => {
         const fetchData = async () => {
@@ -19,13 +19,13 @@ const TwoBottomCard= () => {
 
                 const response = await fetchRecentTaskApi(userId);
                 setData(response.data)
-                console.log(data);
             } catch (error) {
                 console.error('Error fetching models:', error);
             }
         };
         fetchData();
     }, []);
+    console.log(data);
     return(
     <div className='cont'>
         <Card
@@ -33,12 +33,22 @@ const TwoBottomCard= () => {
             className='top_card'
             hoverable
         >
-            <List
-                size="small"
-                bordered
-                // dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-            />
+                {data ? <List
+                    size="small"
+                    bordered
+                    dataSource={data}
+                    renderItem={(item) => <List.Item><div className="list-item-container">
+                        <p className="modelname">{item.missonName}</p>
+                        <div className="right-container">
+                            <p className="modeltime">{item.createTime}</p>
+                        </div>
+                    </div></List.Item>}
+                /> : <List
+                    size="small"
+                    bordered
+                    // dataSource={data}
+                    renderItem={(item) => <List.Item>{item}</List.Item>}
+                />}
         </Card>
         <Card
             hoverable
