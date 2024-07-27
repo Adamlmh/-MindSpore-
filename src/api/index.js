@@ -237,3 +237,11 @@ export function fetchTaskHistory() {
     method: "get",
   });
 }
+//提交新的任务
+export function postNewTaskApi(data) {
+  return service({
+    url: `/mission/saveMission`,
+    method: "post",
+    data,
+  });
+}

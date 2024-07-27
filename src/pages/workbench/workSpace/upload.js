@@ -13,7 +13,8 @@ import {
 } from "antd";
 import axios from "axios";
 import Loading from "./loading";
-const UploadMessage = ({ dataresult }) => {
+import { postNewTaskApi } from "../../../api";
+const UploadMessage = ({ dataresult, setFlash, flash }) => {
   const [open, setOpen] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [form] = Form.useForm();
@@ -87,23 +88,33 @@ const UploadMessage = ({ dataresult }) => {
         );
       }
 
-      const data = {
-        image: response ? response.data.data : null,
-        content: description,
+      let data = {
+        image: response ? response.data.data : "",
+        content: description ? description : "",
         modelList: dataresult,
+        answer: "",
       };
+      console.log(data);
       setShowLoading(true);
-      setTimeout(() => {
-        onClose();
-        setShowLoading(false);
-      }, 3000);
-      await axios.post("http://139.159.156.117:8080", data, {
+      response = await axios.post("http://139.159.156.117:8080", data, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-
-      message.success("Upload successful");
+      response = JSON.parse(response.data);
+      console.log(response);
+      data = {
+        ...data,
+        answer: response.answer,
+        missionName: values.missionName,
+        userId: localStorage.getItem("userId"),
+      };
+      console.log(data);
+      await postNewTaskApi(data);
+      onClose();
+      setShowLoading(false);
+      message.success("成功啦,请点击查看结果~");
+      setFlash(!flash);
     } catch (error) {
       message.error("Upload failed");
       console.error("Error:", error);
@@ -142,7 +153,7 @@ const UploadMessage = ({ dataresult }) => {
         >
           <Form.Item
             label="项目名称"
-            name="missonName"
+            name="missionName"
             rules={[
               {
                 required: true,

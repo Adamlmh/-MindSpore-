@@ -18,7 +18,7 @@ const ItemCard = ({ item, lists, setLists, index }) => (
   </Card>
 );
 
-const DynamicDragList = () => {
+const DynamicDragList = ({ setFlash, flash }) => {
   //发请求拿模型数据
   const [modalList, setModalList] = useState([]);
   useEffect(() => {
@@ -28,7 +28,6 @@ const DynamicDragList = () => {
     };
     fetchModalListResponse();
   }, []);
-
   const [lists, setLists] = useState([]);
   // 当 modalList 更新时更新 lists
   useEffect(() => {
@@ -80,8 +79,11 @@ const DynamicDragList = () => {
   };
 
   //结果
-  const dataresult = JSON.stringify({ modelList }, null, 2);
+  const dataresult = modelList;
+  // const dataresult = modelListJSON.stringify(modelList, null, 0);
+
   console.log(dataresult);
+  console.log(modelList);
   return (
     <div style={{ display: "flex", marginTop: "5px" }}>
       <div style={{ flex: "0 0 20%", padding: "0 10px", minWidth: "15vw" }}>
@@ -100,7 +102,12 @@ const DynamicDragList = () => {
               >
                 增加层级
               </Button>
-              <UploadMessage style={{ flex: "1" }} dataresult={dataresult} />
+              <UploadMessage
+                style={{ flex: "1" }}
+                dataresult={dataresult}
+                setFlash={setFlash}
+                flash={flash}
+              />
             </div>
 
             <ReactSortable

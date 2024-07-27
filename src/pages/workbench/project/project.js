@@ -4,32 +4,19 @@ import { PlusOutlined, DatabaseOutlined } from "@ant-design/icons";
 import GetResult from "./GetResult";
 import { useEffect, useState } from "react";
 import { fetchTaskHistory } from "../../../api";
-const items = [
-  {
-    key: "1",
-    label: <label className="model_label">新建项目1</label>,
-    icon: <DatabaseOutlined />,
-  },
-  {
-    key: "2",
-    label: <label>新建项目2</label>,
-    icon: <DatabaseOutlined />,
-  },
-];
-const Project = () => {
+const Project = ({ flash, missionId, setMissionId, items, setItems }) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [items, setItems] = useState([]);
+  // const [items, setItems] = useState([]);
   const [newitems, setNewItems] = useState([]);
   useEffect(() => {
     const fetchTaskHistoryAPI = async () => {
       const response = await fetchTaskHistory();
-      console.log(response.data);
       setItems(response.data);
     };
     fetchTaskHistoryAPI();
-  }, []);
+  }, [flash]);
   useEffect(() => {
     const newitems = items.map(({ missionName }, index) => ({
       missionName,
@@ -51,6 +38,10 @@ const Project = () => {
   };
   const handleCancel = () => {
     setOpen(false);
+  };
+  const handleClick = (key) => {
+    setMissionId(key);
+    console.log(items[missionId]);
   };
   return (
     <div className="project">
@@ -79,17 +70,29 @@ const Project = () => {
             onChange={onChange}
           ></Input>
         </Modal>
-        <GetResult style={{ flexGrow: 1 }} />
+        <GetResult
+          style={{ flexGrow: 1 }}
+          missionId={missionId}
+          items={items}
+        />
       </div>
 
-      {newitems.map(({ missionName }) => (
+      {newitems.map(({ missionName }, index) => (
         <Card
           style={{
             width: 210,
             marginTop: 16,
           }}
         >
-          <h4 style={{ cursor: "pointer" }}>{missionName}</h4>
+          <h4
+            key={index}
+            onClick={() => {
+              handleClick(index);
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            {missionName}
+          </h4>
         </Card>
       ))}
     </div>
