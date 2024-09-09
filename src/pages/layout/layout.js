@@ -40,7 +40,6 @@ const Guidance = () => {
         <Layout>
             <Header
                 className='head'
-
             >
                 <div className='demo_logo'>
                     <div className='logo'></div>

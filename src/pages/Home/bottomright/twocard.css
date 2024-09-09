@@ -14,8 +14,12 @@ display: none;
 /* 下方卡片数据反馈 */
 .bottom_card{
     width: 100%;
-    height: 230px;
+    height: 380px;
     margin-top: 20px;
+    overflow: auto;
+}
+.bottom_card::-webkit-scrollbar {
+    display: none;
 }
 .image{
     width: 60%;
@@ -28,11 +32,11 @@ display: none;
 @media screen and (min-width:2048px) {
     .top_card {
             width: 100%;
-            height: 30vh;
+            /* height: 30vh; */
             overflow: auto;
     min-height: 250px;
         }
-.bottom_card{
+/* .bottom_card{
     margin-top: 2vh;
     height: 25vh;
     min-height: 230px;
@@ -40,5 +44,5 @@ display: none;
 .image{
     height: 20vh;
     min-height: 160px;
-}
+} */
 }

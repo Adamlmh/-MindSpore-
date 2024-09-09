@@ -1,3 +1,4 @@
+import MyECharts from "./echarts";
 import "./datacenter.css"
 import { Card } from 'antd';
 const Datacenter=()=>{
@@ -9,10 +10,7 @@ const Datacenter=()=>{
                 title="数据中心"
             hoverable
             >
-                <div className="datacenterBox">
-                <div className="datapic_left"></div>
-                <div className="datapic_right"></div>
-                </div>
+            <MyECharts></MyECharts>
                 
             </Card>
         

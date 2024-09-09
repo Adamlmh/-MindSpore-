@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchRecentTaskApi } from '@/api';
 import { Card, List } from 'antd';
 import "./twocard.css"
+import MyEChart from './echarts';
 // const data = [
 //     'Racing car sprays burning fuel into crowd.',
 //     'Japanese princess to wed commoner.',
@@ -57,7 +58,10 @@ const TwoBottomCard= () => {
             extra={<a href="#">更多</a>}
            className='bottom_card'
         >
-            <div className='image'></div>
+            <div style={{height:'100%',width:'100%'}}>
+                    <MyEChart></MyEChart>  
+            </div>
+                    
         </Card>
     </div>
 );}
