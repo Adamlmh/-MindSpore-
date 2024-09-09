@@ -1,9 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { ReactSortable } from "react-sortablejs";
-import { Card, Col, Row, Button, message } from "antd";
+import { Card, Button, message, Flex } from "antd";
 import UploadMessage from "./upload";
 import Setweight from "./Setweight";
+import { DeleteOutlined } from "@ant-design/icons";
 import { getModelsApi } from "../../../api";
+
+const ModalListResponse = [
+  {
+    id: 1,
+    modelName: "模型1",
+    modelId: "1",
+    weight: 0,
+    modelUrl: "item.modelUrl",
+    isAPI: "item.isAPI",
+  },
+  {
+    id: 2,
+    modelName: "模型2",
+    modelId: "2",
+    weight: 0,
+    modelUrl: "item.modelUrl",
+    isAPI: "item.isAPI",
+  },
+  {
+    id: 3,
+    modelName: "模型3",
+    modelId: "3",
+    weight: 0,
+    modelUrl: "item.modelUrl",
+    isAPI: "item.isAPI",
+  },
+];
 
 const ItemCard = ({ item, lists, setLists, index }) => (
   <Card key={item.id} hoverable size="small" style={{ marginBottom: "12px" }}>
@@ -23,17 +51,17 @@ const DynamicDragList = ({ setFlash, flash }) => {
   const [modalList, setModalList] = useState([]);
   useEffect(() => {
     const fetchModalListResponse = async () => {
-      const ModalListResponse = await getModelsApi();
-      setModalList(ModalListResponse.data);
+      // const ModalListResponse = await getModelsApi();
+      setModalList(ModalListResponse);
     };
     fetchModalListResponse();
   }, []);
   const [lists, setLists] = useState([]);
   // 当 modalList 更新时更新 lists
+  //将所有的模型数据放到第一个列表中
   useEffect(() => {
     setLists([{ id: 1, items: modalList }]);
   }, [modalList]);
-
   const handleDrop = (event) => {
     console.log("Drag ended:", event);
   };
@@ -41,8 +69,8 @@ const DynamicDragList = ({ setFlash, flash }) => {
   const [modelList, setModelList] = useState([]);
   useEffect(() => {
     const newModelList = lists
-      .filter((_, index) => index > 0) // Skip the first list
-      .filter((list) => list.items.length > 0) // Filter out empty lists
+      .filter((_, index) => index > 0) // 跳过第一个列表（所有数据模型），即从真正的第一层开始
+      .filter((list) => list.items.length > 0) // 过滤空列表
       .map((list, index) => ({
         layer: index + 1,
         parallel: list.items.length > 1 ? 1 : 0,
@@ -79,20 +107,49 @@ const DynamicDragList = ({ setFlash, flash }) => {
   };
 
   //结果
-  const dataresult = modelList;
-  // const dataresult = modelListJSON.stringify(modelList, null, 0);
+  // const dataresult = modelList;
+  const dataresult = JSON.stringify(modelList, null, 0);
 
   console.log(dataresult);
-  console.log(modelList);
+  // console.log(modelList);
   return (
-    <div style={{ display: "flex", marginTop: "5px" }}>
-      <div style={{ flex: "0 0 20%", padding: "0 10px", minWidth: "15vw" }}>
+    <div
+      style={{ display: "flex", marginTop: "5px", flexGrow: 1, gap: "10px" }}
+    >
+      <div
+        style={{
+          flex: "0 0 220px",
+          padding: "0 10px",
+          minWidth: "15vw",
+          position: "relative",
+        }}
+      >
+        <ReactSortable
+          list={[]}
+          setList={() => {}} // 空函数，因为我们不需要更新垃圾桶区域的状态
+          group={{ name: "shared", pull: false, put: true }}
+        >
+          <DeleteOutlined
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "30px",
+              zIndex: "10",
+              fontSize: "18px",
+            }}
+          />
+        </ReactSortable>
+
         {/* 渲染第一个列表 */}
         {firstList && (
           <Card
             title={`模型库`}
             bordered={false}
-            style={{ height: "100vh", overflowY: "auto", minWidth: "220px" }}
+            style={{
+              height: "100vh",
+              overflowY: "auto",
+              minWidth: "220px",
+            }}
           >
             <div style={{ display: "flex" }}>
               <Button
@@ -117,6 +174,7 @@ const DynamicDragList = ({ setFlash, flash }) => {
               group={{
                 name: "shared",
                 pull: "clone",
+                put: false,
               }}
               clone={(item) => ({ ...item, id: new Date().getTime() })}
               className={`list${firstList.id}`}
@@ -135,42 +193,57 @@ const DynamicDragList = ({ setFlash, flash }) => {
           </Card>
         )}
       </div>
-      <div style={{ flex: "1", padding: "0 10px", overflowY: "auto" }}>
-        <Row gutter={[12, 12]}>
-          {/* 渲染其余的列表 */}
+      <div
+        style={{
+          flex: "auto",
+          padding: "0 10px",
+          overflowY: "auto",
+        }}
+      >
+        <Flex
+          gap={20}
+          wrap
+          vertical
+          style={{ maxHeight: "95vh" }}
+          justify="center"
+        >
           {remainingLists.map((list, index) => (
-            <Col key={list.id} span={5}>
-              <Card
-                title={`层级:${index + 1}`}
-                bordered={false}
-                style={{ minHeight: "10vh", minWidth: "10vw" }}
+            <Card
+              title={`层级:${index + 1}`}
+              bordered={false}
+              style={{
+                minHeight: "10vh",
+                minWidth: "10vw",
+                maxWidth: "15vw",
+                height: "auto",
+                overflowY: "auto",
+              }}
+            >
+              <ReactSortable
+                list={list.items}
+                setList={(newList) => handleListChange(newList, index + 1)}
+                onEnd={handleDrop}
+                group={{
+                  name: "shared",
+                  put: ["shared"],
+                }}
+                // clone={(item) => handleClone(item, index)}
+                className={`list${list.id}`}
+                style={{ height: "100%" }}
               >
-                <ReactSortable
-                  list={list.items}
-                  setList={(newList) => handleListChange(newList, index + 1)}
-                  onEnd={handleDrop}
-                  group={{
-                    name: "shared",
-                    put: ["shared"],
-                  }}
-                  // clone={(item) => handleClone(item, index)}
-                  className={`list${list.id}`}
-                  style={{ height: "100%" }}
-                >
-                  {list.items.map((item) => (
-                    <ItemCard
-                      key={item.id}
-                      item={item}
-                      lists={lists}
-                      setLists={setLists}
-                      index={index + 1}
-                    />
-                  ))}
-                </ReactSortable>
-              </Card>
-            </Col>
+                {list.items.map((item) => (
+                  <ItemCard
+                    key={item.id}
+                    item={item}
+                    lists={lists}
+                    setLists={setLists}
+                    index={index + 1}
+                  />
+                ))}
+              </ReactSortable>
+            </Card>
           ))}
-        </Row>
+        </Flex>
       </div>
     </div>
   );

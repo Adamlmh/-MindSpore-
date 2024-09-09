@@ -12,9 +12,14 @@ const Project = ({ flash, missionId, setMissionId, items, setItems }) => {
   const [newitems, setNewItems] = useState([]);
   useEffect(() => {
     const fetchTaskHistoryAPI = async () => {
-      const response = await fetchTaskHistory();
-      setItems(response.data);
+      try {
+        const response = await fetchTaskHistory();
+        setItems(response.data);
+      } catch (error) {
+        console.error("Error fetching task history:", error);
+      }
     };
+
     fetchTaskHistoryAPI();
   }, [flash]);
   useEffect(() => {
