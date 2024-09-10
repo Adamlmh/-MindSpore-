@@ -89,7 +89,7 @@ const RightCard = ({ data }) => {
     const dataShow = () => {
         if (data.data) {
             return data.data.map((item, index) => (
-                <Card key={index} className="right_content_card">
+                <Card key={index} className="right_content_card" hoverable={true}>
                     <div className="right_content_card_div">
                         <div className="offical_or_user_tag">
                             <div>{item.characterType ? '用户' : '官方'}</div>

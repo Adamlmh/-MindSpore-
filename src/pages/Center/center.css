@@ -29,6 +29,7 @@ img{
     width: 90vw;
     margin-top: 31px;
     height: 72vh;
+
 }
 
 
@@ -45,7 +46,7 @@ scrollbar-width: none;
     height: 72vh;
     width: 15.5vw;
     min-width: 240px;
-    min-height: 590px;
+
     overflow: auto;
     scrollbar-width: none;
     border-radius: 15px;
@@ -58,23 +59,28 @@ scrollbar-width: none;
     flex-direction: column;
         overflow: auto;
 scrollbar-width: none;
+justify-content: space-between;
 }
 .right_top_card,.right_content_grid{
-
     width: 65vw;
-     overflow: auto;
+  
    min-width: 1000px;
-
 }
+.right_top_card{
+  height: 8vh;
+
+    min-height: 80px;
+    
+}
+
 .right_content{
     margin-top: 0.5vh;
-        overflow: auto;
-scrollbar-width: none;
 }
 .right_content_grid{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
 }
 .right_content_card{
     width: 30vw;
@@ -82,6 +88,7 @@ scrollbar-width: none;
     height: 19vh;
     overflow: auto;
 scrollbar-width: none;
+
 }
 .bottom_pages{
     margin-left: 37vw;
