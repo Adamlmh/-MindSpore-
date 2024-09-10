@@ -118,7 +118,7 @@ export function fetchRecentTaskApi(userId) {
     userId,
   };
   return service({
-    url: "http://47.120.64.48:8080/mission/homePageRecentMission",
+    url: "/mission/homePageRecentMission",
     method: "get",
     params: data,
   });
@@ -132,7 +132,7 @@ export function modelAllModelsApi(userId, page = 1, name = "") {
     name,
   };
   return service({
-    url: "http://47.120.64.48:8080/model/allModels",
+    url: "/model/allModels",
     method: "get",
     params,
   });
@@ -143,7 +143,7 @@ export function accounthomePageInfo(userId) {
     userId: userId,
   };
   return service({
-    url: "http://47.120.64.48:8080/account/homePageInfo",
+    url: "/account/homePageInfo",
     method: "get",
     params,
   });
@@ -155,7 +155,7 @@ export function fetchMyMessage(userId, page) {
     page,
   };
   return service({
-    url: "http://47.120.64.48:8080/application/receivedApplication",
+    url: "/application/receivedApplication",
     method: "get",
     params,
   });
@@ -167,7 +167,7 @@ export function fetchMyModel(userId, page) {
     page,
   };
   return service({
-    url: "http://47.120.64.48:8080/model/myModel",
+    url: "/model/myModel",
     method: "get",
     params,
   });
@@ -180,7 +180,7 @@ export function fetchMyApply(userId, page) {
     page,
   };
   return service({
-    url: "http://47.120.64.48:8080/application/myApplication",
+    url: "/application/myApplication",
     method: "get",
     params,
   });
@@ -191,7 +191,7 @@ export function accountpersonalCenterInfo(userId) {
     userId: userId,
   };
   return service({
-    url: "http://47.120.64.48:8080/account/personalCenterInfo",
+    url: "/account/personalCenterInfo",
     method: "get",
     params,
   });
@@ -202,7 +202,7 @@ export function agreeApply(applicationId) {
     applicationId,
   };
   return service({
-    url: "http://47.120.64.48:8080/application/passApplication",
+    url: "/application/passApplication",
     method: "post",
     data,
   });
@@ -213,7 +213,7 @@ export function disagreeApply(applicationId) {
     applicationId,
   };
   return service({
-    url: "http://47.120.64.48:8080/application/rejectApplication",
+    url: "/application/rejectApplication",
     method: "post",
     data,
   });
@@ -225,7 +225,7 @@ export function applyModel(modelId, userId) {
     userId: 2,
   };
   return service({
-    url: "http://47.120.64.48:8080/application/applyModel",
+    url: "/application/applyModel",
     method: "post",
     data,
   });

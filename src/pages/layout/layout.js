@@ -50,10 +50,11 @@ const Guidance = () => {
                         <Input className='search_input' type='text' placeholder='搜索' />
                         <Button className='search_btn' type='text'><i className="iconfont icon-sousuo"></i></Button>
                     </div>
-                    <div className='person'>
+                    {userInformation && <div className='person'>
                         <div className='person_head'  ><img src={userInformation.image}></img> </div>
                         <div className='person_name'>{userInformation.username}</div>
-                    </div>
+                    </div>}
+                   
                     <div className='more'>
                         <div className='icon'></div>
                         <div className='icon'></div>
