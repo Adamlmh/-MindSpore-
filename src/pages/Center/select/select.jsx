@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card } from 'antd'
+import { Card, Flex } from 'antd'
 import { RedoOutlined } from '@ant-design/icons';
+import { color } from 'echarts';
 
 const select = () => {
 
@@ -12,40 +13,41 @@ const select = () => {
         })
     }
 
-
-
     return (
-        <div >
-            <Card className="selectCard"
-            >
-                <div className="selectCardTop">
-                    <span>筛选</span>
+
+        <Card className="selectCard"
+            hoverable={true}
+
+        >
+            <div className="selectCardTop">
+                <div style={{ display: "flex", flexDirection: "column", alignItems: 'start', justifyContent: 'center', width: 50 }}>
+                    <span style={{ fontSize: 20, fontWeight: 700 }}>筛选</span>
+                    <p style={{ fontSize: 14, fontWeight: 700 }}>来源</p>
+                </div>
+                <span style={{ width: 65, display: 'flex', justifyContent: 'space-around', height: 30, alignItems: 'center' }}>
                     <span>
-                        <span>
-                            <RedoOutlined />
-                        </span>
-                        <span className="resert">
-                            重置
-                        </span>
+                        <RedoOutlined style={{ fontSize: 18 }} />
                     </span>
+                    <span className="resert" style={{ fontWeight: 700, fontSize: 20 }}>
+                        重置
+                        </span>
+                </span>
+            </div>
+
+            <div className="select_image">
+                <p style={{ fontWeight: 700 }}>图像</p>
+                <div className="select_image_box">
+                    {data_show(image_data)}
                 </div>
-                <div className="from">
-                    <p>来源</p>
+            </div>
+            <div className="select_text">
+                <p style={{ fontWeight: 700 }}>文本</p>
+                <div className="select_text_box">
+                    {data_show(text_data)}
                 </div>
-                <div className="select_image">
-                    <p>图像</p>
-                    <div className="select_image_box">
-                        {data_show(image_data)}
-                    </div>
-                </div>
-                <div className="select_text">
-                    <p>文本</p>
-                    <div className="select_text_box">
-                        {data_show(text_data)}
-                    </div>
-                </div>
-            </Card>
-        </div>
+            </div>
+        </Card >
+
     );
 }
 

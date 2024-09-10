@@ -94,52 +94,24 @@ const RightTop = ({ onData, maxNum }) => {
 
 
     return (
-        <div>
-            <Card className="right_top_card"
-            >
-                <div className="bigdiv">
-                    <div className="right_top_card_left">
-                        <div>总数</div>
-                        <div>{maxNum}</div>
-                    </div>
 
-                    <div className="right_top_card_right">
-                        <input type="text" className="input_text" ref={searchRef} placeholder="请输入" />
-                        <Button className="input_find" onClick={sendDataToParent} >搜索</Button>
-                        {/* <Button className="input_submit" onClick={showModal} >上传</Button> */}
-                    </div>
+        <Card className="right_top_card"
+            hoverable={true}
+        >
+            <div className="bigdiv">
+                <div className="right_top_card_left">
+                    <div style={{ fontSize: 20, fontWeight: 700 }}>总数:</div>
+                    <div style={{ fontSize: 20, fontWeight: 700 }}>{maxNum}</div>
                 </div>
 
-                <Modal
-                    title="上传"
-                    open={open}
-                    onOk={handleOk}
-                    confirmLoading={confirmLoading}
-                    onCancel={handleCancel}
-                    className="jumo_modal"
-                >
-                    <Input placeholder="模型名称" />
-                    <Input placeholder="标签" />
-                    <Input placeholder="描述" />
-                    <p className="title_topic">文件</p>
-                    <Dragger
-                        fileList={fileList}
-                        onChange={handleFileChange}
-                        showUploadList={true}
-                        beforeUpload={() => false} // Prevent auto-upload
-                        style={{ width: '150px' }}
-                    >
-                        <p className="ant-upload-drag-icon">
-                            <InboxOutlined />
-                        </p>
-                        <p className="ant-upload-text"></p>
-                        <p className="ant-upload-hint">
+                <div className="right_top_card_right">
+                    <Input className="input_text" ref={searchRef} placeholder="请输入" />
+                    <Button className="input_find" onClick={sendDataToParent} >搜索</Button>
+                    {/* <Button className="input_submit" onClick={showModal} >上传</Button> */}
+                </div>
+            </div>
+        </Card>
 
-                        </p>
-                    </Dragger>
-                </Modal>
-            </Card>
-        </div>
     );
 }
 
