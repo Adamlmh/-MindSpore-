@@ -69,9 +69,7 @@ const ResourceCenter = () => {
                 <img src={topimage} alt="topimage" />
             </div>
             <div className="centerPageBottom">
-                <div className="select">
-                    <Select />
-                </div>
+                <Select />
                 <div className="rightCenter">
                     <div className="right_top">
                         <RightTop onData={handleChildData} maxNum={maxNum} />
