@@ -11,39 +11,42 @@ const ModalListResponse = [
     id: 1,
     modelName: "模型1",
     modelId: "1",
-    weight: 0,
+    weight: "",
     modelUrl: "item.modelUrl",
-    isAPI: "item.isAPI",
+    isAPI: "1",
   },
   {
     id: 2,
     modelName: "模型2",
     modelId: "2",
-    weight: 0,
+    weight: "",
     modelUrl: "item.modelUrl",
-    isAPI: "item.isAPI",
+    isAPI: "0",
   },
   {
     id: 3,
     modelName: "模型3",
     modelId: "3",
-    weight: 0,
+    weight: "",
     modelUrl: "item.modelUrl",
-    isAPI: "item.isAPI",
+    isAPI: "1",
   },
 ];
 
 const ItemCard = ({ item, lists, setLists, index }) => (
-  <Card key={item.id} hoverable size="small" style={{ marginBottom: "12px" }}>
-    <Setweight
-      Name={item.modelName}
-      weight={item.weight}
-      modelId={item.modelId}
-      lists={lists}
-      setLists={setLists}
-      index={index}
-    />
-  </Card>
+  <p title="这是姐姐">
+    <Card key={item.id} hoverable size="small" style={{ marginBottom: "12px" }}>
+      <Setweight
+        Name={item.modelName}
+        weight={item.weight}
+        modelId={item.modelId}
+        lists={lists}
+        setLists={setLists}
+        index={index}
+        question={item.question}
+      />
+    </Card>
+  </p>
 );
 
 const DynamicDragList = ({ setFlash, flash }) => {
@@ -52,7 +55,15 @@ const DynamicDragList = ({ setFlash, flash }) => {
   useEffect(() => {
     const fetchModalListResponse = async () => {
       // const ModalListResponse = await getModelsApi();
-      setModalList(ModalListResponse);
+
+      //新加一个字段question
+      const updatedModalListResponse = ModalListResponse.map((item) => ({
+        ...item,
+        ...(item.isAPI === "1" ? { question: "123" } : {}),
+      }));
+
+      // setModalList(ModalListResponse);
+      setModalList(updatedModalListResponse);
     };
     fetchModalListResponse();
   }, []);
@@ -79,6 +90,7 @@ const DynamicDragList = ({ setFlash, flash }) => {
           modelUrl: item.modelUrl,
           isAPI: item.isAPI,
           weight: item.weight,
+          question: item.question,
         })),
       }));
     setModelList(newModelList);
