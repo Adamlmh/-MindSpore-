@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchRecentTaskApi } from '@/api';
-import { Card, List } from 'antd';
+import { Card, List, Empty } from 'antd';
 import "./twocard.css"
 import MyEChart from './echarts';
 // const data = [
@@ -34,7 +34,7 @@ const TwoBottomCard= () => {
             className='top_card'
             hoverable
         >
-                {data ? <List
+                {data.length!==0 ? <List
                     size="small"
                     bordered
                     dataSource={data}
@@ -44,12 +44,7 @@ const TwoBottomCard= () => {
                             <p className="modeltime">{item.createTime}</p>
                         </div>
                     </div></List.Item>}
-                /> : <List
-                    size="small"
-                    bordered
-                    // dataSource={data}
-                    renderItem={(item) => <List.Item>{item}</List.Item>}
-                />}
+                /> : <Empty />}
         </Card>
         <Card
             hoverable

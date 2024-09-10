@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, List} from 'antd';
+import { Card, List,Empty} from 'antd';
 import "./notice.css"
 import { fetchRankApi } from "../../../api"
 const Notice = () => {
@@ -23,20 +23,23 @@ const Notice = () => {
             className='notice'
             hoverable
         >
-            <List
-                size="large"
-                bordered
-                dataSource={data}
-                renderItem={(item) => <List.Item>
-                    <div className="list-item-container">
-                        <h4 className="modelname">{item.modelName}</h4>
-                        <div className="right-container">
-                            <p className="modelsign">{item.characterType===1?'【官方】':'【用户】'}</p>
-                            <p className="modeltime">{item.createTime}</p>
+            {
+                data.length === 0 ? (<Empty />) : (<List
+                    size="large"
+                    bordered
+                    dataSource={data}
+                    renderItem={(item) => <List.Item>
+                        <div className="list-item-container">
+                            <h4 className="modelname">{item.modelName}</h4>
+                            <div className="right-container">
+                                <p className="modelsign">{item.characterType === 1 ? '【官方】' : '【用户】'}</p>
+                                <p className="modeltime">{item.createTime}</p>
+                            </div>
                         </div>
-                    </div>
-                </List.Item>}
-            />
+                    </List.Item>}
+                />)
+            }
+            
         </Card>
 
     )
