@@ -6,35 +6,35 @@ import Setweight from "./Setweight";
 import { DeleteOutlined } from "@ant-design/icons";
 import { getModelsApi } from "../../../api";
 
-const ModalListResponse = [
-  {
-    id: 1,
-    modelName: "模型1",
-    modelId: "1",
-    weight: "",
-    modelUrl: "item.modelUrl",
-    isAPI: "1",
-  },
-  {
-    id: 2,
-    modelName: "模型2",
-    modelId: "2",
-    weight: "",
-    modelUrl: "item.modelUrl",
-    isAPI: "0",
-  },
-  {
-    id: 3,
-    modelName: "模型3",
-    modelId: "3",
-    weight: "",
-    modelUrl: "item.modelUrl",
-    isAPI: "1",
-  },
-];
+// const ModalListResponse = [
+//   {
+//     id: 1,
+//     modelName: "模型1",
+//     modelId: "1",
+//     weight: "",
+//     modelUrl: "item.modelUrl",
+//     isAPI: "1",
+//   },
+//   {
+//     id: 2,
+//     modelName: "模型2",
+//     modelId: "2",
+//     weight: "",
+//     modelUrl: "item.modelUrl",
+//     isAPI: "0",
+//   },
+//   {
+//     id: 3,
+//     modelName: "模型3",
+//     modelId: "3",
+//     weight: "",
+//     modelUrl: "item.modelUrl",
+//     isAPI: "1",
+//   },
+// ];
 
 const ItemCard = ({ item, lists, setLists, index }) => (
-  <p title="这是姐姐">
+  <p title={item.description}>
     <Card key={item.id} hoverable size="small" style={{ marginBottom: "12px" }}>
       <Setweight
         Name={item.modelName}
@@ -49,17 +49,19 @@ const ItemCard = ({ item, lists, setLists, index }) => (
   </p>
 );
 
-const DynamicDragList = ({ setFlash, flash }) => {
+const DynamicDragList = ({ setFlash, flash, MissionListData }) => {
   //发请求拿模型数据
   const [modalList, setModalList] = useState([]);
   useEffect(() => {
     const fetchModalListResponse = async () => {
-      // const ModalListResponse = await getModelsApi();
+      const ModalListResponse = await getModelsApi();
+      const ModalList = ModalListResponse.data;
+      console.log(ModalList);
 
       //新加一个字段question
-      const updatedModalListResponse = ModalListResponse.map((item) => ({
+      const updatedModalListResponse = ModalList.map((item) => ({
         ...item,
-        ...(item.isAPI === "1" ? { question: "123" } : {}),
+        ...(item.isAPI === 1 ? { question: "123" } : {}),
       }));
 
       // setModalList(ModalListResponse);
@@ -119,8 +121,8 @@ const DynamicDragList = ({ setFlash, flash }) => {
   };
 
   //结果
-  // const dataresult = modelList;
-  const dataresult = JSON.stringify(modelList, null, 0);
+  const dataresult = modelList;
+  // const dataresult = JSON.stringify(modelList, null, 0);
 
   console.log(dataresult);
   // console.log(modelList);
@@ -176,6 +178,7 @@ const DynamicDragList = ({ setFlash, flash }) => {
                 dataresult={dataresult}
                 setFlash={setFlash}
                 flash={flash}
+                rawList={remainingLists}
               />
             </div>
 

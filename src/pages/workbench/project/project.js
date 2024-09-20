@@ -4,12 +4,22 @@ import { PlusOutlined, DatabaseOutlined } from "@ant-design/icons";
 import GetResult from "./GetResult";
 import { useEffect, useState } from "react";
 import { fetchTaskHistory } from "../../../api";
-const Project = ({ flash, missionId, setMissionId, items, setItems }) => {
+const Project = ({
+  flash,
+  missionId,
+  setMissionId,
+  items,
+  setItems,
+  setMissionListData,
+}) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
   // const [items, setItems] = useState([]);
   const [newitems, setNewItems] = useState([]);
+  //追踪选中卡片的索引
+  const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+
   useEffect(() => {
     const fetchTaskHistoryAPI = async () => {
       try {
@@ -44,9 +54,10 @@ const Project = ({ flash, missionId, setMissionId, items, setItems }) => {
   const handleCancel = () => {
     setOpen(false);
   };
-  const handleClick = (key) => {
+  const handleClick = (key, index) => {
     setMissionId(key);
-    console.log(items[missionId]);
+    setSelectedCardIndex(index);
+    setMissionListData(items[index]);
   };
   return (
     <div className="project">
@@ -75,11 +86,7 @@ const Project = ({ flash, missionId, setMissionId, items, setItems }) => {
             onChange={onChange}
           ></Input>
         </Modal>
-        <GetResult
-          style={{ flexGrow: 1 }}
-          missionId={missionId}
-          items={items}
-        />
+        <GetResult missionId={missionId} items={items} />
       </div>
 
       {newitems.map(({ missionName }, index) => (
@@ -87,12 +94,17 @@ const Project = ({ flash, missionId, setMissionId, items, setItems }) => {
           style={{
             width: 210,
             marginTop: 16,
+            backgroundColor: selectedCardIndex === index ? "#f0f0f0" : "#fff", // 根据选中状态设置背景色
+            border:
+              selectedCardIndex === index
+                ? "2px solid #1890ff"
+                : "1px solid #d9d9d9", // 改变边框高亮
           }}
         >
           <h4
             key={index}
             onClick={() => {
-              handleClick(index);
+              handleClick(index, index);
             }}
             style={{ cursor: "pointer" }}
           >

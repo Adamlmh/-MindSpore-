@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import Loading from "./loading";
 import { postNewTaskApi } from "../../../api";
-const UploadMessage = ({ dataresult, setFlash, flash }) => {
+const UploadMessage = ({ dataresult, setFlash, flash, rawList }) => {
   const [open, setOpen] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [form] = Form.useForm();
@@ -77,7 +77,7 @@ const UploadMessage = ({ dataresult, setFlash, flash }) => {
       let response = null;
       if (fileList.length > 0) {
         response = await axios.post(
-          "http://47.120.64.48:8080/upload",
+          "http://10.21.56.119:8082/upload",
           formData,
           {
             headers: {
@@ -93,29 +93,43 @@ const UploadMessage = ({ dataresult, setFlash, flash }) => {
         content: description ? description : "",
         modelList: dataresult,
         answer: "",
+        errorText: "",
       };
-      console.log(data);
+
       setShowLoading(true);
-      response = await axios.post("http://139.159.156.117:8080", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      response = JSON.parse(response.data);
-      console.log(response);
+      response = await axios.post(
+        "http://139.159.156.117:8080/post_json",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.data.errorText) {
+        message.error(response.data.errorText);
+        setShowLoading(false);
+        return;
+      }
+
+      response = response.data;
+
       data = {
         ...data,
         answer: response.answer,
         missionName: values.missionName,
         userId: localStorage.getItem("userId"),
+        modelList: JSON.stringify(rawList),
+        formattedModelList: dataresult,
       };
-      console.log(data);
+
       await postNewTaskApi(data);
       onClose();
       setShowLoading(false);
       message.success("成功啦,请点击查看结果~");
       setFlash(!flash);
     } catch (error) {
+      setShowLoading(false);
       message.error("Upload failed");
       console.error("Error:", error);
     }

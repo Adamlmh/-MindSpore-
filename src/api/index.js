@@ -221,8 +221,8 @@ export function disagreeApply(applicationId) {
 //申请模块
 export function applyModel(modelId, userId) {
   const data = {
-    modelId: 8,
-    userId: 2,
+    modelId: modelId,
+    userId: userId,
   };
   return service({
     url: "/application/applyModel",

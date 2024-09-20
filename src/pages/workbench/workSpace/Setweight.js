@@ -18,7 +18,6 @@ const Setweight = ({
   const showModal = () => {
     setOpen(true);
   };
-  console.log(oldquestion);
 
   const handleOk = () => {
     // 更新 weight
@@ -69,9 +68,25 @@ const Setweight = ({
     );
   };
   return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        {Name}
+    <div>
+      <Button
+        type="primary"
+        onClick={showModal}
+        style={{
+          width: "100%",
+        }}
+      >
+        <span
+          style={{
+            display: "block", // 让 span 元素撑满按钮容器
+            maxWidth: "100%", // 确保文本宽度不超过按钮
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {Name}
+        </span>
       </Button>
       <Modal
         title="自定义信息"
@@ -102,7 +117,7 @@ const Setweight = ({
           />
         )}
       </Modal>
-    </>
+    </div>
   );
 };
 export default Setweight;
