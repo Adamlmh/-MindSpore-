@@ -246,13 +246,12 @@ scrollbar-width: none;
     display: flex;
     justify-content: end;
    align-items: flex-end;
- 
 }
 
  .CheckOutlined,.EllipsisOutlined{
      color: white;
-     width: 4vw;
-     height: 3vh;
+  width: 90px;
+      height: 40px;
      border-radius: 5px;
      border: none;
      background-color:rgb(204, 204, 204) ;
