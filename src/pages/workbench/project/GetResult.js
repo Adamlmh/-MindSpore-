@@ -65,6 +65,12 @@ const GetResult = ({ missionId, items }) => {
   const onClose = () => {
     setOpen(false);
   };
+  // 检查是否是图片 URL 的函数
+  const isImageUrl = (url) => {
+    return (
+      typeof url === "string" && url.match(/\.(jpeg|jpg|gif|png)$/) != null // 检查是否是图片格式的 URL
+    );
+  };
 
   // Render the content based on items[missionId]
   const renderContent = () => {
@@ -72,14 +78,30 @@ const GetResult = ({ missionId, items }) => {
       return (
         <>
           <p>输入：</p>
+
           <p>
-            {items[missionId].content
-              ? items[missionId].content
-              : items[missionId].image}
+            {items[missionId].content ? (
+              items[missionId].content
+            ) : items[missionId].image ? (
+              <img
+                src={items[missionId].image}
+                style={{ width: "80%", height: "auto" }}
+              />
+            ) : null}
           </p>
           <br />
           <p>输出：</p>
-          <p>{items[missionId].answer}</p>
+          <p>
+            {isImageUrl(items[missionId].answer) ? (
+              <img
+                src={items[missionId].answer}
+                alt="answer"
+                style={{ width: "100%", height: "auto" }}
+              />
+            ) : (
+              items[missionId].answer
+            )}
+          </p>
         </>
       );
     }
@@ -91,7 +113,7 @@ const GetResult = ({ missionId, items }) => {
       <Button type="primary" onClick={showDrawer}>
         查看结果
       </Button>
-      <Drawer title="查看结果" onClose={onClose} open={open}>
+      <Drawer title="查看结果" onClose={onClose} open={open} size="large">
         {renderContent()}
       </Drawer>
     </>

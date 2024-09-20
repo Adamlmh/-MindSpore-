@@ -33,8 +33,8 @@ const routers = [
   },
   { path: "/login", element: <Login /> },
   {
-    path: '*',
-    element: <NotFound />
-  }
+    path: "*",
+    element: <NotFound />,
+  },
 ];
 export default routers;
