@@ -51,6 +51,7 @@ const ItemCard = ({ item, lists, setLists, index }) => (
 
 const DynamicDragList = ({ setFlash, flash, MissionListData }) => {
   //发请求拿模型数据
+
   const [modalList, setModalList] = useState([]);
   useEffect(() => {
     const fetchModalListResponse = async () => {
@@ -72,9 +73,18 @@ const DynamicDragList = ({ setFlash, flash, MissionListData }) => {
   const [lists, setLists] = useState([]);
   // 当 modalList 更新时更新 lists
   //将所有的模型数据放到第一个列表中
+  const LList = MissionListData.modelList
+    ? JSON.parse(MissionListData.modelList)
+    : []; // 如果 modelList 不存在，则设为空数组
   useEffect(() => {
     setLists([{ id: 1, items: modalList }]);
   }, [modalList]);
+  useEffect(() => {
+    if (LList) {
+      setLists([{ id: 1, items: modalList }]); // 设置初始列表
+      setLists((prevLists) => [...prevLists, ...LList]); // 基于前一个状态更新
+    }
+  }, [MissionListData]);
   const handleDrop = (event) => {
     console.log("Drag ended:", event);
   };
@@ -124,7 +134,7 @@ const DynamicDragList = ({ setFlash, flash, MissionListData }) => {
   const dataresult = modelList;
   // const dataresult = JSON.stringify(modelList, null, 0);
 
-  console.log(dataresult);
+  // console.log(dataresult);
   // console.log(modelList);
   return (
     <div
