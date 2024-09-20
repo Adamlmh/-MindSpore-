@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Card, Alert } from 'antd';
+import { Card, Alert, message } from 'antd';
 import { CheckOutlined, EllipsisOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
 import { applyModel } from "../../../api/index"
 
 const RightCard = ({ data }) => {
+    console.log(data)
     // 将 data 解构出来
     // const dataShow = () => {
     // if (data.data) {
@@ -52,6 +53,24 @@ const RightCard = ({ data }) => {
     //     return modelsData;
     const [alert, setAlert] = useState({ message: '', type: '' });
     const [isDisabled, setIsDisabled] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
+    const success = () => {
+        messageApi.open({
+            type: 'success',
+            content: '已成功申请，请等候同意',
+        });
+        setIsDisabled(true); // 禁用点击
+        setTimeout(() => {
+            setIsDisabled(false); // 恢复点击
+        }, 2000);
+    };
+    const error = () => {
+        messageApi.open({
+            type: 'error',
+            content: 'Error fetching models',
+        });
+    };
+
     const setAlertTimeout = (setter, data, duration = 1500) => {
         setIsDisabled(true); // 禁用点击
         setter({ message: data.message, type: data.type });
@@ -68,9 +87,10 @@ const RightCard = ({ data }) => {
         }
         try {
             const response = await applyModel(eParent.id, localStorage.getItem('userId'));
-            setAlertTimeout(setAlert, { message: '已成功申请，请等候同意', type: 'success' }); // or 'error'
+
+            success()
         } catch (error) {
-            setAlertTimeout(setAlert, { message: 'Error fetching models', type: 'error' });
+            error()
         }
     };
 
@@ -89,7 +109,9 @@ const RightCard = ({ data }) => {
     const dataShow = () => {
         if (data.data) {
             return data.data.map((item, index) => (
-                <Card key={index} className="right_content_card" hoverable={true}>
+                <Card key={index} className="right_content_card" hoverable={true}
+                    style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+                >
                     <div className="right_content_card_div">
                         <div className="offical_or_user_tag">
                             <div>{item.characterType ? '用户' : '官方'}</div>
@@ -118,9 +140,9 @@ const RightCard = ({ data }) => {
                                 <span>{item.description}</span>
                             </div>
                         </div>
-                        <div className="button_div">
-                            {buttonReturn(item.sign, item.modelId)}
-                        </div>
+                    </div>
+                    <div className="button_div">
+                        {buttonReturn(item.sign, item.modelId)}
                     </div>
                 </Card>
             ));
@@ -130,6 +152,7 @@ const RightCard = ({ data }) => {
         <div className={isDisabled ? 'disabled right_content_grid' : 'right_content_grid'}>
             {alert.message && <Alert message={alert.message} type={alert.type} className="alert_message" />}
             {dataShow()}
+            {contextHolder}
         </div>
     );
 };
