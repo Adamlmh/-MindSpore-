@@ -200,10 +200,10 @@ scrollbar-width: none;
     padding-right:5px;
     color: white;
     margin-top: -20px;
-    width: 90px;
+    width: 85px;
     height: 40px;
     font-size: 24px;
-
+   margin-right: 2.55px;
     display: flex;
     justify-content: center;
     align-items: center;
