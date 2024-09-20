@@ -36,6 +36,7 @@ const select = () => {
             alignItems: "start",
             justifyContent: "center",
             width: 50,
+
           }}
         >
           <span style={{ fontSize: 20, fontWeight: 700 }}>筛选</span>

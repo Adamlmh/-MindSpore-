@@ -63,14 +63,15 @@ justify-content: space-between;
 }
 .right_top_card,.right_content_grid{
     width: 65vw;
-  
+
+height: 62vh;
    min-width: 1000px;
 }
 .right_top_card{
   height: 8vh;
 
     min-height: 80px;
-    
+
 }
 
 .right_content{
@@ -80,6 +81,7 @@ justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-content: flex-start;
 
 }
 .right_content_card{
@@ -88,6 +90,10 @@ justify-content: space-between;
     height: 19vh;
     overflow: auto;
 scrollbar-width: none;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+
 
 }
 .bottom_pages{
@@ -143,11 +149,16 @@ scrollbar-width: none;
     justify-content: space-between;
     display: flex;
    align-items: center;
+
 }
 .bigdiv{
    display: flex;
    flex-wrap: nowrap;
    justify-content: space-between;
+   align-items: center;
+   margin: 0 auto;
+
+  height: 4vh;
 }
 .input_find,.input_submit{
     width: 70px;
@@ -172,9 +183,11 @@ scrollbar-width: none;
 }
 
 .right_content_card_div{
-    margin-top: -25px;
+    height: 13vh;
     display: flex;
     flex-direction: column;
+ position: relative;
+
 }
 .offical_or_user_tag{
   display: flex;
@@ -186,7 +199,16 @@ scrollbar-width: none;
     padding-left:5px;
     padding-right:5px;
     color: white;
-    margin-top: 5px;
+    margin-top: -20px;
+    width: 90px;
+    height: 40px;
+    font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+ 
 }
 
 
@@ -219,8 +241,12 @@ scrollbar-width: none;
      flex-direction: column;
  }
 .button_div{
+
+ margin-bottom: 0px;
     display: flex;
     justify-content: end;
+   align-items: flex-end;
+ 
 }
 
  .CheckOutlined,.EllipsisOutlined{
