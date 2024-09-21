@@ -1,24 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { Card } from 'antd'
-import { Button, Input, message, Upload, Drawer, Form, Flex } from 'antd';
-import { InboxOutlined, LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
-import { allModelsApi, modelAllModelsApi } from "../../../api/index"
-const getBase64 = (img, callback) => {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
-};
-const beforeUpload = (file) => {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    if (!isJpgOrPng) {
-        message.error('You can only upload JPG/PNG file!');
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-        message.error('Image must smaller than 2MB!');
-    }
-    return isJpgOrPng && isLt2M;
-};
+import { Button, Input, message, Upload, Drawer, } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
+
 
 const RightTop = ({ onData, maxNum }) => {
     const { TextArea } = Input;
@@ -27,38 +12,15 @@ const RightTop = ({ onData, maxNum }) => {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
-    const showModal = () => {
-        setOpen(true);
-    };
+
     const showDrawer = () => {
         setOpen(true);
     };
     const onClose = () => {
         setOpen(false);
     };
-    const handleOk = () => {
-        setModalText('The modal will be closed after two seconds');
-        setConfirmLoading(true);
-        fileList.forEach(file => {
-            message.loading('Uploading...', 2.5)
-                .then(() => message.success(`${file.name} uploaded successfully`, 2.5))
-                .catch(() => message.error(`${file.name} upload failed`, 2.5));
-        });
 
-        // Clear fileList after upload
-        setFileList([]);
-        setTimeout(() => {
 
-            setOpen(false);
-            setConfirmLoading(false);
-        }, 2000);
-    };
-    const handleCancel = () => {
-        console.log('Clicked cancel button');
-        setOpen(false);
-    };
-
-    //大文件上传
     const props = {
         name: 'file',
         multiple: false,
@@ -81,27 +43,7 @@ const RightTop = ({ onData, maxNum }) => {
 
     const [fileList, setFileList] = useState([]);
 
-    const handleFileChange = (info) => {
-        let fileList = [...info.fileList];
 
-        // Limit the number of uploaded files
-        fileList = fileList.slice(-2);
-
-        // Save file list to state
-        setFileList(fileList);
-    };
-
-    const handleUpload = () => {
-        // Simulate uploading
-        fileList.forEach(file => {
-            message.loading('Uploading...', 2.5)
-                .then(() => message.success(`${file.name} uploaded successfully`, 2.5))
-                .catch(() => message.error(`${file.name} upload failed`, 2.5));
-        });
-
-        // Clear fileList after upload
-        setFileList([]);
-    };
 
     //搜索
     const sendDataToParent = () => {
@@ -110,7 +52,7 @@ const RightTop = ({ onData, maxNum }) => {
             page: 1,
             name: searchRef.current.value
         }
-        onData(newData); // 调用父组件传递的回调函数，传递数据
+        onData(newData); //
     };
 
 
@@ -175,7 +117,6 @@ const RightTop = ({ onData, maxNum }) => {
                         确定
                 </Button>
                 </div>
-
             </Drawer>
         </Card>
 
