@@ -15,7 +15,7 @@ const data = [
     },
     {
         key: '手机号：',
-        text: 'Racing car sprays burning fuel into crowd.'
+        text: '18677900213'
     },
     {
         key: '个性签名：',
@@ -33,7 +33,7 @@ const Information = () => {
             try {
                 const response = await accountpersonalCenterInfo(localStorage.getItem('userId'));
                 const newUserInfo = [...userinformation]; // 创建一个副本
-                newUserInfo[0].text = response.data.username;
+                newUserInfo[0].text = 'Xiebro';
                 newUserInfo[1].text = response.data.email;
                 newUserInfo[3].text = response.data.description || '暂无个性签名';
                 setUserinformation(newUserInfo);
