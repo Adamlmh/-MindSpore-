@@ -87,7 +87,6 @@ const RightCard = ({ data }) => {
         }
         try {
             const response = await applyModel(eParent.id, localStorage.getItem('userId'));
-
             success()
         } catch (error) {
             error()

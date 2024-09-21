@@ -1,12 +1,27 @@
 import React, { useState, useRef } from 'react';
 import { Card } from 'antd'
-import { Pagination, Button, Modal, Input, message, Upload } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
+import { Button, Input, message, Upload, Drawer, Form, Flex } from 'antd';
+import { InboxOutlined, LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { allModelsApi, modelAllModelsApi } from "../../../api/index"
-const { Dragger } = Upload;
+const getBase64 = (img, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+};
+const beforeUpload = (file) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+        message.error('You can only upload JPG/PNG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
+    }
+    return isJpgOrPng && isLt2M;
+};
 
 const RightTop = ({ onData, maxNum }) => {
-
+    const { TextArea } = Input;
     //弹窗
     const searchRef = useRef()
     const [open, setOpen] = useState(false);
@@ -14,6 +29,12 @@ const RightTop = ({ onData, maxNum }) => {
     const [modalText, setModalText] = useState('Content of the modal');
     const showModal = () => {
         setOpen(true);
+    };
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onClose = () => {
+        setOpen(false);
     };
     const handleOk = () => {
         setModalText('The modal will be closed after two seconds');
@@ -107,9 +128,55 @@ const RightTop = ({ onData, maxNum }) => {
                 <div className="right_top_card_right">
                     <Input className="input_text" ref={searchRef} placeholder="请输入" />
                     <Button className="input_find" onClick={sendDataToParent} >搜索</Button>
-                    {/* <Button className="input_submit" onClick={showModal} >上传</Button> */}
+                    <Button className="input_submit" onClick={showDrawer} >上传</Button>
                 </div>
             </div>
+            <Drawer
+                onClose={onClose}
+                open={open}
+                title={'上传模型'}
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                }}
+            >
+                <div style={{ minHeight: '600px', height: 'calc(100% - 50px)', }}>
+                    <h3 style={{ marginBottom: '10px' }}>模型标题</h3>
+                    <TextArea
+
+                        rows={1}
+                        style={{
+                            backgroundColor: '#f0f0f0',
+                            resize: 'none',
+                            marginBottom: '30px',
+                        }}
+                    />
+                    <h3 style={{ marginBottom: '10px' }}>模型简介</h3>
+                    <TextArea
+
+                        rows={5}
+                        style={{
+                            backgroundColor: '#f0f0f0',
+                            resize: 'none',
+                        }}
+                    />
+                    <Upload {...props} style={{}}>
+                        <Button icon={<UploadOutlined />} style={{ width: '330px', height: '50px', marginTop: '50px' }}>点击上传文件</Button>
+                    </Upload>
+                </div>
+
+                <div style={{ textAlign: 'center' }}>
+                    <Button
+                        type="primary"
+                        style={{ width: '330px', height: '50px' }}
+                        onClick={onClose}
+                    >
+                        确定
+                </Button>
+                </div>
+
+            </Drawer>
         </Card>
 
     );
