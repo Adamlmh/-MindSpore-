@@ -81,6 +81,7 @@ const DynamicDragList = ({ setFlash, flash, MissionListData }) => {
   }, [modalList]);
   useEffect(() => {
     if (LList) {
+      //闭包问题
       setLists([{ id: 1, items: modalList }]); // 设置初始列表
       setLists((prevLists) => [...prevLists, ...LList]); // 基于前一个状态更新
     }
