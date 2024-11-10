@@ -10,15 +10,18 @@ import {
   Row,
   Space,
   message,
+  Radio,
 } from "antd";
 import axios from "axios";
 import Loading from "./loading";
-import { postNewTaskApi } from "../../../api";
+import { postNewTaskApi, uploadImgApi } from "../../../api";
 const UploadMessage = ({ dataresult, setFlash, flash, rawList }) => {
   const [open, setOpen] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [form] = Form.useForm();
   const [showLoading, setShowLoading] = useState(false);
+  //服务器选择按钮的状态
+  const [ServerChoose, setServerChoose] = useState("auto");
   const showDrawer = () => {
     setOpen(true);
   };
@@ -75,17 +78,20 @@ const UploadMessage = ({ dataresult, setFlash, flash, rawList }) => {
 
     try {
       let response = null;
+
+      // 如果有图片上传，先上传给后台
       if (fileList.length > 0) {
-        response = await axios.post(
-          "http://10.21.56.119:8082/upload",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${localStorage.getItem("token")}`, // 添加 token 到请求头
-            },
-          }
-        );
+        response = uploadImgApi(formData);
+        // response = await axios.post(
+        //   "http://10.21.56.119:8082/upload",
+        //   formData,
+        //   {
+        //     headers: {
+        //       "Content-Type": "multipart/form-data",
+        //       Authorization: `Bearer ${localStorage.getItem("token")}`, // 添加 token 到请求头
+        //     },
+        //   }
+        // );
       }
 
       let data = {
@@ -97,15 +103,37 @@ const UploadMessage = ({ dataresult, setFlash, flash, rawList }) => {
       };
 
       setShowLoading(true);
-      response = await axios.post(
-        "http://139.159.156.117:8080/post_json",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
+      //发请求给AI服务器跑模型
+      //先判断cup情况选择服务器
+      // 获取两个服务器的cpu使用率
+      let cup_use1 = null;
+      let cup_use2 = null;
+      let urlServer = null;
+      if (ServerChoose === "auto") {
+        cup_use1 = await axios.get("http://10.21.56.118:11451/get_cpu_usage");
+        cup_use2 = await axios.get("http://10.21.56.119:11451/get_cpu_usage");
+        // 比较两个服务器的cpu使用率，如果第一个服务器的cpu使用率小于等于第二个服务器的cpu使用率，则使用第一个服务器，否则使用第二个服务器
+        console.log(cup_use1.data);
+
+        if (cup_use1.data <= cup_use2.data) {
+          urlServer = "http://10.21.56.118:11451/post_json";
+        } else {
+          urlServer = "http://10.21.56.119:11451/post_json";
         }
-      );
+      } else if (ServerChoose === "server1") {
+        console.log(123);
+
+        urlServer = "http://10.21.56.118:11451/post_json";
+      } else if (ServerChoose === "server2") {
+        console.log(122);
+        urlServer = "http://10.21.56.119:11451/post_json";
+      }
+
+      response = await axios.post(urlServer, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.data.errorText) {
         message.error(response.data.errorText);
         setShowLoading(false);
@@ -122,7 +150,7 @@ const UploadMessage = ({ dataresult, setFlash, flash, rawList }) => {
         modelList: JSON.stringify(rawList),
         formattedModelList: dataresult,
       };
-
+      // 发给后台服务器存储当前结果
       await postNewTaskApi(data);
       onClose();
       setShowLoading(false);
@@ -159,6 +187,15 @@ const UploadMessage = ({ dataresult, setFlash, flash, rawList }) => {
           </Space>
         }
       >
+        <Radio.Group
+          value={ServerChoose}
+          onChange={(e) => setServerChoose(e.target.value)}
+          style={{ marginBottom: "20px" }}
+        >
+          <Radio.Button value="auto">智能选择</Radio.Button>
+          <Radio.Button value="Server1">服务器1</Radio.Button>
+          <Radio.Button value="Server2">服务器2</Radio.Button>
+        </Radio.Group>
         <Form
           form={form}
           layout="vertical"

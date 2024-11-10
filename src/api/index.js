@@ -245,3 +245,11 @@ export function postNewTaskApi(data) {
     data,
   });
 }
+//上传图片
+export function uploadImgApi(formData) {
+  return service({
+    url: `/upload`,
+    method: "post",
+    formData,
+  });
+}
