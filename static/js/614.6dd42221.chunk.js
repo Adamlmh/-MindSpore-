@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkai=self.webpackChunkai||[]).push([[614],{5614:(e,t,s)=>{s.r(t),s.d(t,{default:()=>o});var i=s(4135),a=s(7021),r=(s(5043),s(3216)),n=s(579);const o=()=>{const e=(0,r.Zp)();return(0,n.jsx)(i.Ay,{status:"404",title:"404",subTitle:"Sorry, the page you visited does not exist.",extra:(0,n.jsx)(a.Ay,{type:"primary",onClick:()=>{e("/login")},children:"Back Home"})})}}}]);
+//# sourceMappingURL=614.6dd42221.chunk.js.map
